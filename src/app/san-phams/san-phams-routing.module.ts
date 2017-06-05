@@ -6,8 +6,8 @@ import { PortalComponent } from './portal/portal.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { CamKetBannerComponent } from './cam-ket-banner/cam-ket-banner.component';
 import { PortalHeroComponent } from './portal-hero/portal-hero.component';
-import { SanPhamsHightlightComponent } from './san-phams-hightlight/san-phams-hightlight.component';
-import { SanPhamsCardComponent } from './san-phams-card/san-phams-card.component';
+import { SanPhamHightlightComponent } from './san-pham-hightlight/san-pham-hightlight.component';
+import { SanPhamCardComponent } from './san-pham-card/san-pham-card.component';
 import { SanPhamDetailsComponent } from './san-pham-details/san-pham-details.component';
 import { SanPhamListComponent } from './san-pham-list/san-pham-list.component';
 import { HoTroKhachHangComponent } from './ho-tro-khach-hang/ho-tro-khach-hang.component';
@@ -38,8 +38,8 @@ export const routedComponents = [
   MenuBarComponent,
   CamKetBannerComponent,
   PortalHeroComponent,
-  SanPhamsHightlightComponent,
-  SanPhamsCardComponent,
+  SanPhamHightlightComponent,
+  SanPhamCardComponent,
   SanPhamDetailsComponent,
   SanPhamListComponent,
   HoTroKhachHangComponent

@@ -1,0 +1,32 @@
+.uk-card {
+    .uk-card-title {
+        margin-bottom: 1rem;
+        font-size: 1.275rem;
+    }
+    .price {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        font-size: 1.15rem;
+        color: #666;
+    }
+    p {
+        margin-top: 0;
+    }
+    .uk-card-body {
+        cursor: pointer;
+    }
+}
+
+a {
+    &:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+.ribbon {
+    left: calc(100% + 0rem + 1.2em) !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    text-decoration: none;
+}

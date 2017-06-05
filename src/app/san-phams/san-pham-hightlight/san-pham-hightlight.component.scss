@@ -1,0 +1,41 @@
+.sk-ribbon {
+    padding: .5rem 1rem;
+    text-transform: uppercase;
+    font-size: .875rem;
+    color: #fff;
+    min-width: 9rem;
+    background-color: #8DC15B;;
+
+    &::before {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 50px solid transparent;
+        border-bottom: 50px solid transparent;
+        border-left: 30px solid #8DC15B;;
+        position: absolute;
+        top: 50%;
+        margin-top: -50px;
+        left: 100%;
+        z-index: 2;
+    }
+}
+
+.uk-heading-line {
+    margin-bottom: 2rem;
+}
+
+.uk-container {
+    margin-bottom: 3rem;
+}
+
+
+.sk-button-effect {
+    border-radius: 500px;
+
+    &:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+}

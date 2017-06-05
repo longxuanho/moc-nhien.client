@@ -1,0 +1,11 @@
+<a class="uk-card uk-card-small uk-card-default uk-card-hover" *ngIf="product" href="" [routerLink]="['/san-pham', product._id ]">
+  <div class="uk-card-media-top uk-inline">
+    <img [src]="product.cover" alt="">
+    <a class="ui right ribbon label uk-position-bottom" *ngIf="!product.soLuong"><span>Hết hàng</span></a>
+  </div>
+  <div class="uk-card-body">
+    <h3 class="uk-card-title">{{ product.ten }}</h3>
+    <h4 class="price">{{ product.giaBan | number }} ₫ / {{ product.dvt }}</h4>
+    <p *ngIf="product.trichDan" class="uk-text-small uk-text-justify">{{ product.trichDan }}</p>
+  </div>
+</a>

@@ -4,11 +4,10 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { dbConfigProd } from './shared/app-config';
 import { LoggerService } from './shared/logger.service';
-import { AuthService } from './shared/auth.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { SanPhamService } from './shared/san-pham.service';
 
 import './rxjs-extensions';
 
@@ -25,7 +24,7 @@ import './rxjs-extensions';
   ],
   providers: [
     LoggerService,
-    AuthService
+    SanPhamService
   ],
   exports: [
     NavbarComponent,

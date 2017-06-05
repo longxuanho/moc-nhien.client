@@ -1,0 +1,21 @@
+<div class="uk-container uk-container-expand" *ngIf="products && products.length > 0">
+
+  <h4 class="uk-heading-line">
+    <span class="sk-ribbon">{{ category }}</span>
+  </h4>
+
+  <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-5@xl uk-grid-small uk-grid-match"
+    uk-grid >
+
+    <sk-san-pham-card *ngFor="let product of products" [product]="product"></sk-san-pham-card>
+    <div *ngIf="products && products.length === 0">
+      <p style="font-size: 2rem" class="uk-text-muted">Không có sản phẩm trong mục này</p>
+    </div>
+  </div>
+
+  <div class="uk-flex uk-flex-center" style="margin-top: 2rem;" *ngIf="(category !== 'Sản phẩm bán chạy') && (category !== 'Sản phẩm mới')">
+    <a href="" class="uk-button uk-button-default sk-button-effect" [routerLink]="['/san-pham']" [queryParams]="{s: category}">Xem tất cả</a>
+  </div>
+</div>
+
+<div class="sk-spinner sk-spinner-pulse" *ngIf="!products"></div>

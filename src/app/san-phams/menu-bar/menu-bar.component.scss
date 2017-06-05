@@ -1,0 +1,72 @@
+:host, .uk-container {
+    background-color: #fff;
+}
+
+.sk-navbar-container {
+    nav {
+        background-color: #fff;
+    }
+}
+
+:host.uk-sticky {
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+} 
+
+.uk-search-navbar  {
+    width: inherit;
+    .uk-search-icon:not(.uk-search-icon-flip)+.uk-search-input {
+        padding-left: 60px;
+    }
+}
+
+
+.highlight {
+    color: #EB9A99;
+    &:hover {
+        color: #E87970;
+    }
+}
+
+.sk-product-sub-categories {
+    li a {
+        text-transform: uppercase;
+        font-size: 12px;
+    }   
+}
+
+.uk-nav-header {
+    cursor: pointer;
+    a {
+        color: inherit;
+        padding: 0;
+        margin: 0;
+        font-size: inherit;
+    }
+}
+
+.uk-navbar-nav>li>a {
+
+    color: #8DC15B;
+    position: relative;
+    height: 70px;
+    font-size: 12px;
+    
+
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 15px;
+        right: calc(102% - 15px);
+        bottom: 20px;
+        height: 2px;
+        background-color: currentColor;
+        transition: .3s ease-in-out;
+        transition-property: right;
+    }
+
+    &:hover::before {
+        right: 15px;
+    }
+
+}

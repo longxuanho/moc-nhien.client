@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 
 import { SanPhamsRoutingModule, routedComponents } from './san-phams-routing.module';
@@ -6,7 +7,8 @@ import { SanPhamsRoutingModule, routedComponents } from './san-phams-routing.mod
 @NgModule({
   imports: [
     CommonModule,
-    SanPhamsRoutingModule
+    SanPhamsRoutingModule,
+    HttpModule
   ],
   declarations: [
     routedComponents,

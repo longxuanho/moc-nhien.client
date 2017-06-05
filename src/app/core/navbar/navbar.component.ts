@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AuthService } from '../../core/shared/auth.service';
 import { LoggerService } from '../../core/shared/logger.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   // managerSub: Subscription
 
   constructor(
-    private authService: AuthService,
     private loggerService: LoggerService,
     private router: Router,
   ) { }
