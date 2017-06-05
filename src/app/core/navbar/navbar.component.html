@@ -3,7 +3,7 @@
         <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="boundary-align: true; align: center;">
             <div class="uk-navbar-left">
                 <a class="uk-navbar-item uk-logo" href="" [routerLink]="['/']">
-                    <canvas width="150" height="50" uk-svg src="/assets/imgs/moc_nhien_logo.svg"></canvas>
+                    <canvas width="170" height="50" uk-svg src="/assets/imgs/moc_nhien_logo.svg"></canvas>
                 </a>
             </div>
             <div class="uk-navbar-right">
@@ -27,28 +27,6 @@
                         </div>
                     </li>
                     <li><a href="" [routerLink]="['/gio-hang']">Giỏ hàng</a></li>
-                    <!--<li *ngIf="managerProfile && managerProfile.displayName">
-                        <a href="" (click)="$event.preventDefault()">Hi, {{ managerProfile.displayName }}!</a>
-                        <div uk-dropdown>
-                            <ul class="uk-nav uk-dropdown-nav uk-width-medium uk-text-center uk-text-uppercase">
-                                <li style="margin-bottom: 1.5rem;">
-                                    <img *ngIf="managerProfile.avatar" class="uk-border-circle" [src]="managerProfile.avatar" width="100" height="100" alt="Border circle">
-                                    <div *ngIf="!managerProfile.avatar" class="uk-flex uk-flex-center">
-                                        <div class="uk-border-circle uk-flex uk-flex-middle" style="width: 100px; height: 100px; background-color: lightgray;">
-                                            <span class="uk-width-1-1" uk-icon="icon: user; ratio: 3"></span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>{{ managerProfile.email }}</li>
-                                <li class="uk-nav-divider"></li>
-                                <li><a href="" [routerLink]="['/dashboard']">Dashboard</a></li>
-                                <li><a *ngIf="managerProfile.adminProducts" href="" [routerLink]="['/admin/san-pham']">Sản phẩm</a></li>
-                                <li><a *ngIf="managerProfile.adminBlogs" href="" [routerLink]="['/admin/blogs']">Blog</a></li>
-                                <li class="uk-nav-divider"></li>
-                                <li><a href="" (click)="logout()">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    </li>-->
                 </ul>
                 </div>
         </nav>
