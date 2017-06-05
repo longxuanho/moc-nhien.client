@@ -1,0 +1,55 @@
+.sk-navbar-container:not(.uk-navbar-transparent) {
+    background: #f8f8f8;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sk-navbar-container {
+    .uk-navbar-nav>li>a {
+        
+        position: relative;
+        height: 70px;
+        font-size: 12px;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 15px;
+            right: calc(102% - 15px);
+            bottom: 20px;
+            height: 2px;
+            background-color: currentColor;
+            transition: .3s ease-in-out;
+            transition-property: right;
+        }
+
+        &:hover::before {
+            right: 15px;
+        }
+
+    }
+
+}
+
+.uk-nav-divider {
+    margin-top: 1rem;
+}
+
+.fa {
+    color: #999;
+    margin-right: 0.5rem;
+}
+
+.sk-vertical-separator {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.sk-horizontal-separator {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.uk-navbar-left:focus {
+    outline: none;
+}

@@ -1,0 +1,58 @@
+// Không cho phép người dùng tải ảnh
+img {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+
+    em {
+      color: inherit;
+    }
+}
+
+.no-select {
+  user-select: none !important;
+}
+
+.sk-rounded-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: #f8f8f8;
+    cursor: pointer;
+  }
+}
+
+.sk-icon-button-modal {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    // background-color: #f8f8f8;
+    margin-left: .5rem;
+    cursor: pointer;
+    transition: all .3s;
+    // color: $sk-primary-color;
+
+    &:hover {
+        color: white;
+        // background-color: $sk-primary-color
+    }
+    &:focus {
+        outline: none;
+    }
+
+    &[disabled] {
+        // color: $sk-secondary-color;
+
+        &:hover {
+            color: white;
+            // background-color: $sk-secondary-color
+        }
+    }
+}

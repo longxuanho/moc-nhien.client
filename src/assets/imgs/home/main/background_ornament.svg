@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="804px" viewBox="0 0 1440 804" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <polygon id="path-1" points="1756.52376 244.424637 1515.16165 724.699778 1758.85314 866.966696"></polygon>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="11" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="16.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.263080611   0 0 0 0 0.224630508   0 0 0 0 0.809072066  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <polygon id="path-3" points="1340.16176 214.954657 1430.61795 412.580409 1055.55891 449.045343 873 265.68728"></polygon>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="11" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="16.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.263080611   0 0 0 0 0.224630508   0 0 0 0 0.809072066  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M613.908401,634.74816 C611.889731,631.445938 613.346326,629.22098 617.179338,629.781139 L823.618682,659.950362 C827.443841,660.509374 832.786853,663.158857 835.546916,665.862546 L1122.70457,947.155089 C1125.4672,949.861287 1124.70118,952.946911 1120.99787,954.045765 L863.694655,1030.39337 C859.989447,1031.49279 855.353191,1029.71338 853.330658,1026.40484 L613.908401,634.74816 Z" id="path-5"></path>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="11" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="16.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.263080611   0 0 0 0 0.224630508   0 0 0 0 0.809072066  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Landing-Page">
+            <g id="Header" transform="translate(-287.000000, -269.000000)">
+                <g id="Ornament">
+                    <g id="Group-22">
+                        <g id="Path-8" opacity="0.0238903986">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        </g>
+                        <g id="Path-7" opacity="0.0177196558">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        </g>
+                        <polygon id="Path-10" fill="#FFFFFF" opacity="0.0087182971" points="1104.19736 646.344796 1014.16518 752.887555 1143.14031 830.206591"></polygon>
+                        <g id="Path-6" opacity="0.0177196558">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
+                        </g>
+                        <path d="M69.8297784,116.04157 C67.8111088,112.739348 69.2677032,110.514389 73.100716,111.074549 L279.54006,141.243771 C283.365218,141.802783 288.708231,144.452266 291.468294,147.155955 L578.625952,428.448499 C581.388575,431.154696 580.62256,434.24032 576.919252,435.339174 L319.616033,511.686781 C315.910825,512.786198 311.274569,511.006793 309.252036,507.698251 L69.8297784,116.04157 Z" id="Path-6-Copy" fill="#FFFFFF" opacity="0.0177196558" transform="translate(324.603423, 311.500000) rotate(-35.000000) translate(-324.603423, -311.500000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

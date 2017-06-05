@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="1024px" viewBox="0 0 1440 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="9.13560767%" y1="-14.795473%" x2="83.5493342%" y2="57.8817282%" id="linearGradient-1">
+            <stop stop-color="#6937EA" offset="0%"></stop>
+            <stop stop-color="#377FEA" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Landing-Page" fill="url(#linearGradient-1)">
+            <g id="Header" transform="translate(-287.000000, -269.000000)">
+                <rect id="BG" x="287" y="269" width="1440" height="1024"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

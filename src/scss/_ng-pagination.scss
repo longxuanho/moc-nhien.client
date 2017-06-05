@@ -1,0 +1,14 @@
+.ng2-pagination {
+  .current {
+    // background: $sk-primary-color !important;
+    border-radius: 50%;
+  }
+  li {
+    margin-right: .2rem !important;
+  }
+  a {
+    text-decoration: none;
+    border-radius: 50% !important;
+    color: #666 !important;
+  }
+}
