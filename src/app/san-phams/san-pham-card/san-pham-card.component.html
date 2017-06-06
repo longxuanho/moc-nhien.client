@@ -5,10 +5,13 @@
   </div>
   <div class="uk-card-body">
     <h3 class="uk-card-title">{{ product.ten }}</h3>
-    <!--<div class="subtitle">
-      <div class="auto">Sẵn có: {{ product.soLuong | number }}</div>
-      <div>{{ product.giaBan | number }} ₫/{{ product.dvt }}</div>
-    </div>-->
+
     <p *ngIf="product.trichDan" class="uk-text-small uk-text-justify">{{ product.trichDan }}</p>
+  </div>
+  <div class="uk-card-footer">
+    <div class="subtitle">
+      <div class="auto">{{ product.giaBan | number }} ₫/{{ product.dvt }}</div>
+      <button class="uk-button uk-button-default sk-button-effect">Đặt mua</button>
+    </div>
   </div>
 </a>

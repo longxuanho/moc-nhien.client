@@ -8,9 +8,10 @@
     }
     .subtitle {
         display: flex;
-        margin-top: 0;
-        margin-bottom: 0.75rem;
-        font-size: 1.15rem;
+        align-items: center;
+        // margin-top: 0;
+        // margin-bottom: 0.75rem;
+        // font-size: 1.15rem;
         color: #666;
         .auto {
             flex-grow: 1;
@@ -21,10 +22,13 @@
     }
     .uk-card-body {
         cursor: pointer;
+        flex-grow: 1;
     }
 }
 
 a {
+    display: flex;
+    flex-direction: column;
     &:hover {
         color: inherit;
         text-decoration: none;
