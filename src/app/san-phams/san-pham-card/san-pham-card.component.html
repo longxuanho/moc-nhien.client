@@ -5,7 +5,10 @@
   </div>
   <div class="uk-card-body">
     <h3 class="uk-card-title">{{ product.ten }}</h3>
-    <h4 class="price">{{ product.giaBan | number }} ₫ / {{ product.dvt }}</h4>
+    <!--<div class="subtitle">
+      <div class="auto">Sẵn có: {{ product.soLuong | number }}</div>
+      <div>{{ product.giaBan | number }} ₫/{{ product.dvt }}</div>
+    </div>-->
     <p *ngIf="product.trichDan" class="uk-text-small uk-text-justify">{{ product.trichDan }}</p>
   </div>
 </a>

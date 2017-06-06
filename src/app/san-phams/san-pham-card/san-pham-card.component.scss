@@ -2,12 +2,19 @@
     .uk-card-title {
         margin-bottom: 1rem;
         font-size: 1.275rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
-    .price {
+    .subtitle {
+        display: flex;
         margin-top: 0;
         margin-bottom: 0.75rem;
         font-size: 1.15rem;
         color: #666;
+        .auto {
+            flex-grow: 1;
+        }
     }
     p {
         margin-top: 0;
