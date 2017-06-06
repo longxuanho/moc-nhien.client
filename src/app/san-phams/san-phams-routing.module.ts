@@ -4,13 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { SanPhamsComponent } from './san-phams.component';
 import { PortalComponent } from './portal/portal.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
-import { CamKetBannerComponent } from './cam-ket-banner/cam-ket-banner.component';
 import { PortalHeroComponent } from './portal-hero/portal-hero.component';
 import { SanPhamHightlightComponent } from './san-pham-hightlight/san-pham-hightlight.component';
 import { SanPhamCardComponent } from './san-pham-card/san-pham-card.component';
 import { SanPhamDetailsComponent } from './san-pham-details/san-pham-details.component';
 import { SanPhamListComponent } from './san-pham-list/san-pham-list.component';
 import { HoTroKhachHangComponent } from './ho-tro-khach-hang/ho-tro-khach-hang.component';
+import { SanPhamSearchResultsComponent } from './san-pham-search-results/san-pham-search-results.component';
 
 
 const routes: Routes = [
@@ -36,11 +36,11 @@ export const routedComponents = [
   SanPhamsComponent,
   PortalComponent,
   MenuBarComponent,
-  CamKetBannerComponent,
   PortalHeroComponent,
   SanPhamHightlightComponent,
   SanPhamCardComponent,
   SanPhamDetailsComponent,
   SanPhamListComponent,
-  HoTroKhachHangComponent
+  HoTroKhachHangComponent,
+  SanPhamSearchResultsComponent,
 ]
