@@ -19,17 +19,14 @@ export class PortalComponent implements OnInit {
   constructor(private sanPhamService: SanPhamService) { }
   
   ngOnInit() {
-    this.sanPhamService.getSanPhams({ fields: 'ten tags', limit: 50, tags: 'Mới, Bán chạy, Ghim'}) 
+    this.sanPhamService.getSanPhams({ fields: 'nhom ten tags cover soLuong trichDan giaBan dvt', limit: 50, tags: 'New Releases, Best Seller, Pinned'}) 
       .subscribe(sanphams => {
-        console.log(sanphams);
-        this.bestSellers = sanphams.filter(sanpham => sanpham.tags.includes('Bán chạy'));
-        this.newReleases = sanphams.filter(sanpham => sanpham.tags.includes('Mới'));
-        this.herbs = sanphams.filter(sanpham => sanpham.nhom === 'Thảo dược' && sanpham.tags.includes('Ghim'));
-        this.flowers = sanphams.filter(sanpham => sanpham.nhom === 'Giống hoa' && sanpham.tags.includes('Ghim'));
-        this.ornamentalPlants = sanphams.filter(sanpham => sanpham.nhom === 'Cây cảnh' && sanpham.tags.includes('Ghim'));
-        this.fruitTrees = sanphams.filter(sanpham => sanpham.nhom === 'Cây ăn trái' && sanpham.tags.includes('Ghim'));
-
-        console.log(this.bestSellers, this.newReleases, this.herbs, this.flowers, this.ornamentalPlants, this.fruitTrees);
+        this.bestSellers = sanphams.filter(sanpham => sanpham.tags.includes('Best Seller'));
+        this.newReleases = sanphams.filter(sanpham => sanpham.tags.includes('New Releases'));
+        this.herbs = sanphams.filter(sanpham => sanpham.nhom === 'Thảo dược' && sanpham.tags.includes('Pinned'));
+        this.flowers = sanphams.filter(sanpham => sanpham.nhom === 'Giống hoa' && sanpham.tags.includes('Pinned'));
+        this.ornamentalPlants = sanphams.filter(sanpham => sanpham.nhom === 'Cây cảnh' && sanpham.tags.includes('Pinned'));
+        this.fruitTrees = sanphams.filter(sanpham => sanpham.nhom === 'Cây ăn trái' && sanpham.tags.includes('Pinned'));
       });
   }
 
