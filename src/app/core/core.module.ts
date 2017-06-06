@@ -8,6 +8,7 @@ import { LoggerService } from './shared/logger.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SanPhamService } from './shared/san-pham.service';
+import { SanPhamMenuService } from './shared/san-pham-menu.service';
 
 import './rxjs-extensions';
 
@@ -24,7 +25,8 @@ import './rxjs-extensions';
   ],
   providers: [
     LoggerService,
-    SanPhamService
+    SanPhamService,
+    SanPhamMenuService
   ],
   exports: [
     NavbarComponent,

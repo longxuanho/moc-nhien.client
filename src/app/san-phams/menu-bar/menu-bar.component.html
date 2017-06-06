@@ -8,10 +8,10 @@
 
       <div class="uk-navbar-left" *ngIf="mode === 'search-textbox'">
         <div class="uk-navbar-item">
-          <form class="uk-search uk-search-navbar">
+          <div class="uk-search uk-search-navbar">
             <span uk-search-icon></span>
-            <input class="uk-search-input" type="search" placeholder="Tìm sản phẩm..." spellcheck=false>
-          </form>
+            <input class="uk-search-input" type="search" placeholder="Tìm sản phẩm..." spellcheck=false [ngModel]="searchText" (input)="onSearchInput($event.target.value)">
+          </div>
         </div>
       </div>
       <!--Shown on small devices-->
@@ -24,23 +24,23 @@
           <li>
             <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược' }">Thảo dược</a>
             <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
-              <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid>
+              <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid *ngIf="menu.thaoDuoc">
                 <div>
-                  <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories" *ngIf="menu.herbNhapNgoaiMenu">
+                  <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories">
                     <li class="uk-nav-header">
                       <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược nhập ngoại' }">Nhập ngoại</a>
                     </li>
                     <li class="uk-nav-divider"></li>
-                    <li *ngFor="let menuItem of menu.herbNhapNgoaiMenu"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }">{{ menuItem.text }}</a></li>
+                    <li *ngFor="let menuItem of menu.thaoDuoc.nhapNgoai"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword }">{{ menuItem.text }}</a></li>
                   </ul>
                 </div>
                 <div>
-                  <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories" *ngIf="menu.herbTrongNuocMenu">
+                  <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories">
                     <li class="uk-nav-header">
                       <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược trong nước' }">Trong nước</a>
                     </li>
                     <li class="uk-nav-divider"></li>
-                    <li *ngFor="let menuItem of menu.herbTrongNuocMenu"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }">{{ menuItem.text }}</a></li>
+                    <li *ngFor="let menuItem of menu.thaoDuoc.trongNuoc"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword }">{{ menuItem.text }}</a></li>
                   </ul>
                 </div>
               </div>
@@ -49,39 +49,39 @@
           <li>
             <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Giống hoa' }">Giống hoa</a>
             <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
-              <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2@s uk-column-1-3@m" *ngIf="menu.flowerMenu">
-                <li *ngFor="let menuItem of menu.flowerMenu"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }">{{ menuItem.text }}</a></li>
+              <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2@s uk-column-1-3@m">
+                <li *ngFor="let menuItem of menu.giongHoa"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword }">{{ menuItem.text }}</a></li>
               </ul>
             </div>
           </li>
           <li>
             <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây cảnh' }">Cây cảnh</a>
             <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center; delay-hide: 1200">
-              <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2" *ngIf="menu.ornamentalPlantMenu">
-                <li *ngFor="let menuItem of menu.ornamentalPlantMenu"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }">{{ menuItem.text }}</a></li>
+              <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2">
+                <li *ngFor="let menuItem of menu.cayCanh"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword }">{{ menuItem.text }}</a></li>
               </ul>
             </div>
           </li>
           <li>
             <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái' }">Cây ăn trái</a>
             <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
-              <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid>
+              <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid *ngIf="menu.cayAnTrai">
                 <div>
-                  <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories" *ngIf="menu.fruitTreeNhietDoiMenu">
+                  <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories">
                     <li class="uk-nav-header">
                       <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái nhiệt đới' }">Nhiệt đới</a>
                     </li>
                     <li class="uk-nav-divider"></li>
-                    <li *ngFor="let menuItem of menu.fruitTreeNhietDoiMenu"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }">{{ menuItem.text }}</a></li>
+                    <li *ngFor="let menuItem of menu.cayAnTrai.nhietDoi"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword }">{{ menuItem.text }}</a></li>
                   </ul>
                 </div>
                 <div>
-                  <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories" *ngIf="menu.fruitTreeOnDoiMenu">
+                  <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories">
                     <li class="uk-nav-header">
                       <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái ôn đới' }">Ôn đới</a>
                     </li>
                     <li class="uk-nav-divider"></li>
-                    <li *ngFor="let menuItem of menu.fruitTreeOnDoiMenu"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }">{{ menuItem.text }}</a></li>
+                    <li *ngFor="let menuItem of menu.cayAnTrai.onDoi"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword }">{{ menuItem.text }}</a></li>
                   </ul>
                 </div>
               </div>
