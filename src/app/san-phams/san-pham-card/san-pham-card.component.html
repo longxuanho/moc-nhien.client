@@ -1,9 +1,9 @@
-<a class="uk-card uk-card-small uk-card-default uk-card-hover" *ngIf="product" href="" [routerLink]="['/san-pham', product._id ]">
-  <div class="uk-card-media-top uk-inline">
+<div class="uk-card uk-card-small uk-card-default uk-card-hover" *ngIf="product">
+  <div class="uk-card-media-top uk-inline" href="" [routerLink]="['/san-pham', product._id ]">
     <img [src]="product.cover" alt="">
     <a class="ui right ribbon label uk-position-bottom" *ngIf="!product.soLuong"><span>Hết hàng</span></a>
   </div>
-  <div class="uk-card-body">
+  <div class="uk-card-body" href="" [routerLink]="['/san-pham', product._id ]">
     <h3 class="uk-card-title">{{ product.ten }}</h3>
 
     <p *ngIf="product.trichDan" class="uk-text-small uk-text-justify">{{ product.trichDan }}</p>
@@ -11,7 +11,7 @@
   <div class="uk-card-footer">
     <div class="subtitle">
       <div class="auto">{{ product.giaBan | number }} ₫/{{ product.dvt }}</div>
-      <button class="uk-button uk-button-default sk-button-effect">Đặt mua</button>
+      <button class="uk-button uk-button-default sk-button-effect" (click)="addToCart(product);">Đặt mua</button>
     </div>
   </div>
-</a>
+</div>

@@ -1,16 +1,16 @@
 <sk-menu-bar mode="search-textbox"></sk-menu-bar>
 
-<div class="uk-container" style="margin-bottom: 3rem;">
+<div class="uk-container" style="margin-bottom: 3rem;" *ngIf="cartItems">
   <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
     <li><a href="" [routerLink]="['/']">Trang chính</a></li>
     <li><span href="">Giỏ hàng</span></li>
   </ul>
-  <div>
-    <table class="uk-table uk-table-divider">
+  <div class="margin-top: 2rem;">
+    <table class="uk-table uk-table-divider uk-table-justify">
       <thead>
         <tr>
           <th>Mã sản phẩm</th>
-          <th>Tên sản phẩm</th>
+          <th class="uk-table-expand">Tên sản phẩm</th>
           <th>Số lượng</th>
           <th class="uk-text-right">Đơn giá</th>
           <th class="uk-text-right">Thành tiền</th>
@@ -18,39 +18,29 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-          <td><a href="" uk-icon="icon: close"></a></td>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.ma }}</td>
+          <td>{{ item.ten }}</td>
+          <td><input type="number" class="uk-input" [ngModel]="item.soLuong"></td>
+          <td class="uk-text-right">{{ item.donGia | number }}</td>
+          <td class="uk-text-right">{{ item.thanhTien | number }}</td>
+          <td><a href="" uk-icon="icon: close" (click)="$event.preventDefault(); removeItemFromCart(item)"></a></td>
         </tr>
-        <tr>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-          <td><a href="" uk-icon="icon: close"></a></td>
+        <tr *ngIf="!cartItems.length">
+          <td colspan="6" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
         </tr>
-        <tr>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-          <td><a href="" uk-icon="icon: close"></a></td>
-        </tr>
-        <tr>
+        <tr *ngIf="cartItems.length">
           <td colspan="6" class="uk-text-right">Tổng cộng: <strong>1,200,000 đ</strong></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="uk-flex uk-flex-between">
+  <div class="uk-flex uk-flex-between" *ngIf="!cartItems.length">
+    <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn sản phẩm</a>
+  </div>
+  <div class="uk-flex uk-flex-between" *ngIf="cartItems.length">
     <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn tiếp</a>
-    <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/thanh-toan']">Thanh toán</a>
+    <a class="uk-button uk-button-default sk-button-effect uk-button-primary" [routerLink]="['/thanh-toan']">Thanh toán</a>
   </div>
 </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { SanPhamModel } from '../../core/shared/san-pham.service';
+import { CartService } from '../../core/shared/cart.service';
 
 @Component({
   selector: 'sk-san-pham-card',
@@ -8,15 +10,16 @@ import { Router } from '@angular/router';
 })
 export class SanPhamCardComponent implements OnInit {
 
-  @Input() product;
+  @Input() product: SanPhamModel;
   
-  constructor(private router: Router) { }
-
-  goToProductDetail(id) {
-    this.router.navigate(['/san-pham', 1]);
-  }
+  constructor(private router: Router, private cartService: CartService) { }
 
   ngOnInit() {
+  }
+
+  addToCart(product: SanPhamModel) {
+    this.cartService.addToCart(product, 1);
+    this.router.navigate(['/gio-hang'])
   }
 
 }

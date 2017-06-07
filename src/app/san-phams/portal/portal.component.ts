@@ -19,7 +19,7 @@ export class PortalComponent implements OnInit {
   constructor(private sanPhamService: SanPhamService) { }
   
   ngOnInit() {
-    this.sanPhamService.getSanPhams({ fields: 'nhom ten tags cover soLuong trichDan giaBan dvt', limit: 50, tags: 'New Releases, Best Seller, Pinned'})
+    this.sanPhamService.getSanPhams({ fields: 'nhom ten ma tags cover soLuong trichDan giaBan dvt', limit: 50, tags: 'New Releases, Best Seller, Pinned'})
       .map(res => res.json()) 
       .subscribe(sanphams => {
         this.bestSellers = sanphams.filter(sanpham => sanpham.tags.includes('Best Seller'));

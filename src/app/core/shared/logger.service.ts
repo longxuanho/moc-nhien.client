@@ -1,28 +1,30 @@
 import { Injectable, Inject } from '@angular/core';
 
+import { ToastrService } from 'toastr-ng2';
+
 @Injectable()
 export class LoggerService {
 
-  constructor() { }
+  constructor(private toastrService: ToastrService) { }
 
   success(message: string, title?: string) {
     title = title ? title : 'Thành công';
-    console.log(title, message);
+    this.toastrService.success(message, title);
   }
 
   info(message: string, title?: string) {
     title = title ? title : 'Thông tin';
-    console.log(title, message);
+    this.toastrService.info(message, title);
   }
 
   error(message: string, title?: string) {
     title = title ? title : 'Lỗi';
-    console.log(title, message);
+    this.toastrService.error(message, title);
   }
 
   warning(message: string, title?: string) {
     title = title ? title : 'Cảnh báo';
-    console.log(title, message);
+    this.toastrService.warning(message, title);
   }
 
 }
