@@ -11,7 +11,8 @@ import { SanPhamDetailsComponent } from './san-pham-details/san-pham-details.com
 import { SanPhamListComponent } from './san-pham-list/san-pham-list.component';
 import { HoTroKhachHangComponent } from './ho-tro-khach-hang/ho-tro-khach-hang.component';
 import { SanPhamSearchResultsComponent } from './san-pham-search-results/san-pham-search-results.component';
-
+import { GioHangComponent } from './gio-hang/gio-hang.component';
+import { ThanhToanComponent } from './thanh-toan/thanh-toan.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,8 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', component: PortalComponent },
       { path: 'san-pham', pathMatch: 'full', component: SanPhamListComponent },
       { path: 'san-pham/:id', component: SanPhamDetailsComponent },
+      { path: 'gio-hang', component: GioHangComponent },
+      { path: 'thanh-toan', component: ThanhToanComponent },
       { path: 'ho-tro-khach-hang', component: HoTroKhachHangComponent }
     ]
   }
@@ -43,4 +46,6 @@ export const routedComponents = [
   SanPhamListComponent,
   HoTroKhachHangComponent,
   SanPhamSearchResultsComponent,
+  GioHangComponent,
+  ThanhToanComponent,
 ]

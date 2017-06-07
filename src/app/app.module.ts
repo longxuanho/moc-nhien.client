@@ -14,7 +14,6 @@ import { SanPhamsModule } from './san-phams/san-phams.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    
     CoreModule,
     SanPhamsModule,
   ],

@@ -1,0 +1,108 @@
+<sk-menu-bar mode="search-textbox"></sk-menu-bar>
+
+<div class="uk-container" style="margin-bottom: 3rem;">
+  <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
+    <li><a href="" [routerLink]="['/']">Trang chính</a></li>
+    <li><span href="">Thanh toán</span></li>
+  </ul>
+  <div>
+    <hr/>
+    <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Thông tin người nhận</h3>
+    <form class="uk-form-horizontal uk-margin">
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Người nhận</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Họ và tên">
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-select">Thông tin liên hệ</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Điện thoại">
+          <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Email">
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Địa chỉ nhận hàng</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Địa chỉ">
+          <select style="margin-top: -1px;" class="uk-select" id="form-horizontal-select">
+            <option>Tỉnh/Thành</option>
+            <option>Thanh toán bằng tiền mặt khi nhận hàng</option>
+            <option>Chuyển khoản qua ngân hàng</option>
+          </select>
+          <select style="margin-top: -1px;" class="uk-select" id="form-horizontal-select">
+            <option>Quận/Huyện</option>
+            <option>Thanh toán bằng tiền mặt khi nhận hàng</option>
+            <option>Chuyển khoản qua ngân hàng</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <div class="uk-form-label">Phương thức thanh toán</div>
+        <div class="uk-form-controls uk-form-controls-text">
+          <label><input class="uk-radio" type="radio" name="radio1">  Thanh toán bằng tiền mặt khi nhận hàng</label><br>
+          <label><input class="uk-radio" type="radio" name="radio1">  Chuyển khoản qua ngân hàng</label>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Ghi chú</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text">
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div>
+    <hr style="margin-top: 2rem;"/>
+    <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Nội dung đơn hàng</h3>
+    <table class="uk-table uk-table-divider">
+      <thead>
+        <tr>
+          <th>Mã sản phẩm</th>
+          <th>Tên sản phẩm</th>
+          <th>Số lượng</th>
+          <th class="uk-text-right">Đơn giá</th>
+          <th class="uk-text-right">Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Table Data</td>
+          <td>Table Data</td>
+          <td>Table Data</td>
+          <td class="uk-text-right">Table Data</td>
+          <td class="uk-text-right">Table Data</td>
+        </tr>
+        <tr>
+          <td>Table Data</td>
+          <td>Table Data</td>
+          <td>Table Data</td>
+          <td class="uk-text-right">Table Data</td>
+          <td class="uk-text-right">Table Data</td>
+        </tr>
+        <tr>
+          <td>Table Data</td>
+          <td>Table Data</td>
+          <td>Table Data</td>
+          <td class="uk-text-right">Table Data</td>
+          <td class="uk-text-right">Table Data</td>
+        </tr>
+        <tr>
+          <td colspan="6" class="uk-text-right">Tổng cộng: <strong>1,200,000 đ</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+  </div>
+
+  <div class="uk-flex uk-flex-between">
+    <a class="uk-button uk-button-default" [routerLink]="['/gio-hang']">Giỏ hàng</a>
+    <a class="uk-button uk-button-default uk-button-primary" [routerLink]="['/']">Gửi đơn hàng</a>
+  </div>
+</div>
