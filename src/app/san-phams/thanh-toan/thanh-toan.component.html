@@ -1,4 +1,4 @@
-<sk-menu-bar mode="search-textbox"></sk-menu-bar>
+<!--<sk-menu-bar mode="search-textbox"></sk-menu-bar>-->
 
 <div class="uk-container" style="margin-bottom: 3rem;">
   <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
@@ -72,29 +72,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-          <td class="uk-text-right">Table Data</td>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.ma }}</td>
+          <td>{{ item.ten }}</td>
+          <td>{{ item.soLuong | number }}</td>
+          <td class="uk-text-right">{{ item.donGia | number }}</td>
+          <td class="uk-text-right">{{ item.thanhTien | number }}</td>
         </tr>
-        <tr>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-          <td class="uk-text-right">Table Data</td>
+        <tr *ngIf="!cartItems.length">
+          <td colspan="5" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
         </tr>
-        <tr>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td>Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-          <td class="uk-text-right">Table Data</td>
-        </tr>
-        <tr>
-          <td colspan="6" class="uk-text-right">Tổng cộng: <strong>1,200,000 đ</strong></td>
+        <tr *ngIf="cartItems.length">
+          <td colspan="5" class="uk-text-right">Tổng cộng: <strong>{{ totalPrice | number }} đ</strong></td>
         </tr>
       </tbody>
     </table>
@@ -103,6 +92,6 @@
 
   <div class="uk-flex uk-flex-between">
     <a class="uk-button uk-button-default" [routerLink]="['/gio-hang']">Giỏ hàng</a>
-    <a class="uk-button uk-button-default uk-button-primary" [routerLink]="['/']">Gửi đơn hàng</a>
+    <button class="uk-button uk-button-default uk-button-primary">Gửi đơn hàng</button>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<sk-menu-bar mode="search-textbox"></sk-menu-bar>
+<!--<sk-menu-bar mode="search-textbox"></sk-menu-bar>-->
 
 <div class="uk-container" style="margin-bottom: 3rem;" *ngIf="cartItems">
   <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
@@ -21,7 +21,7 @@
         <tr *ngFor="let item of cartItems">
           <td>{{ item.ma }}</td>
           <td>{{ item.ten }}</td>
-          <td><input type="number" class="uk-input" [ngModel]="item.soLuong"></td>
+          <td><input type="number" class="uk-input" [(ngModel)]="item.soLuong" (input)="onResolveCart($event)"></td>
           <td class="uk-text-right">{{ item.donGia | number }}</td>
           <td class="uk-text-right">{{ item.thanhTien | number }}</td>
           <td><a href="" uk-icon="icon: close" (click)="$event.preventDefault(); removeItemFromCart(item)"></a></td>
@@ -30,11 +30,13 @@
           <td colspan="6" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
         </tr>
         <tr *ngIf="cartItems.length">
-          <td colspan="6" class="uk-text-right">Tổng cộng: <strong>1,200,000 đ</strong></td>
+          <td colspan="6" class="uk-text-right">Tổng cộng: <strong>{{ totalPrice | number }} đ</strong></td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <!--<pre>{{ cartItems | json }}</pre>-->
 
   <div class="uk-flex uk-flex-between" *ngIf="!cartItems.length">
     <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn sản phẩm</a>
