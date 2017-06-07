@@ -6,38 +6,59 @@ import { appConfig } from './app-config';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class CartService {
+export class DonHangService {
 
   constructor(private http: Http) { }
 
-
-  getCart(): ItemCartModel[] {
-    return JSON.parse(localStorage.getItem('cart')) || [];
-  }
-
   addToCart(item, soLuong: number) {
     if (!item || !soLuong) return;
-    let cart = this.getCart();
+    
+    let donHang = this.getDonHang();
+    let cart = donHang.sanPhams;
 
     // Nếu item đã tồn tại trong giỏ hàng, return;
     if (cart.find(itemInCart => itemInCart._id === item._id)) return;
-    
+
     let newItem: ItemCartModel = { _id: item._id, ten: item.ten, ma: item.ma, donGia: item.giaBan, soLuong: soLuong, thanhTien: item.giaBan * soLuong, sanCo: item.soLuong };
     cart.push(newItem);
 
-    localStorage.setItem('cart', JSON.stringify(cart));
+    this.saveDonHang(donHang);
   }
 
-  saveCart(cart: ItemCartModel[]) {
-    if (!cart) return;
+  getDonHang(): DonHangModel {
+    return <DonHangModel>JSON.parse(localStorage.getItem('donHang')) || this.initDonHang();
+  }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
+  saveDonHang(donHang: DonHangModel) {
+    if (!donHang) return;
+
+    localStorage.setItem('donHang', JSON.stringify(donHang));
+  }
+
+  resetDonHang() {
+    localStorage.removeItem('donHang');
   }
 
   resetCart() {
     localStorage.removeItem('cart');
   }
 
+  initDonHang(): DonHangModel {
+    return {
+      khachHang: {
+        hoTen: '',
+        dienThoai: '',
+        email: '',
+        diaChi: '',
+        tinhThanh: '',
+        quanHuyen: ''
+      },
+      cachThanhToan: 'Tiền mặt',
+      sanPhams: [],
+      tongCong: 0,
+      trangThai: 'Chờ kiểm duyệt'
+    }
+  }
 
   public get env(): string {
     return (environment.production) ? 'prod' : 'dev';

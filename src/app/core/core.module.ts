@@ -10,7 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SanPhamService } from './shared/san-pham.service';
 import { SanPhamMenuService } from './shared/san-pham-menu.service';
-import { CartService } from './shared/cart.service';
+import { DonHangService } from './shared/don-hang.service';
 
 import './rxjs-extensions';
 
@@ -30,7 +30,7 @@ import './rxjs-extensions';
     LoggerService,
     SanPhamService,
     SanPhamMenuService,
-    CartService
+    DonHangService
   ],
   exports: [
     NavbarComponent,

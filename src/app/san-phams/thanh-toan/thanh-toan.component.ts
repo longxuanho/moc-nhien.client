@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
-import { CartService, ItemCartModel } from '../../core/shared/cart.service';
+import { DonHangService, DonHangModel, ItemCartModel } from '../../core/shared/don-hang.service';
 
 @Component({
   selector: 'sk-thanh-toan',
@@ -9,10 +10,14 @@ import { CartService, ItemCartModel } from '../../core/shared/cart.service';
 })
 export class ThanhToanComponent implements OnInit {
 
+  donHang: DonHangModel;
+
   cartItems: ItemCartModel[];
   totalPrice: number = 0;
+  donHangForm: FormGroup;
 
-  constructor(private cartService: CartService) { }
+
+  constructor(private donHangService: DonHangService) {}
 
   onResolveCart() {
     this.totalPrice = 0;
@@ -20,11 +25,12 @@ export class ThanhToanComponent implements OnInit {
       item.thanhTien = item.soLuong * item.donGia;
       this.totalPrice += item.thanhTien;
     });
-    this.cartService.saveCart(this.cartItems);
+    this.donHangService.saveDonHang(this.donHang);
   }
 
   ngOnInit() {
-    this.cartItems = this.cartService.getCart();
+    this.donHang = this.donHangService.getDonHang();
+    this.cartItems = this.donHang.sanPhams;
     this.onResolveCart();
   }
 

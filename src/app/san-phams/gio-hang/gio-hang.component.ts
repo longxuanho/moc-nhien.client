@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService, ItemCartModel } from '../../core/shared/cart.service';
+import { DonHangService, DonHangModel, ItemCartModel } from '../../core/shared/don-hang.service';
 
 @Component({
   selector: 'sk-gio-hang',
@@ -7,11 +7,12 @@ import { CartService, ItemCartModel } from '../../core/shared/cart.service';
   styleUrls: ['./gio-hang.component.scss']
 })
 export class GioHangComponent implements OnInit {
-
+  
+  donHang: DonHangModel;
   cartItems: ItemCartModel[];
   totalPrice: number = 0;
 
-  constructor(private cartService: CartService) { }
+  constructor(private donHangService: DonHangService) { }
 
   removeItemFromCart(item: ItemCartModel) {
     this.cartItems.splice(this.cartItems.indexOf(item), 1);
@@ -24,11 +25,12 @@ export class GioHangComponent implements OnInit {
       item.thanhTien = item.soLuong * item.donGia;
       this.totalPrice += item.thanhTien;
     });
-    this.cartService.saveCart(this.cartItems);
+    this.donHangService.saveDonHang(this.donHang);
   }
 
   ngOnInit() {
-    this.cartItems = this.cartService.getCart();
+    this.donHang = this.donHangService.getDonHang();
+    this.cartItems = this.donHang.sanPhams;
     this.onResolveCart();
   }
 
