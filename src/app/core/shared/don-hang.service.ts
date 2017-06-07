@@ -54,6 +54,7 @@ export class DonHangService {
         quanHuyen: ''
       },
       cachThanhToan: 'Tiền mặt',
+      ghiChu: '',
       sanPhams: [],
       tongCong: 0,
       trangThai: 'Chờ kiểm duyệt'
@@ -109,6 +110,7 @@ export class DonHangModel {
   sanPhams: ItemCartModel[];
   tongCong: number;
   trangThai: string;
+  ghiChu: string;
 
   ngayGiao?: string;
   ngayDuKienGiao?: string;

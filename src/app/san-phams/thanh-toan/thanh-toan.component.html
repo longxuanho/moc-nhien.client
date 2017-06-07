@@ -1,6 +1,6 @@
 <!--<sk-menu-bar mode="search-textbox"></sk-menu-bar>-->
 
-<div class="uk-container" style="margin-bottom: 3rem;">
+<div class="uk-container" style="margin-bottom: 3rem;" *ngIf="donHang">
   <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
     <li><a href="" [routerLink]="['/']">Trang chính</a></li>
     <li><span href="">Thanh toán</span></li>
@@ -8,58 +8,57 @@
   <div>
     <hr/>
     <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Thông tin người nhận</h3>
-    <form class="uk-form-horizontal uk-margin">
-      <div class="uk-margin">
-        <label class="uk-form-label" for="form-horizontal-text">Người nhận</label>
-        <div class="uk-form-controls">
-          <input class="uk-input" type="text" placeholder="Họ và tên">
+    <form class="uk-form-horizontal uk-margin" [formGroup]="donHangForm" spellcheck="false">
+      <div formGroupName="khachHang">
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-horizontal-text">Người nhận</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" type="text" placeholder="Họ và tên" formControlName="hoTen">
+          </div>
         </div>
-      </div>
 
-      <div class="uk-margin">
-        <label class="uk-form-label" for="form-horizontal-select">Thông tin liên hệ</label>
-        <div class="uk-form-controls">
-          <input class="uk-input" type="text" placeholder="Điện thoại">
-          <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Email">
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-horizontal-select">Thông tin liên hệ</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" type="text" placeholder="Điện thoại" formControlName="dienThoai">
+            <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Email" formControlName="email">
+          </div>
         </div>
-      </div>
 
-      <div class="uk-margin">
-        <label class="uk-form-label" for="form-horizontal-text">Địa chỉ nhận hàng</label>
-        <div class="uk-form-controls">
-          <input class="uk-input" type="text" placeholder="Địa chỉ">
-          <select style="margin-top: -1px;" class="uk-select" id="form-horizontal-select">
+        <div class="uk-margin">
+          <label class="uk-form-label" for="form-horizontal-text">Địa chỉ nhận hàng</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" type="text" placeholder="Địa chỉ" formControlName="diaChi">
+            <select style="margin-top: -1px;" class="uk-select" formControlName="tinhThanh">
             <option>Tỉnh/Thành</option>
             <option>Thanh toán bằng tiền mặt khi nhận hàng</option>
             <option>Chuyển khoản qua ngân hàng</option>
           </select>
-          <select style="margin-top: -1px;" class="uk-select" id="form-horizontal-select">
+            <select style="margin-top: -1px;" class="uk-select" formControlName="quanHuyen">
             <option>Quận/Huyện</option>
             <option>Thanh toán bằng tiền mặt khi nhận hàng</option>
             <option>Chuyển khoản qua ngân hàng</option>
           </select>
+          </div>
         </div>
       </div>
-
       <div class="uk-margin">
         <div class="uk-form-label">Phương thức thanh toán</div>
         <div class="uk-form-controls uk-form-controls-text">
-          <label><input class="uk-radio" type="radio" name="radio1">  Thanh toán bằng tiền mặt khi nhận hàng</label><br>
-          <label><input class="uk-radio" type="radio" name="radio1">  Chuyển khoản qua ngân hàng</label>
+          <label><input class="uk-radio" type="radio" value="Tiền mặt" formControlName="cachThanhToan">  Thanh toán bằng tiền mặt khi nhận hàng</label><br>
+          <label><input class="uk-radio" type="radio" value="Chuyển khoản" formControlName="cachThanhToan">  Chuyển khoản qua ngân hàng</label>
         </div>
       </div>
-
       <div class="uk-margin">
         <label class="uk-form-label" for="form-horizontal-text">Ghi chú</label>
         <div class="uk-form-controls">
-          <input class="uk-input" type="text">
+          <input class="uk-input" type="text" formControlName="ghiChu">
         </div>
       </div>
-
     </form>
   </div>
-  <div>
-    <hr style="margin-top: 2rem;"/>
+  <div *ngIf="donHang.sanPhams">
+    <hr style="margin-top: 2rem;" />
     <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Nội dung đơn hàng</h3>
     <table class="uk-table uk-table-divider uk-table-justify">
       <thead>
@@ -72,23 +71,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of cartItems">
+        <tr *ngFor="let item of donHang.sanPhams">
           <td>{{ item.ma }}</td>
           <td>{{ item.ten }}</td>
           <td>{{ item.soLuong | number }}</td>
           <td class="uk-text-right">{{ item.donGia | number }}</td>
           <td class="uk-text-right">{{ item.thanhTien | number }}</td>
         </tr>
-        <tr *ngIf="!cartItems.length">
+        <tr *ngIf="!donHang.sanPhams.length">
           <td colspan="5" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
         </tr>
-        <tr *ngIf="cartItems.length">
+        <tr *ngIf="donHang.sanPhams.length">
           <td colspan="5" class="uk-text-right">Tổng cộng: <strong>{{ totalPrice | number }} đ</strong></td>
         </tr>
       </tbody>
     </table>
     <hr/>
   </div>
+
+  <pre>{{ donHangForm.value | json }}</pre>
 
   <div class="uk-flex uk-flex-between">
     <a class="uk-button uk-button-default" [routerLink]="['/gio-hang']">Trở lại giỏ hàng</a>
