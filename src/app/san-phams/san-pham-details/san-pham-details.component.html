@@ -1,3 +1,79 @@
-<p>
-  san-pham-details works!
-</p>
+<sk-menu-bar mode="search-textbox"></sk-menu-bar>
+
+<div class="uk-container" style="margin-bottom: 3rem;" *ngIf="product">
+  <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
+    <li><a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: product.nhom }">{{ product.nhom }}</a></li>
+    <li><span href="">{{ product.ten }}</span></li>
+  </ul>
+
+  <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+
+    <div class="uk-card-media-left uk-cover-container uk-inline-clip uk-transition-toggle" oncontextmenu="return false;">
+      <img [src]="currentCoverUrl" alt="" uk-cover>
+      <div style="width: 100%; height: 100%; background: transparent"></div>
+      <!--<img [src]="currentCoverUrl" class="uk-transition-scale-up uk-transition-opaque" alt="">-->
+
+      <div class="uk-position-relative uk-light" style="z-index: 999;">
+        <div class="uk-position-bottom-center uk-position-medium">
+          <ul class="uk-dotnav uk-flex-nowrap">
+            <li class="uk-active" [ngClass]="{'uk-active': i === currentCoverIndex}" *ngFor="let cover of product.gallery; let i = index"
+              (click)="setCurrentCoverUrl($event, i)"><a href="">Item 1</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
+        <p class="uk-h4 uk-margin-remove"><span style="color: transparent;">invisible</span></p>
+      </div>
+
+    </div>
+    <div>
+      <div class="uk-card-body" style="padding-top: 1.5rem;">
+
+        <p style="display: none">{{ product.id }}</p>
+
+        <h3 class="uk-card-title" style="margin-bottom: .5rem; margin-top: .5rem;">{{ product.ten }}</h3>
+        <p style="margin-top: 0;" *ngIf="product.tenKhac">({{ product.tenKhac }})</p>
+        <p class="uk-text-justify">{{ product.gioiThieu }}</p>
+        <table class="uk-table uk-table-small uk-table-divider">
+          <tbody>
+            <tr>
+              <td>Mã hàng</td>
+              <td><strong>{{ product.ma }}</strong></td>
+            </tr>
+            <tr>
+              <td>Số lượng sẵn có</td>
+              <td><span *ngIf="product.soLuong > 0">{{ product.soLuong | number }}</span><span *ngIf="product.soLuong <= 0">Hết hàng</span></td>
+            </tr>
+            <tr>
+              <td>Giá bán</td>
+              <td><strong>{{ product.giaBan | number }} ₫</strong> / {{ product.dvt }}</td>
+            </tr>
+            <tr>
+              <td>Chiều cao</td>
+              <td>{{ product.chieuCao }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="uk-text-right">
+          <button class="uk-button uk-button-default sk-button-effect">Đặt mua</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-child-width-1-2@m uk-grid-small uk-grid-collapse uk-grid-match" style="margin-top: 3rem;" uk-grid>
+    <div>
+      <div class="uk-card uk-card-hover uk-card-default uk-card-body">
+        <h3 class="uk-card-title">Mô tả sản phẩm</h3>
+        <div [innerHTML]="product.moTaSanPham | safeHtml"></div>
+      </div>
+    </div>
+    <div>
+      <div class="uk-card uk-card-hover uk-card-default uk-card-body">
+        <h3 class="uk-card-title">Cách trồng và chăm sóc</h3>
+        <div [innerHTML]="product.cachChamSoc | safeHtml"></div>
+      </div>
+    </div>
+  </div>
+</div>

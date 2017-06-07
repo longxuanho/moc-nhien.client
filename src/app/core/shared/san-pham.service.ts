@@ -10,7 +10,7 @@ export class SanPhamService {
 
   constructor(private http: Http) { }
 
-  getSanPham(sanPhamId: string, pager: { fields: '' }) {
+  getSanPham(sanPhamId: string, pager: SanPhamPager = { fields: '-created' }): Observable<SanPhamModel> {
     return this.http.get(appConfig[this.env]['apis']["san_phams"] + `/${sanPhamId}?fields=${pager.fields}`)
       .map((res: Response) => res.json())
       .catch(this.handleError);
