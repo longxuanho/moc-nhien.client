@@ -1,7 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { DonHangService, DonHangModel, ItemCartModel } from '../../core/shared/don-hang.service';
+import { LoggerService } from '../../core/shared/logger.service';
 
 @Component({
   selector: 'sk-thanh-toan',
@@ -31,7 +33,7 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
   isThanhToanChuyenKhoan: boolean = false;
   isAllowThanhToanTienMat: boolean = true;
 
-  constructor(private donHangService: DonHangService, private fb: FormBuilder) {
+  constructor(private donHangService: DonHangService, private fb: FormBuilder, private loggerService: LoggerService, private router: Router) {
     this.buildForm();
   }
 
@@ -58,18 +60,18 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
   }
 
   resetForm() {
-    this.donHangForm.reset(this.donHangService.initDonHang());
+    this.donHangForm.reset(this.donHangService.initDonHangLocal());
   }
 
   initForm() {
-    this.donHangForm.reset(this.donHangService.getDonHang());
+    this.donHangForm.reset(this.donHangService.getDonHangLocal());
   }
 
   onResolveDonHang() {
     if (!this.donHang) return;
 
-    this.donHangService.resolveDonHang(this.donHang);
-    this.donHangService.saveDonHang(this.donHang);
+    this.donHangService.resolveDonHangLocal(this.donHang);
+    this.donHangService.saveDonHangLocal(this.donHang);
   }
 
   onResolveLocationSelect(tinhThanhSelected: string, locations) {
@@ -91,14 +93,14 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
     this.donHangForm.valueChanges
       .debounceTime(1000)
       .subscribe(value => {
-        this.donHang = Object.assign(this.donHangService.getDonHang(), value);
+        this.donHang = Object.assign(this.donHangService.getDonHangLocal(), value);
 
         if (this.tinhThanh.value && this.tinhThanh.value !== 'Hồ Chí Minh') this.cachThanhToan.setValue('Chuyển khoản');
         this.isAllowThanhToanTienMat = (!this.tinhThanh.value || this.tinhThanh.value === 'Hồ Chí Minh');
         this.isThanhToanChuyenKhoan = (this.cachThanhToan.value === "Chuyển khoản");
 
-        this.donHangService.resolveDonHang(this.donHang);
-        this.donHangService.saveDonHang(this.donHang);
+        this.donHangService.resolveDonHangLocal(this.donHang);
+        this.donHangService.saveDonHangLocal(this.donHang);
       });
 
     // Khi người dùng chọn tỉnh thành, chỉ cho phép chọn chuyển khoản nếu tỉnh thành khác 'Hồ Chí Minh', reset và xử lý các menu tinhThanhs và quanHuyens
@@ -107,8 +109,8 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
         this.quanHuyen.setValue('');
         this.donHang.phiVanChuyen = 0;
 
-        this.donHangService.resolveDonHang(this.donHang);
-        this.donHangService.saveDonHang(this.donHang);
+        this.donHangService.resolveDonHangLocal(this.donHang);
+        this.donHangService.saveDonHangLocal(this.donHang);
       });
     this.quanHuyen.valueChanges
       .subscribe(quanHuyen => {
@@ -120,13 +122,25 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
         let foundLocation = this.locations.find(location => location.tinhThanh === tinhThanh && location.quanHuyen === quanHuyen);
         this.donHang.phiVanChuyen = (foundLocation && foundLocation.phiVanChuyen) ? foundLocation.phiVanChuyen : 0;
 
-        this.donHangService.resolveDonHang(this.donHang);
-        this.donHangService.saveDonHang(this.donHang);
+        this.donHangService.resolveDonHangLocal(this.donHang);
+        this.donHangService.saveDonHangLocal(this.donHang);
       })
   }
 
+  createNewDonHang() {
+    let preparedDonHang = Object.assign(this.donHangService.getDonHangLocal(), this.donHangForm.value);
+    this.donHangService.createNewDonHang(preparedDonHang)
+      .subscribe(success => {
+        this.loggerService.success('Đơn hàng của bạn đã được tạo mới thành công và đang chờ được chúng tôi xử lý.', 'Tạo mới thành công');
+        
+        this.donHangService.resetDonHangLocal();
+        this.router.navigate([`/don-hang/${success['_id']}`]);
+        
+      }, error => this.loggerService.error(`Có lỗi khi khởi tạo đơn hàng này. ${error.message}`, 'Tạo đơn hàng thất bại'))
+  }
+
   ngOnInit() {
-    this.donHang = this.donHangService.getDonHang();
+    this.donHang = this.donHangService.getDonHangLocal();
 
     this.initForm();
     this.isThanhToanChuyenKhoan = (this.cachThanhToan.value === "Chuyển khoản");

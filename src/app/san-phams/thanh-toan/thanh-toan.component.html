@@ -112,6 +112,6 @@
 
   <div class="uk-flex uk-flex-between">
     <a class="uk-button uk-button-default" [routerLink]="['/gio-hang']">Trở lại giỏ hàng</a>
-    <button class="uk-button uk-button-default uk-button-primary" [disabled]="donHangForm.invalid">Gửi đơn hàng</button>
+    <button class="uk-button uk-button-default uk-button-primary" [disabled]="donHangForm.invalid || !donHang || !donHang.sanPhams || !donHang.sanPhams.length" (click)="createNewDonHang()">Gửi đơn hàng</button>
   </div>
 </div>

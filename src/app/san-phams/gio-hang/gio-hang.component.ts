@@ -20,12 +20,12 @@ export class GioHangComponent implements OnInit {
   }
 
   onResolveCart() {
-    this.donHangService.resolveDonHang(this.donHang);
-    this.donHangService.saveDonHang(this.donHang);
+    this.donHangService.resolveDonHangLocal(this.donHang);
+    this.donHangService.saveDonHangLocal(this.donHang);
   }
 
   ngOnInit() {
-    this.donHang = this.donHangService.getDonHang();
+    this.donHang = this.donHangService.getDonHangLocal();
     this.cartItems = this.donHang.sanPhams;
     this.onResolveCart();
   }

@@ -13,6 +13,8 @@ import { HoTroKhachHangComponent } from './ho-tro-khach-hang/ho-tro-khach-hang.c
 import { SanPhamSearchResultsComponent } from './san-pham-search-results/san-pham-search-results.component';
 import { GioHangComponent } from './gio-hang/gio-hang.component';
 import { ThanhToanComponent } from './thanh-toan/thanh-toan.component';
+import { DonHangDetailsComponent } from './don-hang-details/don-hang-details.component';
+import { DonHangListComponent } from './don-hang-list/don-hang-list.component';
 
 const routes: Routes = [
   {
@@ -24,7 +26,9 @@ const routes: Routes = [
       { path: 'san-pham/:id', component: SanPhamDetailsComponent },
       { path: 'gio-hang', component: GioHangComponent },
       { path: 'thanh-toan', component: ThanhToanComponent },
-      { path: 'ho-tro-khach-hang', component: HoTroKhachHangComponent }
+      { path: 'ho-tro-khach-hang', component: HoTroKhachHangComponent },
+      { path: 'don-hang', component: DonHangListComponent },
+      { path: 'don-hang/:id', component: DonHangDetailsComponent },
     ]
   }
 ];
@@ -48,4 +52,6 @@ export const routedComponents = [
   SanPhamSearchResultsComponent,
   GioHangComponent,
   ThanhToanComponent,
+  DonHangDetailsComponent,
+  DonHangListComponent,
 ]

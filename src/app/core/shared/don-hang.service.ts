@@ -10,10 +10,14 @@ export class DonHangService {
 
   constructor(private http: Http) { }
 
+  // **********************************************
+  // DonHangLocal
+  // **********************************************
+  
   addToCart(item, soLuong: number) {
     if (!item || !soLuong) return;
 
-    let donHang = this.getDonHang();
+    let donHang = this.getDonHangLocal();
     let cart = donHang.sanPhams;
 
     // Nếu item đã tồn tại trong giỏ hàng, return;
@@ -22,7 +26,7 @@ export class DonHangService {
     let newItem: ItemCartModel = { _id: item._id, ten: item.ten, ma: item.ma, donGia: item.giaBan, soLuong: soLuong, thanhTien: item.giaBan * soLuong, sanCo: item.soLuong };
     cart.push(newItem);
 
-    this.saveDonHang(donHang);
+    this.saveDonHangLocal(donHang);
   }
 
   getLocations(): Observable<LocationModel[]> {
@@ -30,21 +34,21 @@ export class DonHangService {
       .map(res => res.json()['locations']);
   }
 
-  getDonHang(): DonHangModel {
-    return <DonHangModel>JSON.parse(localStorage.getItem('donHang')) || this.initDonHang();
+  getDonHangLocal(): DonHangModel {
+    return <DonHangModel>JSON.parse(localStorage.getItem('donHang')) || this.initDonHangLocal();
   }
 
-  saveDonHang(donHang: DonHangModel) {
+  saveDonHangLocal(donHang: DonHangModel) {
     if (!donHang) return;
 
     localStorage.setItem('donHang', JSON.stringify(donHang));
   }
 
-  resetDonHang() {
+  resetDonHangLocal() {
     localStorage.removeItem('donHang');
   }
 
-  resolveDonHang(donHang: DonHangModel) {
+  resolveDonHangLocal(donHang: DonHangModel) {
     if (!donHang || !donHang.sanPhams) return;
 
     donHang.tongCong = 0;
@@ -57,11 +61,7 @@ export class DonHangService {
     donHang.tongCong += donHang.phiVanChuyen;
   }
 
-  resetCart() {
-    localStorage.removeItem('cart');
-  }
-
-  initDonHang(): DonHangModel {
+  initDonHangLocal(): DonHangModel {
     return {
       hoTen: '',
       dienThoai: '',
@@ -75,9 +75,28 @@ export class DonHangService {
       sanPhams: [],
       phiVanChuyen: 0,
       tongCong: 0,
-      trangThai: 'Chờ kiểm duyệt'
+      trangThai: 'Chờ xác thực'
     }
   }
+
+  // **********************************************
+  // DonHangFromServer
+  // **********************************************
+
+  createNewDonHang(newDonHang: DonHangModel) {
+    return this.http.post(appConfig[this.env]['apis']['don_hangs'], newDonHang)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
+  getDonHang(donHangId: string, pager: DonHangPager = { fields: '-created' }): Observable<DonHangModel> {
+    return this.http.get(appConfig[this.env]['apis']["don_hangs"] + `/${donHangId}?fields=${pager.fields}`)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
+
+  
 
   public get env(): string {
     return (environment.production) ? 'prod' : 'dev';
@@ -140,3 +159,5 @@ export class DonHangModel {
   ngayDuKienGiao?: string;
   created?: string;
 }
+
+export class DonHangPager { hoTenLatinized?: string; dienThoai?: string; email?: string; tinhThanh?: string; quanHuyen?: string; maDonHang?: string; fields?: string; page?: number; limit?: number; sort?: string }

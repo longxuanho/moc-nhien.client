@@ -7,6 +7,7 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 import { SanPhamsRoutingModule, routedComponents } from './san-phams-routing.module';
 
 
+
 @NgModule({
   imports: [
     FormsModule,
