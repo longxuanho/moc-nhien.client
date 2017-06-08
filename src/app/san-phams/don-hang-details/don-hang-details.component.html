@@ -7,6 +7,123 @@
   </ul>
   <div>
     <hr/>
+    <!--Trạng thái: Chờ xác thực-->
+    <div class="ui tablet stackable steps" style="width: 100%">
+      <div class="step">
+        <i class="checkmark icon"></i>
+        <div class="content">
+          <div class="title">Đặt hàng</div>
+          <div class="description">Khách hàng tạo mới và gửi đơn hàng tới Mộc Nhiên Farm</div>
+        </div>
+      </div>
+      <div class="active step">
+        <i class="newspaper icon"></i>
+        <div class="content">
+          <div class="title">Chờ xác nhận</div>
+          <div class="description">Chúng tôi sẽ tiến hàng xác nhận đơn hàng dựa trên các thông tin khách hàng đăng ký (email, số điện thoại)</div>
+        </div>
+      </div>
+      <div class="disabled step">
+        <i class="shipping icon"></i>
+        <div class="content">
+          <div class="title">Giao hàng</div>
+          <div class="description">Tiến hành giao hàng và thanh toán</div>
+        </div>
+      </div>
+    </div>
+
+    <!--Trạng thái: Xác thực thất bại-->
+    <div class="ui tablet stackable steps" style="width: 100%">
+      <div class="step">
+        <i class="checkmark icon"></i>
+        <div class="content">
+          <div class="title">Đặt hàng</div>
+          <div class="description">Khách hàng tạo mới và gửi đơn hàng tới Mộc Nhiên Farm</div>
+        </div>
+      </div>
+      <div class="active step">
+        <i class="remove icon"></i>
+        <div class="content">
+          <div class="title">Xác nhận</div>
+          <div class="description">Quá trình xác nhận đơn hàng không thành công</div>
+        </div>
+      </div>
+      <div class="disabled step">
+        <i class="shipping icon"></i>
+        <div class="content">
+          <div class="title">Giao hàng</div>
+          <div class="description">Tiến hành giao hàng và thanh toán</div>
+        </div>
+      </div>
+    </div>
+
+    <!--Trạng thái: Chờ giao hàng-->
+    <div class="ui tablet stackable steps" style="width: 100%">
+      <div class="step">
+        <i class="checkmark icon"></i>
+        <div class="content">
+          <div class="title">Đặt hàng</div>
+          <div class="description">Khách hàng tạo mới và gửi đơn hàng tới Mộc Nhiên Farm</div>
+        </div>
+      </div>
+      <div class="step">
+        <i class="checkmark icon"></i>
+        <div class="content">
+          <div class="title">Xác nhận</div>
+          <div class="description">Xác nhận lại đơn hàng dựa trên các thông tin khách hàng đăng ký</div>
+        </div>
+      </div>
+      <div class="active step">
+        <i class="shipping icon"></i>
+        <div class="content">
+          <div class="title">Giao hàng</div>
+          <div class="description">Tiến hành giao hàng và thanh toán</div>
+        </div>
+      </div>
+    </div>
+
+    <!--Trạng thái: Giao hàng thất bại || Thanh toán thất bại-->
+    <div class="ui tablet stackable steps" style="width: 100%">
+      <div class="step">
+        <i class="checkmark icon"></i>
+        <div class="content">
+          <div class="title">Đặt hàng</div>
+          <div class="description">Khách hàng tạo mới và gửi đơn hàng tới Mộc Nhiên Farm</div>
+        </div>
+      </div>
+      <div class="step">
+        <i class="checkmark icon"></i>
+        <div class="content">
+          <div class="title">Xác nhận</div>
+          <div class="description">Xác nhận lại đơn hàng dựa trên các thông tin khách hàng đăng ký</div>
+        </div>
+      </div>
+      <div class="active step">
+        <i class="remove icon"></i>
+        <div class="content">
+          <div class="title">Thất bại</div>
+          <div class="description">Đơn hàng thất bại do quá trình giao hàng hoặc thanh toán không thành công.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui tablet stackable steps">
+      <div class="step">
+        <i class="checkmark icon"></i>
+        <div class="content">
+          <div class="title">Đặt hàng</div>
+          <div class="description">Khách hàng tạo mới và gửi đơn hàng tới Mộc Nhiên Farm</div>
+        </div>
+      </div>
+      <div class="active step">
+        <i class="remove icon"></i>
+        <div class="content">
+          <div class="title">Hủy bỏ</div>
+          <div class="description">Đơn hàng bị hủy bỏ theo yêu cầu của khách hàng hoặc từ phía Mộc Nhiên Farm</div>
+        </div>
+      </div>
+    </div>
+
     <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Thông tin đăng ký</h3>
     <form class="uk-form-horizontal uk-margin" spellcheck="false">
       <div class="uk-margin">
@@ -44,7 +161,7 @@
         </div>
       </div>
 
-      
+
 
       <div uk-alert *ngIf="this.donHang.cachThanhToan === 'Chuyển khoản'">
         <h3>Thông tin chuyển khoản</h3>

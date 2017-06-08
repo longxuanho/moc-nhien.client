@@ -1,1 +1,7 @@
-@import '../node_modules/semantic-ui-sass/scss/elements/label'
+$font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+$icons-font-path: '../node_modules/semantic-ui-sass/icons' !default;
+
+// @import '../node_modules/semantic-ui-sass/scss/globals/variables';
+@import '../node_modules/semantic-ui-sass/scss/elements/icon';
+@import '../node_modules/semantic-ui-sass/scss/elements/label';
+@import '../node_modules/semantic-ui-sass/scss/elements/step';
