@@ -1,3 +1,38 @@
-<p>
-  don-hang-list works!
-</p>
+<div class="uk-container" style="margin-bottom: 3rem;">
+  <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
+    <li><a href="" [routerLink]="['/']">Trang chính</a></li>
+    <li><span href="">Đơn hàng</span></li>
+  </ul>
+
+  <form class="uk-search uk-search-navbar">
+    <span uk-search-icon></span>
+    <input class="uk-search-input" type="search" placeholder="Tìm đơn hàng theo mã, họ tên, số điện thoại, email..." style="width: 100%;">
+  </form>
+
+  <table class="uk-table uk-table-divider uk-table-justify">
+    <thead>
+      <tr>
+        <th>Ngày tạo</th>
+        <th class="uk-table-expand">Mã đơn hàng</th>
+        <th>Trạng thái</th>
+        <th class="uk-text-right">SL sản phẩm</th>
+        <th class="uk-text-right">Tổng giá trị</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>25/04/2017</td>
+        <td>1ecde75d-95c4-43a7-a7f5-ffc6d7df412b</td>
+        <td>Chờ xác thực</td>
+        <td class="uk-text-right">14</td>
+        <td class="uk-text-right">1,562,000 đ</td>
+      </tr>
+      <tr>
+        <td colspan="5" class="uk-text-right">
+          <p>Không tìm thấy đơn hàng phù hợp.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

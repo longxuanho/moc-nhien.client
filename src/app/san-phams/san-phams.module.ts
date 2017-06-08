@@ -5,6 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { SanPhamsRoutingModule, routedComponents } from './san-phams-routing.module';
+import { TrangThaiDonHangComponent } from './trang-thai-don-hang/trang-thai-don-hang.component';
+import { PortalSecondaryComponent } from './portal-secondary/portal-secondary.component';
 
 
 
@@ -19,6 +21,8 @@ import { SanPhamsRoutingModule, routedComponents } from './san-phams-routing.mod
   ],
   declarations: [
     routedComponents,
+    TrangThaiDonHangComponent,
+    PortalSecondaryComponent,
   ]
 })
 export class SanPhamsModule { }

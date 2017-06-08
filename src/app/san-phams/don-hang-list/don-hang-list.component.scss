@@ -1,0 +1,6 @@
+.uk-search-navbar  {
+    width: 100%;
+    .uk-search-icon:not(.uk-search-icon-flip)+.uk-search-input {
+        padding-left: 60px;
+    }
+}
