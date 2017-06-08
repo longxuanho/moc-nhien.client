@@ -1,3 +1,98 @@
-<p>
-  don-hang-details works!
-</p>
+<!--<sk-menu-bar mode="search-textbox"></sk-menu-bar>-->
+
+<div class="uk-container" style="margin-bottom: 3rem;" *ngIf="donHang">
+  <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
+    <li><a href="" [routerLink]="['/']">Trang chính</a></li>
+    <li><span href="">Đơn hàng</span></li>
+  </ul>
+  <div>
+    <hr/>
+    <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Thông tin đăng ký</h3>
+    <form class="uk-form-horizontal uk-margin" spellcheck="false">
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Mã đơn hàng</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Mã đơn hàng" [value]="donHang.maDonHang">
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Thanh toán</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Trạng thái" [value]="trangThai">
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Phương thức thanh toán</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Địa chỉ" [value]="cachThanhToan">
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Địa chỉ nhận hàng</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Địa chỉ" [value]="diaChiNhanHang">
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Ngày giao</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Ngày giao / Dự kiến giao" [value]="ngayGiao">
+        </div>
+      </div>
+
+      
+
+      <div uk-alert *ngIf="this.donHang.cachThanhToan === 'Chuyển khoản'">
+        <h3>Thông tin chuyển khoản</h3>
+        <ul>
+          <li>Số tài khoản: <strong>007 1000 84 88 55</strong></li>
+          <li>Chủ tài khoản: <strong>Huỳnh Quang Nhất</strong></li>
+          <li>Ngân hàng: Vietcombank chi nhánh Tp. HCM</li>
+        </ul>
+        <em>Đối với các đơn hàng nằm ngoài khu vực Tp. HCM, chúng tôi chỉ chấp nhận hình thức thanh toán chuyển khoản qua ngân hàng hoặc giao dịch trực tiếp tại nông trại.</em>
+        <em>Để biết thêm chi tiết, xin vui lòng xem Hướng dẫn thanh toán <a href="/ho-tro-khach-hang#huong-dan-thanh-toan">tại đây</a></em>
+      </div>
+
+    </form>
+  </div>
+  <div *ngIf="donHang.sanPhams">
+    <hr style="margin-top: 2rem;" />
+    <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Nội dung đơn hàng</h3>
+    <table class="uk-table uk-table-divider uk-table-justify">
+      <thead>
+        <tr>
+          <th>Mã sản phẩm</th>
+          <th class="uk-table-expand">Tên sản phẩm</th>
+          <th class="uk-text-right">Số lượng</th>
+          <th class="uk-text-right">Đơn giá</th>
+          <th class="uk-text-right">Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of donHang.sanPhams">
+          <td>{{ item.ma }}</td>
+          <td>{{ item.ten }}</td>
+          <td class="uk-text-right">{{ item.soLuong | number }}</td>
+          <td class="uk-text-right">{{ item.donGia | number }}</td>
+          <td class="uk-text-right">{{ item.thanhTien | number }}</td>
+        </tr>
+        <tr *ngIf="!donHang.sanPhams.length">
+          <td colspan="5" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
+        </tr>
+        <tr *ngIf="donHang.sanPhams.length">
+          <td colspan="5" class="uk-text-right">
+            <p><em>Phí vận chuyển tạm tính: {{ donHang.phiVanChuyen | number }} đ</em></p>
+            <p>Tổng cộng: <strong>{{ donHang.tongCong | number }} đ</strong></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+  </div>
+
+  <pre>{{ donHang | json }}</pre>
+</div>

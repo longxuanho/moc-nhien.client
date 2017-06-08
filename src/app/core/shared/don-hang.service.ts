@@ -155,6 +155,7 @@ export class DonHangModel {
   trangThai: string;
   ghiChu: string;
 
+  thanhToan?: string;
   ngayGiao?: string;
   ngayDuKienGiao?: string;
   created?: string;
