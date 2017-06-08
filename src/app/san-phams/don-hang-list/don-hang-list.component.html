@@ -6,7 +6,7 @@
 
   <div class="uk-search uk-search-navbar">
     <span uk-search-icon></span>
-    <input class="uk-search-input" type="search" placeholder="Tìm đơn hàng theo mã, họ tên, số điện thoại, email..." style="width: 100%;" [ngModel]="searchText" (input)="onSearchInput($event.target.value)">
+    <input class="uk-search-input" type="search" placeholder="Tìm đơn hàng theo mã, họ tên, số điện thoại, email..." style="width: 100%;" spellcheck="false" [ngModel]="searchText" (input)="onSearchInput($event.target.value)">
   </div>
 
   <table class="uk-table uk-table-divider uk-table-justify">
