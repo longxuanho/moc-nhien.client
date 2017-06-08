@@ -18,14 +18,14 @@ export class DonHangService {
     if (!item || !soLuong) return;
 
     let donHang = this.getDonHangLocal();
-    let cart = donHang.sanPhams;
 
     // Nếu item đã tồn tại trong giỏ hàng, return;
-    if (cart.find(itemInCart => itemInCart._id === item._id)) return;
+    if (donHang.sanPhams.find(itemInCart => itemInCart._id === item._id)) return;
 
     let newItem: ItemCartModel = { _id: item._id, ten: item.ten, ma: item.ma, donGia: item.giaBan, soLuong: soLuong, thanhTien: item.giaBan * soLuong, sanCo: item.soLuong };
-    cart.push(newItem);
+    donHang.sanPhams.push(newItem);
 
+    this.resolveDonHangLocal(donHang);
     this.saveDonHangLocal(donHang);
   }
 
@@ -51,9 +51,13 @@ export class DonHangService {
   resolveDonHangLocal(donHang: DonHangModel) {
     if (!donHang || !donHang.sanPhams) return;
 
+    donHang.itemsCount = 0;
     donHang.tongCong = 0;
     donHang.phiVanChuyen = donHang.phiVanChuyen || 0;
+    
     donHang.sanPhams.forEach(item => {
+      donHang.itemsCount += item.soLuong;
+      
       item.thanhTien = item.soLuong * item.donGia;
       donHang.tongCong += item.thanhTien;
     });
@@ -74,6 +78,7 @@ export class DonHangService {
       ghiChu: '',
       sanPhams: [],
       phiVanChuyen: 0,
+      itemsCount: 0,
       tongCong: 0,
       trangThai: 'Chờ xác thực'
     }
@@ -94,9 +99,6 @@ export class DonHangService {
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
-
-
-  
 
   public get env(): string {
     return (environment.production) ? 'prod' : 'dev';
@@ -151,6 +153,7 @@ export class DonHangModel {
   cachThanhToan: string;
   sanPhams: ItemCartModel[];
   phiVanChuyen: number;
+  itemsCount: number;
   tongCong: number;
   trangThai: string;
   ghiChu: string;

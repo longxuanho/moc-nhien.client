@@ -30,7 +30,7 @@
           <td colspan="6" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
         </tr>
         <tr *ngIf="cartItems.length">
-          <td colspan="6" class="uk-text-right">Tổng cộng: <strong>{{ donHang.tongCong | number }} đ</strong></td>
+          <td colspan="6" class="uk-text-right">Tổng cộng: <strong>{{ donHang.tongCong - donHang.phiVanChuyen | number }} đ</strong></td>
         </tr>
       </tbody>
     </table>
