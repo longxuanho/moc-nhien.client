@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { VisibleOnlyPipe } from './visible-only.pipe';
+import { MomentPipe } from './moment.pipe';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { VisibleOnlyPipe } from './visible-only.pipe';
   declarations: [
     SafeHtmlPipe,
     VisibleOnlyPipe,
+    MomentPipe
   ],
   exports: [
     CommonModule,

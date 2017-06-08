@@ -4,10 +4,10 @@
     <li><span href="">Đơn hàng</span></li>
   </ul>
 
-  <form class="uk-search uk-search-navbar">
+  <div class="uk-search uk-search-navbar">
     <span uk-search-icon></span>
-    <input class="uk-search-input" type="search" placeholder="Tìm đơn hàng theo mã, họ tên, số điện thoại, email..." style="width: 100%;">
-  </form>
+    <input class="uk-search-input" type="search" placeholder="Tìm đơn hàng theo mã, họ tên, số điện thoại, email..." style="width: 100%;" [ngModel]="searchText" (input)="onSearchInput($event.target.value)">
+  </div>
 
   <table class="uk-table uk-table-divider uk-table-justify">
     <thead>
