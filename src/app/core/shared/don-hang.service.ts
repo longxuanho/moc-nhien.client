@@ -12,7 +12,7 @@ export class DonHangService {
 
   addToCart(item, soLuong: number) {
     if (!item || !soLuong) return;
-    
+
     let donHang = this.getDonHang();
     let cart = donHang.sanPhams;
 
@@ -23,6 +23,11 @@ export class DonHangService {
     cart.push(newItem);
 
     this.saveDonHang(donHang);
+  }
+
+  getLocations(): Observable<LocationModel[]> {
+    return this.http.get(appConfig[this.env]['helpers']['locations'])
+      .map(res => res.json()['locations']);
   }
 
   getDonHang(): DonHangModel {
@@ -39,23 +44,36 @@ export class DonHangService {
     localStorage.removeItem('donHang');
   }
 
+  resolveDonHang(donHang: DonHangModel) {
+    if (!donHang || !donHang.sanPhams) return;
+
+    donHang.tongCong = 0;
+    donHang.phiVanChuyen = donHang.phiVanChuyen || 0;
+    donHang.sanPhams.forEach(item => {
+      item.thanhTien = item.soLuong * item.donGia;
+      donHang.tongCong += item.thanhTien;
+    });
+
+    donHang.tongCong += donHang.phiVanChuyen;
+  }
+
   resetCart() {
     localStorage.removeItem('cart');
   }
 
   initDonHang(): DonHangModel {
     return {
-      khachHang: {
-        hoTen: '',
-        dienThoai: '',
-        email: '',
-        diaChi: '',
-        tinhThanh: '',
-        quanHuyen: ''
-      },
+      hoTen: '',
+      dienThoai: '',
+      email: '',
+      diaChi: '',
+      tinhThanh: '',
+      quanHuyen: '',
+
       cachThanhToan: 'Tiền mặt',
       ghiChu: '',
       sanPhams: [],
+      phiVanChuyen: 0,
       tongCong: 0,
       trangThai: 'Chờ kiểm duyệt'
     }
@@ -95,19 +113,25 @@ export class ItemCartModel {
   thanhTien?: number;
 }
 
+export class LocationModel {
+  tinhThanh: string;
+  quanHuyen: string;
+  phiVanChuyen: number;
+}
+
 export class DonHangModel {
   _id?: string;
 
-  khachHang: {
-    hoTen: string;
-    dienThoai: string;
-    email: string;
-    diaChi: string;
-    tinhThanh: string;
-    quanHuyen: string;
-  };
+  hoTen: string;
+  dienThoai: string;
+  email: string;
+  diaChi: string;
+  tinhThanh: string;
+  quanHuyen: string;
+
   cachThanhToan: string;
   sanPhams: ItemCartModel[];
+  phiVanChuyen: number;
   tongCong: number;
   trangThai: string;
   ghiChu: string;

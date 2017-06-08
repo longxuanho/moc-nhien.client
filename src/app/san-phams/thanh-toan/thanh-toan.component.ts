@@ -23,7 +23,14 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
   quanHuyen: FormControl;
   cachThanhToan: FormControl;
   ghiChu: FormControl;
-  
+
+  locations: any;
+  tinhThanhsSelect: string[] = [];
+  quanHuyensSelect: { [key: string]: string[] } = {};
+
+  isThanhToanChuyenKhoan: boolean = false;
+  isAllowThanhToanTienMat: boolean = true;
+
   constructor(private donHangService: DonHangService, private fb: FormBuilder) {
     this.buildForm();
   }
@@ -39,14 +46,12 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
     this.ghiChu = this.fb.control('');
 
     this.donHangForm = this.fb.group({
-      khachHang: this.fb.group({
-        hoTen: this.hoTen,
-        dienThoai: this.dienThoai,
-        email: this.email,
-        diaChi: this.diaChi,
-        tinhThanh: this.tinhThanh,
-        quanHuyen: this.quanHuyen
-      }),
+      hoTen: this.hoTen,
+      dienThoai: this.dienThoai,
+      email: this.email,
+      diaChi: this.diaChi,
+      tinhThanh: this.tinhThanh,
+      quanHuyen: this.quanHuyen,
       cachThanhToan: this.cachThanhToan,
       ghiChu: this.ghiChu
     });
@@ -56,34 +61,94 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
     this.donHangForm.reset(this.donHangService.initDonHang());
   }
 
-  onResolveCart() {
+  initForm() {
+    this.donHangForm.reset(this.donHangService.getDonHang());
+  }
+
+  onResolveDonHang() {
     if (!this.donHang) return;
 
-    this.totalPrice = 0;
-    this.donHang.sanPhams.forEach(item => {
-      item.thanhTien = item.soLuong * item.donGia;
-      this.totalPrice += item.thanhTien;
-    });
+    this.donHangService.resolveDonHang(this.donHang);
     this.donHangService.saveDonHang(this.donHang);
+  }
+
+  onResolveLocationSelect(tinhThanhSelected: string, locations) {
+    let quanHuyenSelect = {};
+
+    locations.forEach(location => {
+      quanHuyenSelect[location.tinhThanh] = quanHuyenSelect[location.tinhThanh] || [];
+      quanHuyenSelect[location.tinhThanh].push(location.quanHuyen);
+    });
+    let tinhThanhSelect = Object.keys(quanHuyenSelect);
+
+    this.tinhThanhsSelect = tinhThanhSelect;
+    this.quanHuyensSelect = quanHuyenSelect;
+
+    console.log(this.tinhThanhsSelect, this.quanHuyensSelect);
   }
 
   subscribeFormChanges() {
     this.donHangForm.valueChanges
       .debounceTime(1000)
       .subscribe(value => {
-        Object.assign(this.donHang, value);
-        
-        this.donHangService.saveDonHang(this.donHang);        
+        this.donHang = Object.assign(this.donHangService.getDonHang(), value);
+
+        if (this.tinhThanh.value && this.tinhThanh.value !== 'Hồ Chí Minh') this.cachThanhToan.setValue('Chuyển khoản');
+        this.isAllowThanhToanTienMat = (!this.tinhThanh.value || this.tinhThanh.value === 'Hồ Chí Minh');
+        this.isThanhToanChuyenKhoan = (this.cachThanhToan.value === "Chuyển khoản");
+
+        this.donHangService.resolveDonHang(this.donHang);
+        this.donHangService.saveDonHang(this.donHang);
       });
 
+    // Khi người dùng chọn tỉnh thành, chỉ cho phép chọn chuyển khoản nếu tỉnh thành khác 'Hồ Chí Minh', reset và xử lý các menu tinhThanhs và quanHuyens
+    this.tinhThanh.valueChanges
+      .subscribe(value => {
+        this.quanHuyen.setValue('');
+        this.donHang.phiVanChuyen = 0;
+
+        this.donHangService.resolveDonHang(this.donHang);
+        this.donHangService.saveDonHang(this.donHang);
+      });
+    this.quanHuyen.valueChanges
+      .subscribe(quanHuyen => {
+        if (!quanHuyen || !this.locations) return;
+
+        let tinhThanh = this.tinhThanh.value;
+
+        // Tính phí vận chuyển.
+        let foundLocation = this.locations.find(location => location.tinhThanh === tinhThanh && location.quanHuyen === quanHuyen);
+        this.donHang.phiVanChuyen = (foundLocation && foundLocation.phiVanChuyen) ? foundLocation.phiVanChuyen : 0;
+
+        this.donHangService.resolveDonHang(this.donHang);
+        this.donHangService.saveDonHang(this.donHang);
+      })
   }
 
   ngOnInit() {
     this.donHang = this.donHangService.getDonHang();
-    this.onResolveCart();
+
+    this.initForm();
+    this.isThanhToanChuyenKhoan = (this.cachThanhToan.value === "Chuyển khoản");
+    this.subscribeFormChanges();
+
+    this.onResolveDonHang();
+
+    this.donHangService.getLocations()
+      .subscribe(locations => {
+        this.locations = locations;
+        this.onResolveLocationSelect(null, this.locations);
+
+        // Fix bug không hiện tên tỉnh thành và quân huyện
+        setTimeout(() => {
+          this.tinhThanh.setValue(this.donHang.tinhThanh);
+          this.quanHuyen.setValue(this.donHang.quanHuyen);
+        }, 200);
+
+      });
   }
 
   ngAfterViewInit() {
-    this.subscribeFormChanges();
+
   }
 }

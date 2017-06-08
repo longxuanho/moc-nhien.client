@@ -20,11 +20,7 @@ export class GioHangComponent implements OnInit {
   }
 
   onResolveCart() {
-    this.totalPrice = 0;
-    this.cartItems.forEach(item => {
-      item.thanhTien = item.soLuong * item.donGia;
-      this.totalPrice += item.thanhTien;
-    });
+    this.donHangService.resolveDonHang(this.donHang);
     this.donHangService.saveDonHang(this.donHang);
   }
 

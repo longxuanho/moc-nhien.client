@@ -9,51 +9,61 @@
     <hr/>
     <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Thông tin người nhận</h3>
     <form class="uk-form-horizontal uk-margin" [formGroup]="donHangForm" spellcheck="false">
-      <div formGroupName="khachHang">
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Người nhận</label>
-          <div class="uk-form-controls">
-            <input class="uk-input" type="text" placeholder="Họ và tên" formControlName="hoTen">
-          </div>
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Người nhận</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Họ và tên" formControlName="hoTen" [ngClass]="{'uk-form-danger': hoTen.invalid && (hoTen.dirty || hoTen.touched)}">
         </div>
+      </div>
 
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-select">Thông tin liên hệ</label>
-          <div class="uk-form-controls">
-            <input class="uk-input" type="text" placeholder="Điện thoại" formControlName="dienThoai">
-            <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Email" formControlName="email">
-          </div>
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-select">Thông tin liên hệ</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Điện thoại" formControlName="dienThoai" [ngClass]="{'uk-form-danger': dienThoai.invalid && (dienThoai.dirty || dienThoai.touched)}">
+          <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Email" formControlName="email" [ngClass]="{'uk-form-danger': email.invalid && (email.dirty || email.touched)}">
         </div>
+      </div>
 
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-horizontal-text">Địa chỉ nhận hàng</label>
-          <div class="uk-form-controls">
-            <input class="uk-input" type="text" placeholder="Địa chỉ" formControlName="diaChi">
-            <select style="margin-top: -1px;" class="uk-select" formControlName="tinhThanh">
-            <option>Tỉnh/Thành</option>
-            <option>Thanh toán bằng tiền mặt khi nhận hàng</option>
-            <option>Chuyển khoản qua ngân hàng</option>
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Địa chỉ nhận hàng</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" placeholder="Địa chỉ" formControlName="diaChi" [ngClass]="{'uk-form-danger': diaChi.invalid && (diaChi.dirty || diaChi.touched)}">
+          <select style="margin-top: -1px;" class="uk-select" formControlName="tinhThanh" [ngClass]="{'uk-form-danger': tinhThanh.invalid && (tinhThanh.dirty || tinhThanh.touched)}">
+            <option value="">Tỉnh/Thành</option>
+            <option *ngFor="let tinhThanh of tinhThanhsSelect">{{ tinhThanh }}</option>
           </select>
-            <select style="margin-top: -1px;" class="uk-select" formControlName="quanHuyen">
-            <option>Quận/Huyện</option>
-            <option>Thanh toán bằng tiền mặt khi nhận hàng</option>
-            <option>Chuyển khoản qua ngân hàng</option>
+          <select style="margin-top: -1px;" class="uk-select" formControlName="quanHuyen" [ngClass]="{'uk-form-danger': quanHuyen.invalid && (quanHuyen.dirty || quanHuyen.touched)}">
+            <option value="">Quận/Huyện</option>
+            <option *ngFor="let quanHuyen of quanHuyensSelect[tinhThanh.value]">{{ quanHuyen }}</option>
           </select>
-          </div>
         </div>
       </div>
       <div class="uk-margin">
         <div class="uk-form-label">Phương thức thanh toán</div>
         <div class="uk-form-controls uk-form-controls-text">
-          <label><input class="uk-radio" type="radio" value="Tiền mặt" formControlName="cachThanhToan">  Thanh toán bằng tiền mặt khi nhận hàng</label><br>
-          <label><input class="uk-radio" type="radio" value="Chuyển khoản" formControlName="cachThanhToan">  Chuyển khoản qua ngân hàng</label>
+          <label *ngIf="isAllowThanhToanTienMat"><input class="uk-radio" type="radio" value="Tiền mặt" formControlName="cachThanhToan" [ngClass]="{'uk-form-danger': cachThanhToan.invalid && (cachThanhToan.dirty || cachThanhToan.touched)}">  Thanh toán bằng tiền mặt khi nhận hàng</label><br>
+          <label><input class="uk-radio" type="radio" value="Chuyển khoản" formControlName="cachThanhToan" [ngClass]="{'uk-form-danger': cachThanhToan.invalid && (cachThanhToan.dirty || cachThanhToan.touched)}">  Chuyển khoản qua ngân hàng</label>
+        </div>
+
+        <div uk-alert *ngIf="isThanhToanChuyenKhoan">
+          <h3>Thông tin chuyển khoản</h3>
+          <ul>
+            <li>Số tài khoản: <strong>007 1000 84 88 55</strong></li>
+            <li>Chủ tài khoản: <strong>Huỳnh Quang Nhất</strong></li>
+            <li>Ngân hàng: Vietcombank chi nhánh Tp. HCM</li>
+          </ul>
+          <em>Đối với các đơn hàng nằm ngoài khu vực Tp. HCM, chúng tôi chỉ chấp nhận hình thức thanh toán chuyển khoản qua ngân hàng hoặc giao dịch trực tiếp tại nông trại.</em>
+          <em>Để biết thêm chi tiết, xin vui lòng xem Hướng dẫn thanh toán <a href="/ho-tro-khach-hang#huong-dan-thanh-toan">tại đây</a></em>
         </div>
       </div>
       <div class="uk-margin">
-        <label class="uk-form-label" for="form-horizontal-text">Ghi chú</label>
+        <label class="uk-form-label" for="form-horizontal-text" [ngClass]="{'uk-form-danger': ghiChu.invalid && (ghiChu.dirty || ghiChu.touched)}">Ghi chú</label>
         <div class="uk-form-controls">
           <input class="uk-input" type="text" formControlName="ghiChu">
         </div>
+      </div>
+      <div class="uk-flex uk-flex-right">
+        <button class="uk-button uk-button-default" (click)="resetForm()">Reset</button>
       </div>
     </form>
   </div>
@@ -65,7 +75,7 @@
         <tr>
           <th>Mã sản phẩm</th>
           <th class="uk-table-expand">Tên sản phẩm</th>
-          <th>Số lượng</th>
+          <th class="uk-text-right">Số lượng</th>
           <th class="uk-text-right">Đơn giá</th>
           <th class="uk-text-right">Thành tiền</th>
         </tr>
@@ -74,7 +84,7 @@
         <tr *ngFor="let item of donHang.sanPhams">
           <td>{{ item.ma }}</td>
           <td>{{ item.ten }}</td>
-          <td>{{ item.soLuong | number }}</td>
+          <td class="uk-text-right">{{ item.soLuong | number }}</td>
           <td class="uk-text-right">{{ item.donGia | number }}</td>
           <td class="uk-text-right">{{ item.thanhTien | number }}</td>
         </tr>
@@ -82,17 +92,26 @@
           <td colspan="5" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
         </tr>
         <tr *ngIf="donHang.sanPhams.length">
-          <td colspan="5" class="uk-text-right">Tổng cộng: <strong>{{ totalPrice | number }} đ</strong></td>
+          <td colspan="5" class="uk-text-right">
+            <p><em>Phí vận chuyển tạm tính: {{ donHang.phiVanChuyen | number }} đ</em></p>
+            <p>Tổng cộng: <strong>{{ donHang.tongCong | number }} đ</strong></p>
+          </td>
         </tr>
       </tbody>
     </table>
     <hr/>
   </div>
 
-  <pre>{{ donHangForm.value | json }}</pre>
+  <!--<pre>{{ donHangForm.value | json }}</pre>
+  <pre>{{ donHang | json }}</pre>-->
+
+  <div uk-alert class="uk-alert-danger" *ngIf="donHangForm.invalid">
+    <h3>Chưa đủ thông tin thanh toán</h3>
+    <p>Xin vui lòng hoàn thiện đầy đủ các thông tin về người nhận trước khi bạn gửi đơn hàng này.</p>
+  </div>
 
   <div class="uk-flex uk-flex-between">
     <a class="uk-button uk-button-default" [routerLink]="['/gio-hang']">Trở lại giỏ hàng</a>
-    <button class="uk-button uk-button-default uk-button-primary">Gửi đơn hàng</button>
+    <button class="uk-button uk-button-default uk-button-primary" [disabled]="donHangForm.invalid">Gửi đơn hàng</button>
   </div>
 </div>
