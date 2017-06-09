@@ -7,14 +7,12 @@
     <li><span href="">{{ donHang.maDonHang }}</span></li>
   </ul>
   <div>
-    <hr/>
-    
     <sk-trang-thai-don-hang [trangThai]="donHang.trangThai"></sk-trang-thai-don-hang>
 
     <div uk-alert *ngIf="donHang.trangThai === 'Chờ xác thực'">
-        <h3>Trong quá trình đơn hàng đang chờ xác nhận...</h3>
-        <em>Nếu có thể, các bạn hãy chủ động liên hệ với Mộc Nhiên Farm qua hệ thống chat online của cửa hàng hoặc Chúng tôi sẽ liên hệ với bạn qua số điện thoại hoặc địa chỉ email mà bạn đã đăng ký.</em>
-      </div>
+      <h3>Trong quá trình đơn hàng đang chờ xác nhận...</h3>
+      <em>Nếu có thể, các bạn hãy chủ động liên hệ với Mộc Nhiên Farm qua hệ thống chat online của cửa hàng hoặc Chúng tôi sẽ liên hệ với bạn qua số điện thoại hoặc địa chỉ email mà bạn đã đăng ký.</em>
+    </div>
 
     <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Thông tin đăng ký</h3>
     <form class="uk-form-horizontal uk-margin" spellcheck="false">

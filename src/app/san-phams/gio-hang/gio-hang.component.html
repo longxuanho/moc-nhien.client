@@ -1,11 +1,11 @@
 <!--<sk-menu-bar mode="search-textbox"></sk-menu-bar>-->
 
-<div class="uk-container" style="margin-bottom: 3rem;" *ngIf="cartItems">
+<div class="uk-container" style="margin-bottom: 3rem;" *ngIf="donHang && donHang.sanPhams">
   <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
     <li><a href="" [routerLink]="['/']">Trang chính</a></li>
     <li><span href="">Giỏ hàng</span></li>
   </ul>
-  <div class="margin-top: 2rem;">
+  <form #f="ngForm" class="margin-top: 2rem;" novalidate>
     <table class="uk-table uk-table-divider uk-table-justify">
       <thead>
         <tr>
@@ -18,31 +18,39 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of cartItems">
-          <td>{{ item.ma }}</td>
+        <tr *ngFor="let item of donHang.sanPhams; let i = index;">
+          <td>{{ item.ma }} (SL: {{ item.sanCo | number }})</td>
           <td>{{ item.ten }}</td>
-          <td><input type="number" class="uk-input" [(ngModel)]="item.soLuong" (input)="onResolveCart($event)"></td>
+          <td><input type="number" class="uk-input" name="soLuong-{{i}}" [(ngModel)]="item.soLuong" (input)="onResolveCart($event)"
+              [min]="0" [max]="item.sanCo" required></td>
           <td class="uk-text-right">{{ item.donGia | number }}</td>
           <td class="uk-text-right">{{ item.thanhTien | number }}</td>
           <td><a href="" uk-icon="icon: close" (click)="$event.preventDefault(); removeItemFromCart(item)"></a></td>
         </tr>
-        <tr *ngIf="!cartItems.length">
+        <tr *ngIf="!donHang.sanPhams.length">
           <td colspan="6" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
         </tr>
-        <tr *ngIf="cartItems.length">
+        <tr *ngIf="donHang.sanPhams.length">
           <td colspan="6" class="uk-text-right">Tổng cộng: <strong>{{ donHang.tongCong - donHang.phiVanChuyen | number }} đ</strong></td>
         </tr>
       </tbody>
     </table>
+  </form>
+
+  <div uk-alert class="uk-alert-danger" *ngIf="f.invalid">
+    <h3>Rất tiếc, chúng tôi chưa thể đáp ứng đơn hàng này...</h3>
+    <p>Đơn hàng của bạn có sản phẩm với số lượng vượt quá khả năng cung cấp hiện tại của chúng tôi. Xin vui lòng điều chỉnh lại số lượng đơn hàng phù hợp.</p>
+    <p>Trong trường hợp bạn vẫn muốn đặt hàng với số lượng này, xin vui lòng liên hệ trực tiếp với chúng tôi qua kênh chat online để có thêm thông tin hoặc thỏa thuận về ngày giao hàng.</p>
+    <p><em>Tip: Số lượng sẵn có của sản phẩm được chúng tôi chú thích bên cạnh thông tin về mã sản phẩm. Ví dụ: FLHBT_01 (SL: 284), có số lượng đặt hàng tối đa 284 sản phẩm.</em></p>
   </div>
 
-  <!--<pre>{{ cartItems | json }}</pre>-->
+  <!--<pre>{{ donHang.sanPhams | json }}</pre>-->
 
-  <div class="uk-flex uk-flex-between" *ngIf="!cartItems.length">
+  <div class="uk-flex uk-flex-between" *ngIf="!donHang.sanPhams.length">
     <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn sản phẩm</a>
   </div>
-  <div class="uk-flex uk-flex-between" *ngIf="cartItems.length">
+  <div class="uk-flex uk-flex-between" *ngIf="donHang.sanPhams.length">
     <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn tiếp</a>
-    <a class="uk-button uk-button-default sk-button-effect uk-button-primary" [routerLink]="['/thanh-toan']">Thanh toán</a>
+    <button class="uk-button uk-button-default sk-button-effect uk-button-primary" [routerLink]="['/thanh-toan']" [disabled]="f.invalid">Thanh toán</button>
   </div>
 </div>

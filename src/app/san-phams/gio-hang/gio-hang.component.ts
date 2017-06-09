@@ -9,13 +9,12 @@ import { DonHangService, DonHangModel, ItemCartModel } from '../../core/shared/d
 export class GioHangComponent implements OnInit {
   
   donHang: DonHangModel;
-  cartItems: ItemCartModel[];
   totalPrice: number = 0;
 
   constructor(private donHangService: DonHangService) { }
 
   removeItemFromCart(item: ItemCartModel) {
-    this.cartItems.splice(this.cartItems.indexOf(item), 1);
+    this.donHang.sanPhams.splice(this.donHang.sanPhams.indexOf(item), 1);
     this.onResolveCart();    
   }
 
@@ -26,7 +25,7 @@ export class GioHangComponent implements OnInit {
 
   ngOnInit() {
     this.donHang = this.donHangService.getDonHangLocal();
-    this.cartItems = this.donHang.sanPhams;
+    console.log(this.donHang.sanPhams);
     this.onResolveCart();
   }
 
