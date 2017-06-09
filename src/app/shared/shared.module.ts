@@ -19,6 +19,7 @@ import { MomentPipe } from './moment.pipe';
     CommonModule,
     SafeHtmlPipe,
     VisibleOnlyPipe,
+    MomentPipe
   ]
 })
 export class SharedModule { }

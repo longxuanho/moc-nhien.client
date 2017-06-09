@@ -6,10 +6,10 @@
 
   <div class="uk-search uk-search-navbar">
     <span uk-search-icon></span>
-    <input class="uk-search-input" type="search" placeholder="Tìm đơn hàng theo mã, họ tên, số điện thoại, email..." style="width: 100%;" spellcheck="false" [ngModel]="searchText" (input)="onSearchInput($event.target.value)">
+    <input class="uk-search-input" type="search" placeholder="Tìm đơn hàng theo mã, họ tên, số điện thoại, email..." style="width: 100%;" spellcheck="false" [(ngModel)]="searchText" (input)="onSearchInput($event.target.value)">
   </div>
 
-  <table class="uk-table uk-table-divider uk-table-justify">
+  <table class="uk-table uk-table-divider uk-table-justify uk-table-hover" *ngIf="donHangs">
     <thead>
       <tr>
         <th>Ngày tạo</th>
@@ -20,19 +20,28 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>25/04/2017</td>
-        <td>1ecde75d-95c4-43a7-a7f5-ffc6d7df412b</td>
-        <td>Chờ xác thực</td>
-        <td class="uk-text-right">14</td>
-        <td class="uk-text-right">1,562,000 đ</td>
+      <tr let *ngFor="let donHang of donHangs | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalItems }" class="sk-cursor-hover">
+        <td>{{ donHang.created | moment: 'DD/MM/YYYY HH:mm' }}</td>
+        <td>{{ donHang.maDonHang }}</td>
+        <td>{{ donHang.trangThai }}</td>
+        <td class="uk-text-right">{{ donHang.itemsCount }}</td>
+        <td class="uk-text-right"><strong>{{ donHang.tongCong | number }} đ</strong></td>
       </tr>
-      <tr>
+      <tr *ngIf="donHangs.length" class="sk-no-hover">
+        <td colspan="5" class="uk-text-right ">
+          <p>Đang xem từ {{ fromItem | number }} - {{ toItem | number }} của {{ totalItems | number }} kết quả phù hợp.</p>
+        </td>
+      </tr>
+      <tr *ngIf="!donHangs.length" class="sk-no-hover">
         <td colspan="5" class="uk-text-right">
           <p>Không tìm thấy đơn hàng phù hợp.</p>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <div class="uk-flex uk-flex-center">
+    <pagination-controls (pageChange)="onPageChanged($event)" autoHide="true" directionLinks="false"></pagination-controls>
+  </div>
 
 </div>

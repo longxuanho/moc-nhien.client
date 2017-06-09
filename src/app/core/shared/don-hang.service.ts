@@ -13,7 +13,7 @@ export class DonHangService {
   // **********************************************
   // DonHangLocal
   // **********************************************
-  
+
   addToCart(item, soLuong: number) {
     if (!item || !soLuong) return;
 
@@ -54,10 +54,10 @@ export class DonHangService {
     donHang.itemsCount = 0;
     donHang.tongCong = 0;
     donHang.phiVanChuyen = donHang.phiVanChuyen || 0;
-    
+
     donHang.sanPhams.forEach(item => {
       donHang.itemsCount += item.soLuong;
-      
+
       item.thanhTien = item.soLuong * item.donGia;
       donHang.tongCong += item.thanhTien;
     });
@@ -104,6 +104,9 @@ export class DonHangService {
     return (environment.production) ? 'prod' : 'dev';
   }
 
+  getDonHangs(pager: DonHangPager = { search: '', fields: 'created maDonHang trangThai itemsCount tongCong' }): Observable<Response> {
+    return this.http.get(appConfig[this.env]['apis']["don_hangs"] + `?search=${pager.search || ''}&page=${pager.page || 1}&limit=${pager.limit || 10}&fields=${pager.fields || 'created maDonHang trangThai itemsCount tongCong'}`);
+  }
 
   handleError(error: any) {
     console.log(error);
@@ -164,4 +167,4 @@ export class DonHangModel {
   created?: string;
 }
 
-export class DonHangPager { hoTenLatinized?: string; dienThoai?: string; email?: string; tinhThanh?: string; quanHuyen?: string; maDonHang?: string; fields?: string; page?: number; limit?: number; sort?: string }
+export class DonHangPager { search?: string; hoTenLatinized?: string; dienThoai?: string; email?: string; tinhThanh?: string; quanHuyen?: string; maDonHang?: string; fields?: string; page?: number; limit?: number; sort?: string }

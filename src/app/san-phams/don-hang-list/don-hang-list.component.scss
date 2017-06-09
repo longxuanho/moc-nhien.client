@@ -4,3 +4,11 @@
         padding-left: 60px;
     }
 }
+
+.sk-cursor-hover {
+    cursor: pointer;
+}
+
+.sk-no-hover:hover {
+    background-color: inherit;
+}
