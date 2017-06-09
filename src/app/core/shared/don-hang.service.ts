@@ -57,6 +57,9 @@ export class DonHangService {
 
   resetDonHangLocal() {
     localStorage.removeItem('donHang');
+
+    // Thông báo cho các component đang subscribe về lượng hàng trong giỏ hàng thay đổi.
+    this.onChangeItemsCountLocal(0);
   }
 
   resolveDonHangLocal(donHang: DonHangModel) {
