@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr let *ngFor="let donHang of donHangs | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalItems }" class="sk-cursor-hover">
+      <tr let *ngFor="let donHang of donHangs | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalItems }" class="sk-cursor-hover" [routerLink]="['/don-hang', donHang._id ]">
         <td>{{ donHang.created | moment: 'DD/MM/YYYY HH:mm' }}</td>
         <td>{{ donHang.maDonHang }}</td>
         <td>{{ donHang.trangThai }}</td>
