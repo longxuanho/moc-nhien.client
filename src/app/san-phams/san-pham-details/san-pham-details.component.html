@@ -1,4 +1,3 @@
-
 <div class="uk-container" style="margin-bottom: 3rem;" *ngIf="product">
   <ul class="uk-breadcrumb" style="margin-top: .75rem; margin-bottom: 2rem;">
     <li><a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: product.nhom }">{{ product.nhom }}</a></li>
@@ -8,11 +7,12 @@
   <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
 
     <div class="uk-card-media-left uk-cover-container uk-inline-clip uk-transition-toggle" oncontextmenu="return false;">
-      <img [src]="currentCoverUrl" alt="" uk-cover>
-      <div style="width: 100%; height: 100%; background: transparent"></div>
-      <!--<img [src]="currentCoverUrl" class="uk-transition-scale-up uk-transition-opaque" alt="">-->
 
+      <img [src]="currentCoverUrl" alt="" uk-cover>
+      <a class="sk-cursor-hover" style="display: block; width: 100%; height: 100%; background: transparent" href="#modal-center"
+        uk-toggle></a>
       <div class="uk-position-relative uk-light" style="z-index: 999;">
+
         <div class="uk-position-bottom-center uk-position-medium">
           <ul class="uk-dotnav uk-flex-nowrap">
             <li class="uk-active" [ngClass]="{'uk-active': i === currentCoverIndex}" *ngFor="let cover of product.gallery; let i = index"
@@ -23,6 +23,24 @@
 
       <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
         <p class="uk-h4 uk-margin-remove"><span style="color: transparent;">invisible</span></p>
+      </div>
+
+      <!--Overlay gallery Modal-->
+      <div id="modal-center" uk-modal="center: true">
+        <div class="uk-modal-dialog">
+          <button class="uk-modal-close-outside" type="button" uk-close></button>
+          <div oncontextmenu="return false;">
+            <div class="uk-position-relative uk-light">
+              <img [src]="currentCoverUrl" alt="">
+              <div class="uk-position-bottom-center uk-position-medium">
+                <ul class="uk-dotnav uk-flex-nowrap">
+                  <li class="uk-active" [ngClass]="{'uk-active': i === currentCoverIndex}" *ngFor="let cover of product.gallery; let i = index"
+                    (click)="setCurrentCoverUrl($event, i)"><a href="">Item 1</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -55,7 +73,8 @@
           </tbody>
         </table>
         <div class="uk-text-right">
-          <button class="uk-button uk-button-default sk-button-effect" (click)="addToCart(product)" [disabled]="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
+          <button class="uk-button uk-button-default sk-button-effect" [ngClass]="{'uk-button-danger': isHetHang}" (click)="addToCart(product)"
+            [disabled]="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
         </div>
       </div>
     </div>

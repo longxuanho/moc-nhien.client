@@ -47,7 +47,6 @@ export class SanPhamDetailsComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params
       .switchMap((params: Params) => this.sanPhamService.getSanPham(params["id"], { fields: '-created' }))
       .subscribe(sanPham => {
-        console.log(sanPham);
         this.product = sanPham;
         this.currentCoverIndex = 0;
         this.currentCoverUrl = (this.product && this.product.gallery && this.product.gallery) ? this.product.gallery[0].url : '';

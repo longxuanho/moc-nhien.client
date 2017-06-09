@@ -94,7 +94,9 @@
         <!--Show on small devices-->
         <div class="uk-offcanvas-content" *ngIf="menu && (clientWidth < 960)">
 
-          <span uk-toggle="target: #product-menu-mobile" style="cursor: pointer; padding: 0 15px;" class="uk-navbar-toggle"><span uk-navbar-toggle-icon></span>          <span class="uk-margin-small-left uk-text-uppercase uk-text-muted uk-text-middle" style="font-size: .875rem;">Danh mục</span></span>
+          <span uk-toggle="target: #product-menu-mobile" style="cursor: pointer; padding: 0 15px;" class="uk-navbar-toggle"><span uk-navbar-toggle-icon></span> 
+            <span class="uk-margin-small-left uk-text-uppercase uk-text-muted uk-text-middle" style="font-size: .875rem;" *ngIf="clientWidth > 545">Danh mục</span>
+          </span>
 
 
           <div id="product-menu-mobile" uk-offcanvas>
