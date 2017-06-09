@@ -55,7 +55,7 @@
           </tbody>
         </table>
         <div class="uk-text-right">
-          <button class="uk-button uk-button-default sk-button-effect">Đặt mua</button>
+          <button class="uk-button uk-button-default sk-button-effect" (click)="addToCart(product)" [disabled]="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
         </div>
       </div>
     </div>

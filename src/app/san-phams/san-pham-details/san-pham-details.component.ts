@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
+import { DonHangService } from '../../core/shared/don-hang.service';
 import { SanPhamService, SanPhamModel } from '../../core/shared/san-pham.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -16,7 +17,11 @@ export class SanPhamDetailsComponent implements OnInit, OnDestroy {
   currentCoverUrl: string;
   currentCoverIndex: number;
 
-  constructor(private sanPhamService: SanPhamService, private route: ActivatedRoute) { }
+  constructor(
+    private sanPhamService: SanPhamService, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private donHangService: DonHangService) { }
 
   handleError(error) {
     console.log(error);
@@ -26,18 +31,27 @@ export class SanPhamDetailsComponent implements OnInit, OnDestroy {
     event.preventDefault();
     if (this.product && this.product.gallery && this.product.gallery[index])
       this.currentCoverUrl = this.product.gallery[index].url || '';
-      this.currentCoverIndex = index;
+    this.currentCoverIndex = index;
+  }
+
+  addToCart(product: SanPhamModel) {
+    this.donHangService.addToCart(product, 1);
+    this.router.navigate(['/gio-hang'])
+  }
+
+  public get isHetHang() : boolean {
+    return this.product && this.product.soLuong <= 0;
   }
 
   ngOnInit() {
     this.routeSub = this.route.params
-    .switchMap((params: Params) => this.sanPhamService.getSanPham(params["id"], { fields: '-created' }))
-    .subscribe(sanPham => {
-      console.log(sanPham);
-      this.product = sanPham;
-      this.currentCoverIndex = 0;
-      this.currentCoverUrl = (this.product && this.product.gallery && this.product.gallery) ? this.product.gallery[0].url : '';
-    }, error => this.handleError(error))
+      .switchMap((params: Params) => this.sanPhamService.getSanPham(params["id"], { fields: '-created' }))
+      .subscribe(sanPham => {
+        console.log(sanPham);
+        this.product = sanPham;
+        this.currentCoverIndex = 0;
+        this.currentCoverUrl = (this.product && this.product.gallery && this.product.gallery) ? this.product.gallery[0].url : '';
+      }, error => this.handleError(error))
   }
 
   ngOnDestroy() {

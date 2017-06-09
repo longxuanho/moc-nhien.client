@@ -1,4 +1,4 @@
-<div class="sk-navbar-container">
+<div class="sk-navbar-container" uk-sticky>
   <div class="uk-container uk-container-expand">
     <nav class="uk-navbar-container uk-margin" uk-navbar>
 
@@ -18,9 +18,11 @@
       <!--<div class="uk-navbar-right uk-hidden@m">
         <sk-product-menu-mobile [menu]="menu"></sk-product-menu-mobile>
       </div>-->
-      <!--Hidden on small devices-->
+
+
       <div class="uk-navbar-right">
-        <ul class="uk-navbar-nav" *ngIf="menu">
+        <!--Hidden on small devices-->
+        <ul class="uk-navbar-nav" *ngIf="menu && (clientWidth >= 960)">
           <li>
             <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược' }">Thảo dược</a>
             <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
@@ -88,6 +90,100 @@
             </div>
           </li>
         </ul>
+
+        <!--Show on small devices-->
+        <div class="uk-offcanvas-content" *ngIf="menu && (clientWidth < 960)">
+
+          <span uk-toggle="target: #product-menu-mobile" style="cursor: pointer; padding: 0 15px;" class="uk-navbar-toggle"><span uk-navbar-toggle-icon></span>          <span class="uk-margin-small-left uk-text-uppercase uk-text-muted uk-text-middle" style="font-size: .875rem;">Danh mục</span></span>
+
+
+          <div id="product-menu-mobile" uk-offcanvas>
+            <div class="uk-offcanvas-bar">
+
+              <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+              <h3>Mộc Nhiên Farm</h3>
+
+              <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple: true" *ngIf="menu">
+                <li class="uk-parent">
+                  <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược' }">Thảo dược</a>
+                  <ul class="uk-nav-sub" *ngIf="menu.thaoDuoc">
+                    <li>
+                      <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược nhập ngoại' }">Nhập ngoại</a>
+                      <ul>
+                        <li *ngFor="let menuItem of menu.thaoDuoc.nhapNgoai">
+                          <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược trong nước' }">Trong nước</a>
+                      <ul>
+                        <li *ngFor="let menuItem of menu.thaoDuoc.trongNuoc">
+                          <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="uk-parent">
+                  <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Giống hoa' }">Giống hoa</a>
+                  <ul class="uk-nav-sub">
+                    <li *ngFor="let menuItem of menu.giongHoa">
+                      <a [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="uk-parent">
+                  <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây cảnh' }">Cây cảnh</a>
+                  <ul class="uk-nav-sub">
+                    <li *ngFor="let menuItem of menu.cayCanh">
+                      <a [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="uk-parent">
+                  <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái' }">Cây ăn trái</a>
+                  <ul class="uk-nav-sub" *ngIf="menu.cayAnTrai">
+                    <li>
+                      <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái nhiệt đới' }">Nhiệt đới</a>
+                      <ul *ngIf="menu.fruitTreeNhietDoiMenu">
+                        <li *ngFor="let menuItem of menu.cayAnTrai.nhietDoi">
+                          <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái ôn đới' }">Ôn đới</a>
+                      <ul *ngIf="menu.fruitTreeOnDoiMenu">
+                        <li *ngFor="let menuItem of menu.cayAnTrai.onDoi">
+                          <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+              </ul>
+
+              <hr/>
+              <blockquote>
+                <p class="uk-text-muted uk-text-small uk-text-justify" style="margin-top: 2rem;">
+                  Khởi đầu từ một khu ban công của chung cư quận 2 Sài gòn vào 07/2015, Mộc Nhiên Farm được sinh ra với mong muốn đưa thiên
+                  nhiên trở lại với mọi người, cho những mảng xanh len lỏi đến từng ngóc ngách của cuộc sống và xoa dịu đi
+                  những ngột ngạt trong tâm hồn.
+                </p>
+                <p class="uk-text-muted uk-text-small uk-text-justify">Hãy lắng nghe những mầm xanh thỏ thẻ, cảm nhận sự dịu ngọt của hương hoa và hòa mình vào thiên nhiên với
+                  các sản phẩm từ nông trại của chúng tôi!
+                </p>
+                <footer class="uk-text-muted uk-text-right">from Mộc Nhiên with <span style="padding-left: .3rem;" uk-icon="icon: heart; ratio: 0.75"></span></footer>
+              </blockquote>
+
+
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </nav>

@@ -4,7 +4,7 @@
       <i class="cubes icon"></i> {{ product.soLuong | number }}
     </div>
     <img [src]="product.cover" alt="">
-    <!--<a class="ui right ribbon label uk-position-bottom" *ngIf="!product.soLuong"><span>Hết hàng</span></a>-->
+    <a class="ui right ribbon label uk-position-bottom" *ngIf="!product.soLuong"><span>Hết hàng</span></a>
   </div>
   <div class="uk-card-body" href="" [routerLink]="['/san-pham', product._id ]">
     <h3 class="uk-card-title">{{ product.ten }}</h3>

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { SanPhamMenuService, SanPhamMenu } from '../../core/shared/san-pham-menu.service';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -15,10 +16,14 @@ export class MenuBarComponent implements OnInit, OnDestroy {
   @Input() mode: string = 'search-textbox';
 
   menu: SanPhamMenu;
+  clientWidth: number = document.documentElement.clientWidth || 0;
   routeSub: Subscription;
+  eventSub: Subscription;
   searchTextChanged: Subject<string> = new Subject<string>();
+  $resizeEvent = Observable.fromEvent(window, 'resize');
   searchText: string = '';
   queryParams: any = {};
+
 
   constructor(
     private sanPhamMenuService: SanPhamMenuService,
@@ -39,6 +44,16 @@ export class MenuBarComponent implements OnInit, OnDestroy {
         this.searchText = params['s'] || '';
         this.queryParams = Object.assign({}, params);
       });
+
+    this.eventSub = this.$resizeEvent
+      .debounceTime(1000)
+      .map(() => document.documentElement.clientWidth)
+      .subscribe(width => {
+        this.clientWidth = width || 0;
+        console.log('resize: ', width);
+      })
+
+
     this.searchTextChanged
       .debounceTime(800)
       .distinctUntilChanged()
@@ -47,11 +62,12 @@ export class MenuBarComponent implements OnInit, OnDestroy {
         queryParams['s'] = searchText || '';
         this.router.navigate(['/san-pham'], { queryParams });
       });
+
   }
 
   ngOnDestroy() {
-    if (this.routeSub)
-      this.routeSub.unsubscribe();
+    if (this.routeSub) this.routeSub.unsubscribe();
+    if (this.eventSub) this.eventSub.unsubscribe();
   }
 
 }
