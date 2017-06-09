@@ -22,7 +22,7 @@
           <td>{{ item.ma }} (SL: {{ item.sanCo | number }})</td>
           <td>{{ item.ten }}</td>
           <td><input type="number" class="uk-input" name="soLuong-{{i}}" [(ngModel)]="item.soLuong" (input)="onResolveCart($event)"
-              [min]="0" [max]="item.sanCo" required></td>
+              [min]="1" [max]="item.sanCo" required></td>
           <td class="uk-text-right">{{ item.donGia | number }}</td>
           <td class="uk-text-right">{{ item.thanhTien | number }}</td>
           <td><a href="" uk-icon="icon: close" (click)="$event.preventDefault(); removeItemFromCart(item)"></a></td>

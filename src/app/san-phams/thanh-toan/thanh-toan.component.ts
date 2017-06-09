@@ -40,7 +40,7 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
   buildForm() {
     this.hoTen = this.fb.control('', [Validators.required]);
     this.dienThoai = this.fb.control('', [Validators.required]);
-    this.email = this.fb.control('', [Validators.required]);
+    this.email = this.fb.control('');
     this.diaChi = this.fb.control('', [Validators.required]);
     this.tinhThanh = this.fb.control('', [Validators.required]);
     this.quanHuyen = this.fb.control('', [Validators.required]);
