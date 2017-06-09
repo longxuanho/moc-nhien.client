@@ -17,6 +17,12 @@ export class SanPhamCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+  public get isHetHang() : boolean {
+    return this.product && this.product.soLuong <= 0;
+  }
+  
+
   addToCart(product: SanPhamModel) {
     this.donHangService.addToCart(product, 1);
     this.router.navigate(['/gio-hang'])
