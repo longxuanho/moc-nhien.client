@@ -26,7 +26,15 @@
             </div>
           </li>
           <li><a href="" [routerLink]="['/don-hang']">Đơn hàng</a></li>
-          <li><a href="" [routerLink]="['/gio-hang']">Giỏ hàng</a></li>
+          <!--<li><a href="" [routerLink]="['/gio-hang']">Giỏ hàng</a></li>-->
+          <li>
+            <a href="" uk-icon="icon: cart" [routerLink]="['/gio-hang']">
+              <div class="sk-bubble">
+                <a class="ui tiny orange circular label">{{ itemsCountLocal | number }}</a>
+              </div>
+            </a>
+
+          </li>
         </ul>
       </div>
     </nav>

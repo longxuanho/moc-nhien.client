@@ -4,7 +4,7 @@
       <i class="cubes icon"></i> {{ product.soLuong | number }}
     </div>
     <img [src]="product.cover" alt="">
-    <a class="ui right ribbon label uk-position-bottom" *ngIf="!product.soLuong"><span>Hết hàng</span></a>
+    <!--<a class="ui right ribbon label uk-position-bottom" *ngIf="!product.soLuong"><span>Hết hàng</span></a>-->
   </div>
   <div class="uk-card-body" href="" [routerLink]="['/san-pham', product._id ]">
     <h3 class="uk-card-title">{{ product.ten }}</h3>
@@ -14,7 +14,7 @@
   <div class="uk-card-footer">
     <div class="subtitle uk-flex uk-flex-between ">
       <div>{{ product.giaBan | number }} ₫/{{ product.dvt }}</div>
-      <button class="uk-button uk-button-default sk-button-effect" (click)="addToCart(product);" [disabled]="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
+      <button class="uk-button uk-button-default sk-button-effect" (click)="addToCart(product);" [ngClass]="{'uk-button-danger': isHetHang}" [disabled]="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
     </div>
   </div>
 </div>

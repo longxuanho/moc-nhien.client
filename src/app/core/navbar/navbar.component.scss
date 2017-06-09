@@ -53,3 +53,22 @@
 .uk-navbar-left:focus {
     outline: none;
 }
+
+// Items Count trong giỏ hàng
+.sk-bubble {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    a:hover {
+        text-decoration: none;
+    }
+    .ui.circular.label {
+        padding: 0 !important;
+        line-height: 2;
+    }
+}
+
+
+
+

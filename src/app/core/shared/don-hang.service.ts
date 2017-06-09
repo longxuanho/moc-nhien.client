@@ -3,10 +3,14 @@ import { Http, Headers, Response } from '@angular/http';
 import { environment } from '../../../environments/environment';
 
 import { appConfig } from './app-config';
+import { Subject }    from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class DonHangService {
+
+  private itemsCountLocalChangedSource = new Subject<number>();
+  itemsCountLocalChanged$ = this.itemsCountLocalChangedSource.asObservable();
 
   constructor(private http: Http) { }
 
@@ -34,6 +38,10 @@ export class DonHangService {
       .map(res => res.json()['locations']);
   }
 
+  getItemsCountLocal(): number {
+    return this.getDonHangLocal().sanPhams.length;
+  }
+
   getDonHangLocal(): DonHangModel {
     return <DonHangModel>JSON.parse(localStorage.getItem('donHang')) || this.initDonHangLocal();
   }
@@ -42,6 +50,9 @@ export class DonHangService {
     if (!donHang) return;
 
     localStorage.setItem('donHang', JSON.stringify(donHang));
+
+    // Thông báo cho các component đang subscribe về lượng hàng trong giỏ hàng thay đổi.
+    this.onChangeItemsCountLocal(donHang.sanPhams.length);
   }
 
   resetDonHangLocal() {
@@ -82,6 +93,10 @@ export class DonHangService {
       tongCong: 0,
       trangThai: 'Chờ xác thực'
     }
+  }
+
+  onChangeItemsCountLocal(newVal: number) {
+    this.itemsCountLocalChangedSource.next(newVal);
   }
 
   // **********************************************

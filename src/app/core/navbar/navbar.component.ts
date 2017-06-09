@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { DonHangService } from '../../core/shared/don-hang.service';
 import { Subscription } from 'rxjs/Subscription';
 
 import { LoggerService } from '../../core/shared/logger.service';
@@ -14,28 +16,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
   // managerProfile: ManagerProfile;
   // managerSub: Subscription
 
+  itemsCountLocalSub: Subscription;
+  itemsCountLocal: number = this.donHangService.getItemsCountLocal();
+
   constructor(
     private loggerService: LoggerService,
     private router: Router,
+    private donHangService: DonHangService
   ) { }
 
-  logout() {
-    // this.authService.logout()
-    //   .then(() => {
-    //     this.loggerService.info('Bạn đã đăng xuất khỏi hệ thống!', 'Hẹn gặp lại,');
-    //     this.router.navigate['/'];
-    //   });
-  }
-
   ngOnInit() {
-    // this.managerSub = this.authService.getAuth()
-    //   .mergeMap(auth => this.authService.getManagerProfile())
-    //   .subscribe(managerProfile => this.managerProfile = managerProfile);
+    this.itemsCountLocalSub = this.donHangService.itemsCountLocalChanged$
+      .subscribe(newVal => {
+        this.itemsCountLocal = newVal;
+      });
   }
 
   ngOnDestroy() {
-    // if (this.managerSub)
-    //   this.managerSub.unsubscribe();
+    if (this.itemsCountLocalSub) this.itemsCountLocalSub.unsubscribe();
   }
 
 }
