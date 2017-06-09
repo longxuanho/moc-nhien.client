@@ -86,7 +86,6 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
     this.tinhThanhsSelect = tinhThanhSelect;
     this.quanHuyensSelect = quanHuyenSelect;
 
-    console.log(this.tinhThanhsSelect, this.quanHuyensSelect);
   }
 
   subscribeFormChanges() {

@@ -25,7 +25,6 @@ export class GioHangComponent implements OnInit {
 
   ngOnInit() {
     this.donHang = this.donHangService.getDonHangLocal();
-    console.log(this.donHang.sanPhams);
     this.onResolveCart();
   }
 

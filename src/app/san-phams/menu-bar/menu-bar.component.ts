@@ -50,7 +50,6 @@ export class MenuBarComponent implements OnInit, OnDestroy {
       .map(() => document.documentElement.clientWidth)
       .subscribe(width => {
         this.clientWidth = width || 0;
-        console.log('resize: ', width);
       })
 
 
