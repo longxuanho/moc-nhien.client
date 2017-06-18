@@ -21,6 +21,10 @@ export class SanPhamCardComponent implements OnInit {
   public get isHetHang() : boolean {
     return this.product && this.product.soLuong <= 0;
   }
+
+  public get isItemInCart() : boolean {
+    return this.product && this.donHangService.isItemInCart(this.product._id);
+  }
   
 
   addToCart(product: SanPhamModel) {

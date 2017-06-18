@@ -33,6 +33,10 @@ export class DonHangService {
     this.saveDonHangLocal(donHang);
   }
 
+  isItemInCart(itemId: string) {
+    return this.getDonHangLocal().sanPhams.findIndex((sanPham => sanPham._id === itemId)) >= 0
+  }
+
   getLocations(): Observable<LocationModel[]> {
     return this.http.get(appConfig[this.env]['helpers']['locations'])
       .map(res => res.json()['locations']);
@@ -54,6 +58,8 @@ export class DonHangService {
     // Thông báo cho các component đang subscribe về lượng hàng trong giỏ hàng thay đổi.
     this.onChangeItemsCountLocal(donHang.sanPhams.length);
   }
+
+  isItem
 
   resetDonHangLocal() {
     localStorage.removeItem('donHang');

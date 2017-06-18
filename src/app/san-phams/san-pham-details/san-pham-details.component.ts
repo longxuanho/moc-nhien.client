@@ -27,6 +27,10 @@ export class SanPhamDetailsComponent implements OnInit, OnDestroy {
     console.log(error);
   }
 
+  public get isItemInCart() : boolean {
+    return this.product && this.donHangService.isItemInCart(this.product._id);
+  }
+
   setCurrentCoverUrl(event: Event, index: number = 0) {
     event.preventDefault();
     if (this.product && this.product.gallery && this.product.gallery[index])
