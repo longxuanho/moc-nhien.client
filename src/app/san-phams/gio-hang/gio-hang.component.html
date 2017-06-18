@@ -37,6 +37,8 @@
     </table>
   </form>
 
+  
+
   <div uk-alert class="uk-alert-danger" *ngIf="f.invalid">
     <h3>Rất tiếc, chúng tôi chưa thể đáp ứng đơn hàng này...</h3>
     <p>Đơn hàng của bạn có sản phẩm với số lượng vượt quá lượng hàng sẵn có của chúng tôi. Xin vui lòng điều chỉnh lại số lượng
@@ -45,6 +47,8 @@
       để đặt sản xuất và thỏa thuận về ngày giao hàng.</p>
     <p><em>Tip: Số lượng sẵn có của sản phẩm được chúng tôi chú thích bên cạnh mã sản phẩm. Ví dụ: FLHBT_01 (SL: 284).</em></p>
   </div>
+
+  
 
   <!--<pre>{{ donHang.sanPhams | json }}</pre>-->
 
@@ -55,4 +59,14 @@
     <a class="uk-button uk-button-default sk-button-effect" (click)="onGoBack()">Chọn tiếp</a>
     <button class="uk-button uk-button-default sk-button-effect uk-button-primary" [routerLink]="['/thanh-toan']" [disabled]="f.invalid">Thanh toán</button>
   </div>
+
+  <div uk-alert style="margin-top: 2rem;" *ngIf="itemsCount < 42">
+    <!--<h3>Ghi chú</h3>-->
+    <p>Mộc Nhiên Farm sẽ tiến hành giao hàng đối với các đơn hàng có số lượng cây đáp ứng:</p>
+    <ul>
+      <li>Ít nhất 21 cây đối với các đơn hàng trong khu vực Tp. HCM</li>
+      <li>Ít nhất 42 cây đối với các đơn hàng giao đi tỉnh</li>
+    </ul>
+  </div>
+
 </div>

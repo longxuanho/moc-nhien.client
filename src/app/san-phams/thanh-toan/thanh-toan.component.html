@@ -110,8 +110,20 @@
     <p>Xin vui lòng hoàn thiện đầy đủ các thông tin về người nhận trước khi bạn gửi đơn hàng này.</p>
   </div>
 
+  
+  <div uk-alert style="margin-top: 2rem;" *ngIf="!donHangForm.invalid && !isItemsCountValid">
+    <h3>Số cây trong giỏ hàng không đủ...</h3>
+    <p>Mộc Nhiên Farm chỉ tiến hành giao hàng đối với các đơn hàng có số lượng cây đáp ứng:</p>
+    <ul>
+      <li>Ít nhất 21 cây đối với các đơn hàng trong khu vực Tp. HCM</li>
+      <li>Ít nhất 42 cây đối với các đơn hàng giao đi tỉnh</li>
+    </ul>
+    <p>Vui lòng quay lại giỏ hàng để điều chỉnh số lượng cây hoặc chọn thêm giống mới trước khi bạn gửi đơn hàng này...</p>
+  </div>
+
   <div class="uk-flex uk-flex-between">
     <a class="uk-button uk-button-default" [routerLink]="['/gio-hang']">Trở lại giỏ hàng</a>
-    <button class="uk-button uk-button-default uk-button-primary" [disabled]="donHangForm.invalid || !donHang || !donHang.sanPhams || !donHang.sanPhams.length" (click)="createNewDonHang()">Gửi đơn hàng</button>
+    <button class="uk-button uk-button-default uk-button-primary" [disabled]="!isItemsCountValid || donHangForm.invalid || !donHang || !donHang.sanPhams || !donHang.sanPhams.length"
+      (click)="createNewDonHang()">Gửi đơn hàng</button>
   </div>
 </div>

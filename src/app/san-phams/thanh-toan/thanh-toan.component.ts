@@ -33,6 +33,14 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
   isThanhToanChuyenKhoan: boolean = false;
   isAllowThanhToanTienMat: boolean = true;
 
+  get isItemsCountValid(): boolean {
+    if (!this.donHang.tinhThanh) return false;
+
+    let minItemsCount = (this.donHang.tinhThanh === 'Hồ Chí Minh') ? 21 : 42;
+
+    return this.donHangService.getDonHangLocal().itemsCount > minItemsCount;
+  }
+
   constructor(private donHangService: DonHangService, private fb: FormBuilder, private loggerService: LoggerService, private router: Router) {
     this.buildForm();
   }

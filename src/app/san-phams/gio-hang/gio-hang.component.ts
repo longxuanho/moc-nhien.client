@@ -11,6 +11,10 @@ export class GioHangComponent implements OnInit {
   
   donHang: DonHangModel;
   totalPrice: number = 0;
+  
+  get itemsCount(): number {
+    return this.donHangService.getDonHangLocal().itemsCount;
+  }
 
   constructor(private donHangService: DonHangService, private location: Location) { }
 
