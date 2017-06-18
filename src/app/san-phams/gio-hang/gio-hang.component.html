@@ -17,8 +17,8 @@
           <th class="uk-table-shrink"></th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let item of donHang.sanPhams; let i = index;">
+      <tbody class="sk-image-tooltip">
+        <tr *ngFor="let item of donHang.sanPhams; let i = index;" uk-tooltip title="<img src='{{item.cover}}' alt=''></img>">
           <td class="uk-visible@s">{{ item.ma }} (SL: {{ item.sanCo | number }})</td>
           <td>{{ item.ten }}</td>
           <td><input type="number" class="uk-input" name="soLuong-{{i}}" [(ngModel)]="item.soLuong" (input)="onResolveCart($event)"
@@ -39,8 +39,10 @@
 
   <div uk-alert class="uk-alert-danger" *ngIf="f.invalid">
     <h3>Rất tiếc, chúng tôi chưa thể đáp ứng đơn hàng này...</h3>
-    <p>Đơn hàng của bạn có sản phẩm với số lượng vượt quá lượng hàng sẵn có của chúng tôi. Xin vui lòng điều chỉnh lại số lượng phù hợp.</p>
-    <p>Trong trường hợp bạn vẫn muốn đặt hàng với số lượng này, xin vui lòng liên hệ trực tiếp với chúng tôi qua kênh chat online để đặt sản xuất và thỏa thuận về ngày giao hàng.</p>
+    <p>Đơn hàng của bạn có sản phẩm với số lượng vượt quá lượng hàng sẵn có của chúng tôi. Xin vui lòng điều chỉnh lại số lượng
+      phù hợp.</p>
+    <p>Trong trường hợp bạn vẫn muốn đặt hàng với số lượng này, xin vui lòng liên hệ trực tiếp với chúng tôi qua kênh chat online
+      để đặt sản xuất và thỏa thuận về ngày giao hàng.</p>
     <p><em>Tip: Số lượng sẵn có của sản phẩm được chúng tôi chú thích bên cạnh mã sản phẩm. Ví dụ: FLHBT_01 (SL: 284).</em></p>
   </div>
 

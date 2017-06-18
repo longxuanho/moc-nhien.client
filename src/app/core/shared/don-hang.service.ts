@@ -26,7 +26,7 @@ export class DonHangService {
     // Nếu item đã tồn tại trong giỏ hàng, return;
     if (donHang.sanPhams.find(itemInCart => itemInCart._id === item._id)) return;
 
-    let newItem: ItemCartModel = { _id: item._id, ten: item.ten, ma: item.ma, donGia: item.giaBan, soLuong: soLuong, thanhTien: item.giaBan * soLuong, sanCo: item.soLuong };
+    let newItem: ItemCartModel = { _id: item._id, ten: item.ten, ma: item.ma, cover: item.cover, donGia: item.giaBan, soLuong: soLuong, thanhTien: item.giaBan * soLuong, sanCo: item.soLuong };
     donHang.sanPhams.push(newItem);
 
     this.resolveDonHangLocal(donHang);
@@ -159,6 +159,7 @@ export class ItemCartModel {
   _id: string;
   ma: string;
   ten: string;
+  cover?: string;
   soLuong: number;
   donGia: number;
   sanCo: number;
