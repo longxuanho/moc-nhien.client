@@ -15,7 +15,7 @@
     <div class="subtitle uk-flex uk-flex-between ">
       <div>{{ product.giaBan | number }} ₫/{{ product.dvt }}</div>
       <div [ngSwitch]="isItemInCart">
-        <div *ngSwitchCase="true"><button class="uk-button uk-button-default sk-button-effect sk-success" [routerLink]="['/gio-hang']">Đã thêm vào giỏ</button></div>
+        <div *ngSwitchCase="true"><button class="uk-button uk-button-default sk-button-effect sk-success" [routerLink]="['/gio-hang']">Trong giỏ</button></div>
         <div *ngSwitchDefault>
           <button class="uk-button uk-button-default sk-button-effect" (click)="addToCart(product);" [ngClass]="{'uk-button-danger': isHetHang}" [disabled]="isHetHang">
             {{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}

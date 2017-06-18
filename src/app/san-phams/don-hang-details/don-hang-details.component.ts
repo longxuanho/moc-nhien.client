@@ -4,6 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { DonHangService, DonHangModel } from '../../core/shared/don-hang.service';
 import { Subscription } from 'rxjs/Subscription';
 
+declare const moment: any;
+
 @Component({
   selector: 'sk-don-hang-details',
   templateUrl: './don-hang-details.component.html',
@@ -41,9 +43,9 @@ export class DonHangDetailsComponent implements OnInit, OnDestroy {
 
     if (!this.donHang.ngayDuKienGiao) return `Chưa dự kiến ngày giao.`;
 
-    if (!this.donHang.ngayGiao) return `Dự kiến giao hàng ngày ${ this.donHang.ngayDuKienGiao }.`;
+    if (!this.donHang.ngayGiao) return `Dự kiến giao hàng ngày ${ moment(this.donHang.ngayDuKienGiao).format('DD/MM/YYYY') }.`;
 
-    return `Đã giao hàng ngày ${ this.donHang.ngayGiao }.`;
+    return `Đã giao hàng ngày ${ moment(this.donHang.ngayGiao).format('DD/MM/YYYY') }.`;
   }
 
   public get cachThanhToan() : string {

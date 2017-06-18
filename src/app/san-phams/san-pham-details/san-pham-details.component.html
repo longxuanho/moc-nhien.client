@@ -74,7 +74,7 @@
         </table>
         <div class="uk-text-right">
           <div [ngSwitch]="isItemInCart">
-            <div *ngSwitchCase="true"><button class="uk-button uk-button-default sk-button-effect sk-success" [routerLink]="['/gio-hang']">Đã thêm vào giỏ</button></div>
+            <div *ngSwitchCase="true"><button class="uk-button uk-button-default sk-button-effect sk-success" [routerLink]="['/gio-hang']">Trong giỏ</button></div>
             <div *ngSwitchDefault>
               <button class="uk-button uk-button-default sk-button-effect" [ngClass]="{'uk-button-danger': isHetHang}" (click)="addToCart(product)"
                   [disabled]="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
