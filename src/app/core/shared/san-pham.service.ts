@@ -58,6 +58,7 @@ export class SanPhamModel {
   trichDan: string;
   keywords: string;
   chieuCao: string;
+  dacTinh: string;
   gioiThieu: string;
   moTaSanPham: string;
   cachChamSoc: string;

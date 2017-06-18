@@ -91,7 +91,7 @@ export class DonHangService {
     else if (donHang.itemsCount >= 42) donHang.chietKhauPercent = 3;
     else donHang.chietKhauPercent = 0;
     
-    donHang.tongCong += donHang.phiVanChuyen;
+    donHang.tongThanhToan = donHang.tongCong - donHang.chietKhauPercent / 100 * donHang.tongCong + donHang.phiVanChuyen;
   }
 
   initDonHangLocal(): DonHangModel {
@@ -99,6 +99,9 @@ export class DonHangService {
       hoTen: '',
       dienThoai: '',
       email: '',
+      isThongTinGiaoHangKhacThongTinThanhToan: false,
+      hoTenNguoiNhan: '',
+      dienThoaiNguoiNhan: '',
       diaChi: '',
       tinhThanh: '',
       quanHuyen: '',
@@ -185,6 +188,9 @@ export class DonHangModel {
   hoTen: string;
   dienThoai: string;
   email: string;
+  isThongTinGiaoHangKhacThongTinThanhToan: boolean;
+  hoTenNguoiNhan: string;
+  dienThoaiNguoiNhan: string;
   diaChi: string;
   tinhThanh: string;
   quanHuyen: string;

@@ -7,20 +7,23 @@
   </ul>
   <div>
     <hr/>
-    <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Thông tin người nhận</h3>
+    <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Thông tin đơn hàng</h3>
     <form class="uk-form-horizontal uk-margin" [formGroup]="donHangForm" spellcheck="false">
       <div class="uk-margin">
-        <label class="uk-form-label" for="form-horizontal-text">Người nhận</label>
+        <label class="uk-form-label" for="form-horizontal-text">Khách hàng</label>
         <div class="uk-form-controls">
           <input class="uk-input" type="text" placeholder="Họ và tên" formControlName="hoTen" [ngClass]="{'uk-form-danger': hoTen.invalid && (hoTen.dirty || hoTen.touched)}">
+          <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Điện thoại" formControlName="dienThoai" [ngClass]="{'uk-form-danger': dienThoai.invalid && (dienThoai.dirty || dienThoai.touched)}">
+          <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Email" formControlName="email" [ngClass]="{'uk-form-danger': email.invalid && (email.dirty || email.touched)}">
+          <label style="margin-top: 1rem; display: inline-block;"><input class="uk-checkbox" type="checkbox" formControlName="isThongTinGiaoHangKhacThongTinThanhToan"> Thông tin khách hàng khác với thông tin người nhận</label>
         </div>
       </div>
 
-      <div class="uk-margin">
-        <label class="uk-form-label" for="form-horizontal-select">Thông tin liên hệ</label>
+      <div class="uk-margin" *ngIf="isThongTinGiaoHangKhacThongTinThanhToan.value">
+        <label class="uk-form-label" for="form-horizontal-select">Người nhận</label>
         <div class="uk-form-controls">
-          <input class="uk-input" type="text" placeholder="Điện thoại" formControlName="dienThoai" [ngClass]="{'uk-form-danger': dienThoai.invalid && (dienThoai.dirty || dienThoai.touched)}">
-          <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Email" formControlName="email" [ngClass]="{'uk-form-danger': email.invalid && (email.dirty || email.touched)}">
+          <input class="uk-input" type="text" placeholder="Họ và tên" formControlName="hoTenNguoiNhan" [ngClass]="{'uk-form-danger': hoTenNguoiNhan.invalid && (hoTenNguoiNhan.dirty || hoTenNguoiNhan.touched)}">
+          <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Điện thoại" formControlName="dienThoaiNguoiNhan" [ngClass]="{'uk-form-danger': dienThoaiNguoiNhan.invalid && (dienThoaiNguoiNhan.dirty || dienThoaiNguoiNhan.touched)}">
         </div>
       </div>
 
@@ -57,7 +60,7 @@
         </div>
       </div>
       <div class="uk-margin">
-        <label class="uk-form-label" for="form-horizontal-text" [ngClass]="{'uk-form-danger': ghiChu.invalid && (ghiChu.dirty || ghiChu.touched)}">Ghi chú</label>
+        <label class="uk-form-label" for="form-horizontal-text" [ngClass]="{'uk-form-danger': ghiChu.invalid && (ghiChu.dirty || ghiChu.touched)}">Lời nhắn</label>
         <div class="uk-form-controls">
           <input class="uk-input" type="text" formControlName="ghiChu">
         </div>
@@ -67,6 +70,7 @@
       </div>
     </form>
   </div>
+
   <div *ngIf="donHang.sanPhams">
     <hr style="margin-top: 2rem;" />
     <h3 style="margin-top: 2rem; margin-bottom: 2rem;">Nội dung đơn hàng</h3>
@@ -93,8 +97,10 @@
         </tr>
         <tr *ngIf="donHang.sanPhams.length">
           <td colspan="5" class="uk-text-right">
-            <p><em>Phí vận chuyển tạm tính: {{ donHang.phiVanChuyen | number }} đ</em></p>
-            <p>Tổng cộng: <strong>{{ donHang.tongCong | number }} đ</strong></p>
+            <span>Tổng cộng: <span class="sk-numeral">{{ donHang.tongCong | number }} đ</span></span><br/>
+            <span>Chiết khấu ({{ donHang.chietKhauPercent }} %): <span class="sk-numeral">{{ - donHang.chietKhauPercent / 100 * donHang.tongCong | number }} đ</span></span><br/>
+            <span>Phí vận chuyển: <span class="sk-numeral">{{ donHang.phiVanChuyen | number }} đ</span></span><br/>
+            <strong>Tổng thanh toán: <span class="sk-numeral">{{ donHang.tongThanhToan | number }} đ</span></strong><br/>
           </td>
         </tr>
       </tbody>

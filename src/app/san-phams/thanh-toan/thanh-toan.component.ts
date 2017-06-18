@@ -20,12 +20,15 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
   hoTen: FormControl;
   dienThoai: FormControl;
   email: FormControl;
+
   diaChi: FormControl;
   tinhThanh: FormControl;
   quanHuyen: FormControl;
   cachThanhToan: FormControl;
   ghiChu: FormControl;
-
+  isThongTinGiaoHangKhacThongTinThanhToan: FormControl;
+  hoTenNguoiNhan: FormControl;
+  dienThoaiNguoiNhan: FormControl;
   locations: any;
   tinhThanhsSelect: string[] = [];
   quanHuyensSelect: { [key: string]: string[] } = {};
@@ -49,6 +52,9 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
     this.hoTen = this.fb.control('', [Validators.required]);
     this.dienThoai = this.fb.control('', [Validators.required]);
     this.email = this.fb.control('');
+    this.isThongTinGiaoHangKhacThongTinThanhToan = this.fb.control(false, [Validators.required]);
+    this.hoTenNguoiNhan = this.fb.control('', [Validators.required]);
+    this.dienThoaiNguoiNhan = this.fb.control('', [Validators.required]);
     this.diaChi = this.fb.control('', [Validators.required]);
     this.tinhThanh = this.fb.control('', [Validators.required]);
     this.quanHuyen = this.fb.control('', [Validators.required]);
@@ -59,6 +65,9 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
       hoTen: this.hoTen,
       dienThoai: this.dienThoai,
       email: this.email,
+      isThongTinGiaoHangKhacThongTinThanhToan: this.isThongTinGiaoHangKhacThongTinThanhToan,
+      hoTenNguoiNhan: this.hoTenNguoiNhan,
+      dienThoaiNguoiNhan: this.dienThoaiNguoiNhan,
       diaChi: this.diaChi,
       tinhThanh: this.tinhThanh,
       quanHuyen: this.quanHuyen,
@@ -102,6 +111,13 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
       .subscribe(value => {
         this.donHang = Object.assign(this.donHangService.getDonHangLocal(), value);
 
+        if (!this.donHang.isThongTinGiaoHangKhacThongTinThanhToan) {
+          this.donHang.hoTenNguoiNhan = this.donHang.hoTen;
+          this.donHang.dienThoaiNguoiNhan = this.donHang.dienThoai;
+          this.hoTenNguoiNhan.setValue(this.donHang.hoTen);
+          this.dienThoaiNguoiNhan.setValue(this.donHang.dienThoai);
+        }
+
         if (this.tinhThanh.value && this.tinhThanh.value !== 'Hồ Chí Minh') this.cachThanhToan.setValue('Chuyển khoản');
         this.isAllowThanhToanTienMat = (!this.tinhThanh.value || this.tinhThanh.value === 'Hồ Chí Minh');
         this.isThanhToanChuyenKhoan = (this.cachThanhToan.value === "Chuyển khoản");
@@ -139,10 +155,10 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
     this.donHangService.createNewDonHang(preparedDonHang)
       .subscribe(success => {
         this.loggerService.success('Đơn hàng của bạn đã được tạo mới thành công và đang chờ được chúng tôi xử lý.', 'Tạo mới thành công');
-        
+
         this.donHangService.resetDonHangLocal();
         this.router.navigate([`/don-hang/${success['_id']}`]);
-        
+
       }, error => this.loggerService.error(`Có lỗi khi khởi tạo đơn hàng này. ${error.message}`, 'Tạo đơn hàng thất bại'))
   }
 

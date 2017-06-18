@@ -26,21 +26,16 @@
       <div class="uk-margin">
         <label class="uk-form-label" for="form-horizontal-text">Thanh toán</label>
         <div class="uk-form-controls">
-          <input class="uk-input" type="text" placeholder="Trạng thái" [value]="trangThai">
-        </div>
-      </div>
-
-      <div class="uk-margin">
-        <label class="uk-form-label" for="form-horizontal-text">Phương thức thanh toán</label>
-        <div class="uk-form-controls">
           <input class="uk-input" type="text" placeholder="Địa chỉ" [value]="cachThanhToan">
+          <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Trạng thái" [value]="trangThai">
         </div>
       </div>
 
       <div class="uk-margin">
-        <label class="uk-form-label" for="form-horizontal-text">Địa chỉ nhận hàng</label>
+        <label class="uk-form-label" for="form-horizontal-text">Thông tin nhận hàng</label>
         <div class="uk-form-controls">
           <input class="uk-input" type="text" placeholder="Địa chỉ" [value]="diaChiNhanHang">
+          <input class="uk-input" style="margin-top: -1px;" type="text" placeholder="Số điện thoại" [value]="donHang.dienThoaiNguoiNhan">
         </div>
       </div>
 
@@ -92,8 +87,10 @@
         </tr>
         <tr *ngIf="donHang.sanPhams.length">
           <td colspan="5" class="uk-text-right">
-            <p><em>Phí vận chuyển tạm tính: {{ donHang.phiVanChuyen | number }} đ</em></p>
-            <p>Tổng cộng: <strong>{{ donHang.tongCong | number }} đ</strong></p>
+            <span>Tổng cộng: <span class="sk-numeral">{{ donHang.tongCong | number }} đ</span></span><br/>
+            <span>Chiết khấu ({{ donHang.chietKhauPercent }} %): <span class="sk-numeral">{{ - donHang.chietKhauPercent / 100 * donHang.tongCong | number }} đ</span></span><br/>
+            <span>Phí vận chuyển: <span class="sk-numeral">{{ donHang.phiVanChuyen | number }} đ</span></span><br/>
+            <strong>Tổng thanh toán: <span class="sk-numeral">{{ donHang.tongThanhToan | number }} đ</span></strong><br/>
           </td>
         </tr>
       </tbody>
@@ -101,5 +98,5 @@
     <hr/>
   </div>
 
-  <pre>{{ donHang | json }}</pre>
+  <!--<pre>{{ donHang | json }}</pre>-->
 </div>
