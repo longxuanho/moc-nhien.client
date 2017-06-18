@@ -31,9 +31,9 @@ export class DonHangDetailsComponent implements OnInit, OnDestroy {
   public get trangThai() : string {
     if (!this.donHang) return '';
 
-    if (!this.donHang.thanhToan) return 'Đơn hàng chưa thanh toán.';
+    if (!this.donHang.daThanhToan) return 'Đơn hàng chưa thanh toán.';
 
-    return `Đã thanh toán ${ this.donHang.thanhToan } đ.`;
+    return `Đã thanh toán ${ this.donHang.daThanhToan } đ.`;
   }
 
   public get ngayGiao() : string {

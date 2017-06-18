@@ -59,8 +59,6 @@ export class DonHangService {
     this.onChangeItemsCountLocal(donHang.sanPhams.length);
   }
 
-  isItem
-
   resetDonHangLocal() {
     localStorage.removeItem('donHang');
 
@@ -73,6 +71,8 @@ export class DonHangService {
 
     donHang.itemsCount = 0;
     donHang.tongCong = 0;
+    donHang.chietKhauPercent = 0;
+    donHang.tongThanhToan = 0;
     donHang.phiVanChuyen = donHang.phiVanChuyen || 0;
 
     donHang.sanPhams.forEach(item => {
@@ -81,6 +81,8 @@ export class DonHangService {
       item.thanhTien = item.soLuong * item.donGia;
       donHang.tongCong += item.thanhTien;
     });
+
+    
 
     donHang.tongCong += donHang.phiVanChuyen;
   }
@@ -100,6 +102,8 @@ export class DonHangService {
       phiVanChuyen: 0,
       itemsCount: 0,
       tongCong: 0,
+      chietKhauPercent: 0,
+      tongThanhToan: 0,
       trangThai: 'Chờ xác thực'
     }
   }
@@ -182,10 +186,12 @@ export class DonHangModel {
   phiVanChuyen: number;
   itemsCount: number;
   tongCong: number;
+  chietKhauPercent: number;
+  tongThanhToan: number;
   trangThai: string;
   ghiChu: string;
 
-  thanhToan?: string;
+  daThanhToan?: string;
   ngayGiao?: string;
   ngayDuKienGiao?: string;
   created?: string;
