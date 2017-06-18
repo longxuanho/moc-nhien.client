@@ -25,7 +25,9 @@
               </ul>
             </div>
           </li>
-          <li><a href="" [routerLink]="['/don-hang']">Đơn hàng</a></li>
+          <li class="uk-visible@s"><a href="" [routerLink]="['/don-hang']">Đơn hàng</a></li>
+          <li class="uk-hidden@s"><a href="" uk-icon="icon: album" [routerLink]="['/don-hang']"></a></li>
+          
           <!--<li><a href="" [routerLink]="['/gio-hang']">Giỏ hàng</a></li>-->
           <li>
             <a href="" uk-icon="icon: cart" [routerLink]="['/gio-hang']">

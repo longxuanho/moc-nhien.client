@@ -9,7 +9,7 @@
     <table class="uk-table uk-table-divider uk-table-justify">
       <thead>
         <tr>
-          <th>Mã sản phẩm</th>
+          <th class="uk-visible@s">Mã sản phẩm</th>
           <th class="uk-table-expand">Tên sản phẩm</th>
           <th>Số lượng</th>
           <th class="uk-text-right">Đơn giá</th>
@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of donHang.sanPhams; let i = index;">
-          <td>{{ item.ma }} (SL: {{ item.sanCo | number }})</td>
+          <td class="uk-visible@s">{{ item.ma }} (SL: {{ item.sanCo | number }})</td>
           <td>{{ item.ten }}</td>
           <td><input type="number" class="uk-input" name="soLuong-{{i}}" [(ngModel)]="item.soLuong" (input)="onResolveCart($event)"
               [min]="1" [max]="item.sanCo" required></td>
@@ -47,10 +47,10 @@
   <!--<pre>{{ donHang.sanPhams | json }}</pre>-->
 
   <div class="uk-flex uk-flex-between" *ngIf="!donHang.sanPhams.length">
-    <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn sản phẩm</a>
+    <a class="uk-button uk-button-default sk-button-effect" (click)="onGoBack()">Chọn sản phẩm</a>
   </div>
   <div class="uk-flex uk-flex-between" *ngIf="donHang.sanPhams.length">
-    <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn tiếp</a>
+    <a class="uk-button uk-button-default sk-button-effect" (click)="onGoBack()">Chọn tiếp</a>
     <button class="uk-button uk-button-default sk-button-effect uk-button-primary" [routerLink]="['/thanh-toan']" [disabled]="f.invalid">Thanh toán</button>
   </div>
 </div>

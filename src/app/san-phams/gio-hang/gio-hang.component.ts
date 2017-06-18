@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { DonHangService, DonHangModel, ItemCartModel } from '../../core/shared/don-hang.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class GioHangComponent implements OnInit {
   donHang: DonHangModel;
   totalPrice: number = 0;
 
-  constructor(private donHangService: DonHangService) { }
+  constructor(private donHangService: DonHangService, private location: Location) { }
 
   removeItemFromCart(item: ItemCartModel) {
     this.donHang.sanPhams.splice(this.donHang.sanPhams.indexOf(item), 1);
@@ -21,6 +22,10 @@ export class GioHangComponent implements OnInit {
   onResolveCart() {
     this.donHangService.resolveDonHangLocal(this.donHang);
     this.donHangService.saveDonHangLocal(this.donHang);
+  }
+
+  onGoBack() {
+    this.location.back();
   }
 
   ngOnInit() {
