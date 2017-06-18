@@ -11,7 +11,7 @@
         <tr>
           <th class="uk-visible@s">Mã sản phẩm</th>
           <th class="uk-table-expand">Tên sản phẩm</th>
-          <th>Số lượng</th>
+          <th class="uk-text-right">Số lượng</th>
           <th class="uk-text-right">Đơn giá</th>
           <th class="uk-text-right">Thành tiền</th>
           <th class="uk-table-shrink"></th>
@@ -21,7 +21,7 @@
         <tr *ngFor="let item of donHang.sanPhams; let i = index;" uk-tooltip title="<img src='{{item.cover}}' alt=''></img>">
           <td class="uk-visible@s">{{ item.ma }} (SL: {{ item.sanCo | number }})</td>
           <td>{{ item.ten }}</td>
-          <td><input type="number" class="uk-input" name="soLuong-{{i}}" [(ngModel)]="item.soLuong" (input)="onResolveCart($event)"
+          <td class="uk-text-right"><input type="number" class="uk-input" name="soLuong-{{i}}" [(ngModel)]="item.soLuong" (input)="onResolveCart($event)"
               [min]="1" [max]="item.sanCo" required></td>
           <td class="uk-text-right">{{ item.donGia | number }}</td>
           <td class="uk-text-right">{{ item.thanhTien | number }}</td>
@@ -31,13 +31,23 @@
           <td colspan="6" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
         </tr>
         <tr *ngIf="donHang.sanPhams.length">
-          <td colspan="6" class="uk-text-right">Tổng cộng: <strong>{{ donHang.tongCong - donHang.phiVanChuyen | number }} đ</strong></td>
+          <td colspan="2"></td>
+          <td class="uk-text-right" style="padding-bottom: 0;">
+            <input type="number" class="uk-input" [value]="itemsCount" disabled>
+          </td>
+          <td colspan="3" class="uk-text-right">Tổng cộng: <strong class="sk-numeral">{{ donHang.tongCong - donHang.phiVanChuyen | number }} đ</strong></td>
+        </tr>
+        <tr style="border-top: none;">
+          <td colspan="6" class="uk-text-right">
+            <a uk-icon="icon: question; ratio: .75" uk-toggle="target: #help-chiet-khau; mode: hover"></a> Chiết khấu ({{
+            donHang.chietKhauPercent }} %): <strong class="sk-numeral">{{ - donHang.chietKhauPercent / 100 * donHang.tongCong | number }} đ</strong>
+          </td>
         </tr>
       </tbody>
     </table>
   </form>
 
-  
+
 
   <div uk-alert class="uk-alert-danger" *ngIf="f.invalid">
     <h3>Rất tiếc, chúng tôi chưa thể đáp ứng đơn hàng này...</h3>
@@ -48,7 +58,7 @@
     <p><em>Tip: Số lượng sẵn có của sản phẩm được chúng tôi chú thích bên cạnh mã sản phẩm. Ví dụ: FLHBT_01 (SL: 284).</em></p>
   </div>
 
-  
+
 
   <!--<pre>{{ donHang.sanPhams | json }}</pre>-->
 
@@ -58,6 +68,21 @@
   <div class="uk-flex uk-flex-between" *ngIf="donHang.sanPhams.length">
     <a class="uk-button uk-button-default sk-button-effect" (click)="onGoBack()">Chọn tiếp</a>
     <button class="uk-button uk-button-default sk-button-effect uk-button-primary" [routerLink]="['/thanh-toan']" [disabled]="f.invalid">Thanh toán</button>
+  </div>
+
+  <div uk-alert id="help-chiet-khau" hidden>
+    <h3>Chính sách chiết khấu</h3>
+    <p>Hiện tại, Mộc Nhiên Farm áp dụng chính sách chiết khấu cho các sản phẩm từ nông trại như sau:</p>
+    <ul>
+      <li><strong>3%</strong> với các đơn hàng từ <strong>42</strong> cây</li>
+      <li><strong>7%</strong> với các đơn hàng từ <strong>84</strong> cây</li>
+      <li><strong>12%</strong> với các đơn hàng từ <strong>168</strong> cây</li>
+      <li><strong>18%</strong> với các đơn hàng từ <strong>336</strong> cây</li>
+      <li><strong>25%</strong> với các đơn hàng từ <strong>672</strong> cây</li>
+      <li><strong>33%</strong> với các đơn hàng từ <strong>1,344</strong> cây</li>
+      <li><strong>42%</strong> với các đơn hàng từ <strong>2,688</strong> cây</li>
+    </ul>
+    <p>Mặc định, chính sách này được áp dụng tự động đối với các đơn đặt hàng của các bạn tại đây!</p>
   </div>
 
   <div uk-alert style="margin-top: 2rem;" *ngIf="itemsCount < 42">

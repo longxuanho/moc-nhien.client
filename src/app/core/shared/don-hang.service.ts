@@ -82,8 +82,15 @@ export class DonHangService {
       donHang.tongCong += item.thanhTien;
     });
 
+    if (donHang.itemsCount >= 2688) donHang.chietKhauPercent = 42;
+    else if (donHang.itemsCount >= 1344) donHang.chietKhauPercent = 33;
+    else if (donHang.itemsCount >= 672) donHang.chietKhauPercent = 25;
+    else if (donHang.itemsCount >= 336) donHang.chietKhauPercent = 18;
+    else if (donHang.itemsCount >= 168) donHang.chietKhauPercent = 12;
+    else if (donHang.itemsCount >= 84) donHang.chietKhauPercent = 7;
+    else if (donHang.itemsCount >= 42) donHang.chietKhauPercent = 3;
+    else donHang.chietKhauPercent = 0;
     
-
     donHang.tongCong += donHang.phiVanChuyen;
   }
 
