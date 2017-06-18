@@ -17,7 +17,7 @@ export class SanPhamService {
   }
 
   getSanPhams(pager: SanPhamPager = {}): Observable<Response> {
-    return this.http.get(appConfig[this.env]['apis']["san_phams"] + `?nhom=${pager.nhom || ''}&status=${pager.status || ''}&tags=${pager.tags || ''}&search=${pager.search || ''}&fields=${pager.fields || ''}&page=${pager.page || 1}&limit=${pager.limit || 10}&sort=${pager.sort || 'ten'}`)
+    return this.http.get(appConfig[this.env]['apis']["san_phams"] + `?nhom=${pager.nhom || ''}&status=${pager.status || ''}&tags=${pager.tags || ''}&search=${pager.search || ''}&fields=${pager.fields || ''}&page=${pager.page || 1}&limit=${pager.limit || 10}&sort=${pager.sort || 'tenLatinized'}`)
       .catch(this.handleError);
   }
 
