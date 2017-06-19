@@ -11,13 +11,13 @@ export class SanPhamService {
   constructor(private http: Http) { }
 
   getSanPham(sanPhamId: string, pager: SanPhamPager = { fields: '-created' }): Observable<SanPhamModel> {
-    return this.http.get(appConfig[this.env]['apis']["san_phams"] + `/${sanPhamId}?fields=${pager.fields}`)
+    return this.http.get(environment.apis.san_phams + `/${sanPhamId}?fields=${pager.fields}`)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
 
   getSanPhams(pager: SanPhamPager = {}): Observable<Response> {
-    return this.http.get(appConfig[this.env]['apis']["san_phams"] + `?nhom=${pager.nhom || ''}&status=${pager.status || ''}&tags=${pager.tags || ''}&search=${pager.search || ''}&fields=${pager.fields || ''}&page=${pager.page || 1}&limit=${pager.limit || 10}&sort=${pager.sort || 'tenLatinized'}`)
+    return this.http.get(environment.apis.san_phams + `?nhom=${pager.nhom || ''}&status=${pager.status || ''}&tags=${pager.tags || ''}&search=${pager.search || ''}&fields=${pager.fields || ''}&page=${pager.page || 1}&limit=${pager.limit || 10}&sort=${pager.sort || 'tenLatinized'}`)
       .catch(this.handleError);
   }
 

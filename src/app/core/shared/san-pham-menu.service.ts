@@ -16,7 +16,7 @@ export class SanPhamMenuService {
   }
 
   getMenu(): Observable<SanPhamMenu> {
-    return this.http.get(appConfig[this.env]['helpers']['san_phams_menu'])
+    return this.http.get(environment.helpers.san_phams_menu)
       .map(res => res.json()['menu'])
       .map(rawMenu => this.processMenu(rawMenu));
   }

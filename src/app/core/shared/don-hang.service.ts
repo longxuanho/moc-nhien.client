@@ -38,7 +38,7 @@ export class DonHangService {
   }
 
   getLocations(): Observable<LocationModel[]> {
-    return this.http.get(appConfig[this.env]['helpers']['locations'])
+    return this.http.get(environment.helpers.locations)
       .map(res => res.json()['locations']);
   }
 
@@ -127,13 +127,13 @@ export class DonHangService {
   // **********************************************
 
   createNewDonHang(newDonHang: DonHangModel) {
-    return this.http.post(appConfig[this.env]['apis']['don_hangs'], newDonHang)
+    return this.http.post(environment.apis.don_hangs, newDonHang)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
 
   getDonHang(donHangId: string, pager: DonHangPager = { fields: '-created' }): Observable<DonHangModel> {
-    return this.http.get(appConfig[this.env]['apis']["don_hangs"] + `/${donHangId}?fields=${pager.fields}`)
+    return this.http.get(environment.apis.don_hangs + `/${donHangId}?fields=${pager.fields}`)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
@@ -143,7 +143,7 @@ export class DonHangService {
   }
 
   getDonHangs(pager: DonHangPager = { search: '', fields: 'created maDonHang trangThai itemsCount tongCong' }): Observable<Response> {
-    return this.http.get(appConfig[this.env]['apis']["don_hangs"] + `?search=${pager.search || ''}&page=${pager.page || 1}&limit=${pager.limit || 10}&fields=${pager.fields || 'created maDonHang trangThai itemsCount tongCong'}`);
+    return this.http.get(environment.apis.don_hangs + `?search=${pager.search || ''}&page=${pager.page || 1}&limit=${pager.limit || 10}&fields=${pager.fields || 'created maDonHang trangThai itemsCount tongCong'}`);
   }
 
   handleError(error: any) {
