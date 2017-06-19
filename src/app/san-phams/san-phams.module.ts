@@ -8,6 +8,7 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 import { SanPhamsRoutingModule, routedComponents } from './san-phams-routing.module';
 import { TrangThaiDonHangComponent } from './trang-thai-don-hang/trang-thai-don-hang.component';
 import { PortalSecondaryComponent } from './portal-secondary/portal-secondary.component';
+import { AddToCartModalComponent } from './add-to-cart-modal/add-to-cart-modal.component';
 
 
 
@@ -25,6 +26,7 @@ import { PortalSecondaryComponent } from './portal-secondary/portal-secondary.co
     routedComponents,
     TrangThaiDonHangComponent,
     PortalSecondaryComponent,
+    AddToCartModalComponent,
   ]
 })
 export class SanPhamsModule { }
