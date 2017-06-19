@@ -1,3 +1,35 @@
-<p>
-  add-to-cart-modal works!
-</p>
+<a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Open</a>
+
+<div id="modal-sections" uk-modal="center: true">
+  <div class="uk-modal-dialog">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <div class="uk-modal-header">
+      <h2 class="uk-modal-title">Bạc hà nhật (Japanese mint)</h2>
+    </div>
+    <div class="uk-modal-body">
+      <div class="uk-text-center" uk-grid>
+        <div class="uk-width-auto@m">
+          <img class="uk-border-rounded" src="http://znews-photo-td.zadn.vn/w660/Uploaded/mdf_drksxa/2017_06_17/8tincommotngaysauchuongtrinhdigrabbikecungsoaicadienra.jpg"
+            width="200" height="200" />
+        </div>
+        <div class="uk-width-expand@m">
+          <form class="uk-form-horizontal uk-margin" spellcheck="false">
+            <div class="uk-margin">
+
+              <label class="uk-form-label" for="form-horizontal-text">Số lượng:</label>
+              <div class="uk-form-controls">
+                <input type="number" class="uk-input" style="max-width: 6rem;" [min]="1" required>
+              </div>
+              <p class="text-right">Hiện đang sẵn có 84 cây.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="uk-modal-footer uk-text-right">
+      <button class="uk-button uk-button-default uk-modal-close" type="button">Trở về</button>
+      <button class="uk-button uk-button-primary" type="button">Thêm vào giỏ</button>
+    </div>
+  </div>
+</div>
