@@ -1,37 +1,41 @@
-<a class="uk-button uk-button-default" (click)="show()">Open</a>
-<!--<a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Open</a>-->
-
+<!--<a class="uk-button uk-button-default" (click)="show()">Open</a>-->
 
 <div id="modal-sections" #modal uk-modal="center: true">
-  <div class="uk-modal-dialog">
+  <form class="uk-modal-dialog" #addToCartForm="ngForm" (ngSubmit)="addToCart(addToCartForm)">
     <button class="uk-modal-close-default" type="button" uk-close (click)="clearProduct();"></button>
-    <div class="uk-modal-header">
-      <h2 class="uk-modal-title">Bạc hà nhật (Japanese mint)</h2>
+    
+    <div class="uk-modal-header" *ngIf="product">
+      <h2 class="uk-modal-title">{{ product?.ten }}</h2>
     </div>
-    <div class="uk-modal-body">
+
+    <div class="uk-modal-body" *ngIf="product">
       <div class="uk-text-center" uk-grid>
         <div class="uk-width-auto@m">
-          <img class="uk-border-rounded" src="http://znews-photo-td.zadn.vn/w660/Uploaded/mdf_drksxa/2017_06_17/8tincommotngaysauchuongtrinhdigrabbikecungsoaicadienra.jpg"
+          <img class="uk-border-rounded" [src]="product.cover"
             width="200" height="200" />
         </div>
         <div class="uk-width-expand@m">
-          <form class="uk-form-horizontal uk-margin" spellcheck="false">
+          <div class="uk-form-horizontal uk-margin" spellcheck="false">
             <div class="uk-margin">
 
-              <label class="uk-form-label" for="form-horizontal-text">Số lượng:</label>
+              <label class="uk-form-label" for="soLuong">Số lượng:</label>
               <div class="uk-form-controls">
-                <input type="number" class="uk-input" style="max-width: 6rem;" [min]="1" required autofocus>
+                <input type="number" class="uk-input" name="soLuong" id="soLuong" style="max-width: 6rem;" 
+                  [min]="1" [max]="product.soLuong" required autofocus [ngModel]="1"
+                  [ngClass]="{'uk-form-danger': addToCartForm.invalid}">
               </div>
-              <p class="text-right">Hiện đang sẵn có 84 cây.</p>
+              <p class="text-right">Hiện đang sẵn có {{ product.soLuong | number }} cây.</p>
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
     </div>
-    <div class="uk-modal-footer uk-text-right">
+
+    <div class="uk-modal-footer uk-text-right" *ngIf="product">
       <button class="uk-button uk-button-default" type="button" (click)="clearProduct(); hide()">Trở về</button>
-      <button class="uk-button uk-button-primary" type="button">Thêm vào giỏ</button>
+      <button class="uk-button uk-button-primary" type="submit" [disabled]="addToCartForm.invalid">Thêm vào giỏ</button>
     </div>
-  </div>
+
+  </form>
 </div>

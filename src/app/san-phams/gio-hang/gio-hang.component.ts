@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { DonHangService, DonHangModel, ItemCartModel } from '../../core/shared/don-hang.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -21,7 +20,7 @@ export class GioHangComponent implements OnInit, OnDestroy {
     return this.donHangService.getDonHangLocal().itemsCount;
   }
 
-  constructor(private donHangService: DonHangService, private location: Location, private router: Router) { }
+  constructor(private donHangService: DonHangService, private location: Location) { }
 
   removeItemFromCart(item: ItemCartModel) {
     this.donHang.sanPhams.splice(this.donHang.sanPhams.indexOf(item), 1);
@@ -33,16 +32,11 @@ export class GioHangComponent implements OnInit, OnDestroy {
     this.donHangService.saveDonHangLocal(this.donHang);
   }
 
-  onGoBack() {
-    this.location.back();
-  }
+  // onGoBack() {
+  //   this.location.back();
+  // }
 
   ngOnInit() {
-    // this.routeSub = this.router.events.filter(event => event instanceof NavigationEnd)
-    //   .subscribe((e: NavigationEnd) => {
-    //     this.previousUrl = e.url;
-    //   });
-
     this.donHang = this.donHangService.getDonHangLocal();
     this.onResolveCart();
   }

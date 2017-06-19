@@ -65,10 +65,10 @@
   <!--<pre>{{ donHang.sanPhams | json }}</pre>-->
 
   <div class="uk-flex uk-flex-between" *ngIf="!donHang.sanPhams.length">
-    <a class="uk-button uk-button-default sk-button-effect" (click)="onGoBack()">Chọn sản phẩm</a>
+    <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn sản phẩm</a>
   </div>
   <div class="uk-flex uk-flex-between" *ngIf="donHang.sanPhams.length">
-    <a class="uk-button uk-button-default sk-button-effect" (click)="onGoBack()">Chọn tiếp</a>
+    <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn tiếp</a>
     <button class="uk-button uk-button-default sk-button-effect uk-button-primary" [routerLink]="['/thanh-toan']" [disabled]="f.invalid">Thanh toán</button>
   </div>
 

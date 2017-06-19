@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { AddToCartModalComponent } from '../add-to-cart-modal/add-to-cart-modal.component';
 import { SanPhamService, SanPhamModel } from '../../core/shared/san-pham.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -12,6 +13,8 @@ declare const latinize: any;
   styleUrls: ['./san-pham-search-results.component.scss']
 })
 export class SanPhamSearchResultsComponent implements OnInit, OnDestroy {
+
+  @ViewChild(AddToCartModalComponent) addToCartModalComponent: AddToCartModalComponent;
 
   products: SanPhamModel[];
   routeSub: Subscription;
@@ -52,6 +55,19 @@ export class SanPhamSearchResultsComponent implements OnInit, OnDestroy {
     this.page = page;
     this.router.navigate(['/san-pham'], { queryParams: { s: this.searchText, page: this.page } })
 
+  }
+
+  handleCardEvents(event: { message: string, data: any }) {
+    switch (event.message) {
+      case 'onAddToCard':
+        if (!this.addToCartModalComponent) break;
+
+        this.addToCartModalComponent.setProduct(event.data);
+        this.addToCartModalComponent.show();
+        break;
+      default:
+        break;
+    }
   }
 
   ngOnDestroy() {

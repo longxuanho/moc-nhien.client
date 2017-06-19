@@ -3,7 +3,7 @@
     uk-grid *ngIf="products">
 
     <sk-san-pham-card *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalItems }"
-      [product]="product"></sk-san-pham-card>
+      [product]="product" (cardEvents)="handleCardEvents($event)"></sk-san-pham-card>
 
   </div>
 
@@ -14,3 +14,6 @@
   </div>
 
 </div>
+
+<!--Add to cart modal-->
+<sk-add-to-cart-modal></sk-add-to-cart-modal>

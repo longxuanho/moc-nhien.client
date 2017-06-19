@@ -1,9 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { DonHangService } from '../../core/shared/don-hang.service';
 import { SanPhamService, SanPhamModel } from '../../core/shared/san-pham.service';
+import { LoggerService } from '../../core/shared/logger.service';
+import { AddToCartModalComponent } from '../add-to-cart-modal/add-to-cart-modal.component';
+
 import { Subscription } from 'rxjs/Subscription';
+
 
 @Component({
   selector: 'sk-san-pham-details',
@@ -12,22 +16,25 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class SanPhamDetailsComponent implements OnInit, OnDestroy {
 
+  @ViewChild(AddToCartModalComponent) addToCartModalComponent: AddToCartModalComponent;
+
   product: SanPhamModel;
   routeSub: Subscription;
   currentCoverUrl: string;
   currentCoverIndex: number;
 
   constructor(
-    private sanPhamService: SanPhamService, 
-    private route: ActivatedRoute, 
-    private router: Router, 
-    private donHangService: DonHangService) { }
+    private sanPhamService: SanPhamService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private donHangService: DonHangService,
+    private loggerService: LoggerService) { }
 
   handleError(error) {
     console.log(error);
   }
 
-  public get isItemInCart() : boolean {
+  public get isItemInCart(): boolean {
     return this.product && this.donHangService.isItemInCart(this.product._id);
   }
 
@@ -39,11 +46,14 @@ export class SanPhamDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToCart(product: SanPhamModel) {
-    this.donHangService.addToCart(product, 1);
-    this.router.navigate(['/gio-hang'])
+
+    if (!this.product || !this.addToCartModalComponent) return;
+
+    this.addToCartModalComponent.setProduct(this.product);
+    this.addToCartModalComponent.show();
   }
 
-  public get isHetHang() : boolean {
+  public get isHetHang(): boolean {
     return this.product && this.product.soLuong <= 0;
   }
 
@@ -51,6 +61,8 @@ export class SanPhamDetailsComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params
       .switchMap((params: Params) => this.sanPhamService.getSanPham(params["id"], { fields: '-created' }))
       .subscribe(sanPham => {
+        if (!sanPham) this.loggerService.error('Không tìm thấy sản phẩm hoặc sản phẩm không tồn tại!', 'Không tìm thấy sản phẩm');
+        
         this.product = sanPham;
         this.currentCoverIndex = 0;
         this.currentCoverUrl = (this.product && this.product.gallery && this.product.gallery) ? this.product.gallery[0].url : '';
