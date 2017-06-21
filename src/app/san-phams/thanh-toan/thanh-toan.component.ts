@@ -41,7 +41,7 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
 
     let minItemsCount = (this.donHang.tinhThanh === 'Hồ Chí Minh') ? 21 : 42;
 
-    return this.donHangService.getDonHangLocal().itemsCount > minItemsCount;
+    return this.donHangService.getDonHangLocal().itemsCount >= minItemsCount;
   }
 
   constructor(private donHangService: DonHangService, private fb: FormBuilder, private loggerService: LoggerService, private router: Router) {
