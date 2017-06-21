@@ -186,6 +186,6 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-
+    window.scrollTo(0,0);
   }
 }
