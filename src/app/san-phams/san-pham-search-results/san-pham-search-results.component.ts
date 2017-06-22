@@ -52,6 +52,7 @@ export class SanPhamSearchResultsComponent implements OnInit, OnDestroy {
   onPageChanged(page: number) {
     if (page > this.totalPages || page < 0) return;
 
+    window.scrollTo(0,0);
     this.page = page;
     this.router.navigate(['/san-pham'], { queryParams: { s: this.searchText, page: this.page } })
 
