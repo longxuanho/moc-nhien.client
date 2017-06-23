@@ -86,17 +86,17 @@
           <td colspan="5" class="uk-text-right">Không có sản phẩm trong giỏ hàng của bạn.</td>
         </tr>
         <tr *ngIf="donHang.sanPhams.length">
-          <th colspan="2">Tổng số lượng: <strong style="display: inline-block; margin-left: .875rem;">{{ donHang.itemsCount | number }} cây</strong></th>
-          <td colspan="3" class="uk-text-right">
+          <th colspan="2" style="color: inherit;">Tổng số lượng: <strong style="display: inline-block; margin-left: .875rem;">{{ donHang.itemsCount | number }} cây</strong></th>
+          <th colspan="3" style="color: inherit;" class="uk-text-right">
             <span>Tổng cộng: <span class="sk-numeral">{{ donHang.tongCong | number }} đ</span></span><br/>
             <span>Chiết khấu ({{ donHang.chietKhauPercent }} %): <span class="sk-numeral">{{ - donHang.chietKhauPercent / 100 * donHang.tongCong | number }} đ</span></span><br/>
             <span>Phí vận chuyển: <span class="sk-numeral">{{ donHang.phiVanChuyen | number }} đ</span></span><br/>
             <strong>Tổng thanh toán: <span class="sk-numeral">{{ donHang.tongThanhToan | number }} đ</span></strong><br/>
-          </td>
+          </th>
         </tr>
       </tbody>
     </table>
-    <hr/>
+    <!--<hr/>-->
   </div>
 
   <!--<pre>{{ donHang | json }}</pre>-->

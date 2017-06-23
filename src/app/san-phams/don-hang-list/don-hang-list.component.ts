@@ -43,6 +43,7 @@ export class DonHangListComponent implements OnInit {
     this.donHangService.getDonHangs(pager)
       .subscribe(res => {
         this.donHangs = res.json();
+        this.donHangs = this.sortByCreated(this.donHangs);
 
         let paginator = JSON.parse(res.headers.get('X-Pagination'));
         if (paginator) {
@@ -59,6 +60,10 @@ export class DonHangListComponent implements OnInit {
       });
   }
 
+  sortByCreated(donHangs: DonHangModel[]) {
+    return donHangs.sort((a, b) => (a.created > b.created ? -1 : 1));
+  }
+
   ngOnInit() {
     this.searchTextChanged
       .debounceTime(800)
@@ -66,7 +71,7 @@ export class DonHangListComponent implements OnInit {
       .subscribe(search => {
         if (!search) return;
 
-        this.getDonHangs({ search: latinize(search.toLowerCase()), page: this.page, limit: this.itemsPerPage, fields: 'created maDonHang trangThai itemsCount tongCong', sort: 'created' })
+        this.getDonHangs({ search: latinize(search.toLowerCase()), page: this.page, limit: this.itemsPerPage, fields: 'created maDonHang trangThai itemsCount tongCong', sort: '-created' })
       });
   }
 
