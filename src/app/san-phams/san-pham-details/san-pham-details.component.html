@@ -9,8 +9,8 @@
     <div class="uk-card-media-left uk-cover-container uk-inline-clip uk-transition-toggle" oncontextmenu="return false;">
 
       <img [src]="currentCoverUrl" alt="" uk-cover>
-      <a class="sk-cursor-hover" style="display: block; width: 100%; height: 100%; background: transparent" href="#modal-center"
-        uk-toggle></a>
+      <canvas width="600" height="400" class="sk-cursor-hover" style="display: block; width: 100%; height: 100%; background: transparent" href="#modal-center"
+        uk-toggle></canvas>
       <div class="uk-position-relative uk-light" style="z-index: 999;">
 
         <div class="uk-position-bottom-center uk-position-medium">
@@ -77,10 +77,10 @@
             <div *ngSwitchCase="true"><button class="uk-button uk-button-default sk-button-effect sk-success" [routerLink]="['/gio-hang']">Trong giỏ</button></div>
             <div *ngSwitchDefault>
               <button class="uk-button uk-button-default sk-button-effect" [ngClass]="{'uk-button-danger': isHetHang}" (click)="addToCart(product)"
-                  [disabled]="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
+                [disabled]="isHetHang">{{ isHetHang ? 'Hết hàng' : 'Đặt mua' }}</button>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
