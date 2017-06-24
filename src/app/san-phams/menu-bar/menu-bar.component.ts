@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { SanPhamMenuService, SanPhamMenu } from '../../core/shared/san-pham-menu.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+
+declare const UIkit: any;
 
 @Component({
   selector: 'sk-menu-bar',
@@ -33,6 +35,14 @@ export class MenuBarComponent implements OnInit, OnDestroy {
 
   onSearchInput(event) {
     this.searchTextChanged.next(event);
+  }
+
+  onRoute(commands: any[], extras: NavigationExtras, isCloseAfterSelect: boolean) {
+    window.scrollTo(0, 0);
+    this.router.navigate(commands, extras);
+    
+    if (isCloseAfterSelect)
+      UIkit.offcanvas('#product-menu-mobile').hide();
   }
 
   ngOnInit() {

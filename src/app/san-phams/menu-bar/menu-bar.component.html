@@ -108,58 +108,58 @@
 
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple: true" *ngIf="menu">
                 <li class="uk-parent">
-                  <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược' }">Thảo dược</a>
+                  <a (click)="onRoute(['/san-pham'], { queryParams: { s: 'Thảo dược' } }, false)">Thảo dược</a>
                   <ul class="uk-nav-sub" *ngIf="menu.thaoDuoc">
                     <li>
-                      <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược nhập ngoại' }">Nhập ngoại</a>
+                      <a (click)="onRoute(['/san-pham'], { queryParams: { s: 'Thảo dược nhập ngoại' } }, true)">Nhập ngoại</a>
                       <ul>
                         <li *ngFor="let menuItem of menu.thaoDuoc.nhapNgoai">
-                          <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                          <a (click)="onRoute(['/san-pham'], { queryParams: { s: menuItem.keyword, isExact: !!menuItem.isExact } }, true)" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược trong nước' }">Trong nước</a>
+                      <a (click)="onRoute(['/san-pham'], { queryParams: { s: 'Thảo dược trong nước' } }, true)">Trong nước</a>
                       <ul>
                         <li *ngFor="let menuItem of menu.thaoDuoc.trongNuoc">
-                          <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                          <a (click)="onRoute(['/san-pham'], { queryParams: { s: menuItem.keyword, isExact: !!menuItem.isExact } }, true)" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                         </li>
                       </ul>
                     </li>
                   </ul>
                 </li>
                 <li class="uk-parent">
-                  <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Giống hoa' }">Giống hoa</a>
+                  <a (click)="onRoute(['/san-pham'], { queryParams: { s: 'Giống hoa' } }, false)">Giống hoa</a>
                   <ul class="uk-nav-sub">
                     <li *ngFor="let menuItem of menu.giongHoa">
-                      <a [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                      <a (click)="onRoute(['/san-pham'], { queryParams: { s: menuItem.keyword, isExact: !!menuItem.isExact } }, true)" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                     </li>
                   </ul>
                 </li>
                 <li class="uk-parent">
-                  <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây cảnh' }">Cây cảnh</a>
+                  <a (click)="onRoute(['/san-pham'], { queryParams: { s: 'Cây cảnh' } }, false)">Cây cảnh</a>
                   <ul class="uk-nav-sub">
                     <li *ngFor="let menuItem of menu.cayCanh">
-                      <a [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                      <a  (click)="onRoute(['/san-pham'], { queryParams: { s: menuItem.keyword, isExact: !!menuItem.isExact } }, true)" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                     </li>
                   </ul>
                 </li>
                 <li class="uk-parent">
-                  <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái' }">Cây ăn trái</a>
+                  <a (click)="onRoute(['/san-pham'], { queryParams: { s: 'Cây ăn trái' } }, false)">Cây ăn trái</a>
                   <ul class="uk-nav-sub" *ngIf="menu.cayAnTrai">
                     <li>
-                      <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái nhiệt đới' }">Nhiệt đới</a>
+                      <a (click)="onRoute(['/san-pham'], { queryParams: { s: 'Cây ăn trái nhiệt đới' } }, true)">Nhiệt đới</a>
                       <ul *ngIf="menu.fruitTreeNhietDoiMenu">
                         <li *ngFor="let menuItem of menu.cayAnTrai.nhietDoi">
-                          <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                          <a (click)="onRoute(['/san-pham'], { queryParams: { s: menuItem.keyword, isExact: !!menuItem.isExact } }, true)" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái ôn đới' }">Ôn đới</a>
+                      <a (click)="onRoute(['/san-pham'], { queryParams: { s: 'Cây ăn trái ôn đới' } }, true)">Ôn đới</a>
                       <ul *ngIf="menu.fruitTreeOnDoiMenu">
                         <li *ngFor="let menuItem of menu.cayAnTrai.onDoi">
-                          <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword, isExact: !!menuItem.isExact }" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
+                          <a (click)="onRoute(['/san-pham'], { queryParams: { s: menuItem.keyword, isExact: !!menuItem.isExact } }, true)" [ngClass]="{'highlight': menuItem.highlight}">{{ menuItem.text }}</a>
                         </li>
                       </ul>
                     </li>

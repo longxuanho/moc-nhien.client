@@ -16,6 +16,7 @@ export class SanPhamSearchResultsComponent implements OnInit, OnDestroy {
 
   @ViewChild(AddToCartModalComponent) addToCartModalComponent: AddToCartModalComponent;
 
+  isLoading: boolean;
   products: SanPhamModel[];
   routeSub: Subscription;
   queryParams: any;
@@ -34,7 +35,9 @@ export class SanPhamSearchResultsComponent implements OnInit, OnDestroy {
       .do((params) => {
         this.searchText = params['s'] || '';
         this.page = +params['page'] || 1;
+        this.isLoading = true;
       })
+      .finally(() => this.isLoading = false)
       .switchMap(params => this.sanPhamService.getSanPhams({ search: latinize(this.searchText.toLowerCase()), page: this.page, limit: this.itemsPerPage, fields: 'ten ma giaBan soLuong trichDan cover dvt dacTinh', sort: 'tenLatinized' }))
       .subscribe(res => {
         this.products = res.json();
