@@ -32,7 +32,7 @@
           <div oncontextmenu="return false;">
             <div class="uk-position-relative uk-light">
               <img [src]="currentCoverUrl" alt="">
-              <div class="uk-position-bottom-center uk-position-medium">
+              <div class="sk-dotnav-container">
                 <ul class="uk-dotnav uk-flex-nowrap">
                   <li class="uk-active" [ngClass]="{'uk-active': i === currentCoverIndex}" *ngFor="let cover of product.gallery; let i = index"
                     (click)="setCurrentCoverUrl($event, i)"><a href="">Item 1</a></li>
