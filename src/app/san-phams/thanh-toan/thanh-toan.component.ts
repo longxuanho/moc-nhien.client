@@ -34,7 +34,6 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
   quanHuyensSelect: { [key: string]: string[] } = {};
 
   isThanhToanChuyenKhoan: boolean = false;
-  isAllowThanhToanTienMat: boolean = true;
 
   get isItemsCountValid(): boolean {
     if (!this.donHang.tinhThanh) return false;
@@ -118,8 +117,6 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
           this.dienThoaiNguoiNhan.setValue(this.donHang.dienThoai);
         }
 
-        if (this.tinhThanh.value && this.tinhThanh.value !== 'Hồ Chí Minh') this.cachThanhToan.setValue('Chuyển khoản');
-        this.isAllowThanhToanTienMat = (!this.tinhThanh.value || this.tinhThanh.value === 'Hồ Chí Minh');
         this.isThanhToanChuyenKhoan = (this.cachThanhToan.value === "Chuyển khoản");
 
         this.donHangService.resolveDonHangLocal(this.donHang);

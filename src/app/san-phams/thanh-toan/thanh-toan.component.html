@@ -44,7 +44,7 @@
       <div class="uk-margin">
         <div class="uk-form-label">Phương thức thanh toán</div>
         <div class="uk-form-controls uk-form-controls-text">
-          <label *ngIf="isAllowThanhToanTienMat"><input class="uk-radio" type="radio" value="Tiền mặt" formControlName="cachThanhToan" [ngClass]="{'uk-form-danger': cachThanhToan.invalid && (cachThanhToan.dirty || cachThanhToan.touched)}">  Thanh toán bằng tiền mặt khi nhận hàng</label><br>
+          <label><input class="uk-radio" type="radio" value="Tiền mặt" formControlName="cachThanhToan" [ngClass]="{'uk-form-danger': cachThanhToan.invalid && (cachThanhToan.dirty || cachThanhToan.touched)}">  Thanh toán bằng tiền mặt khi nhận hàng</label><br>
           <label><input class="uk-radio" type="radio" value="Chuyển khoản" formControlName="cachThanhToan" [ngClass]="{'uk-form-danger': cachThanhToan.invalid && (cachThanhToan.dirty || cachThanhToan.touched)}">  Chuyển khoản qua ngân hàng</label>
         </div>
 
