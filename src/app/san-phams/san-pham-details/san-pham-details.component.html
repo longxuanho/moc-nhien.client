@@ -9,8 +9,8 @@
     <div class="uk-card-media-left uk-cover-container uk-inline-clip uk-transition-toggle" oncontextmenu="return false;">
 
       <img [src]="currentCoverUrl" alt="" uk-cover>
-      <canvas width="600" height="400" class="sk-cursor-hover" style="display: block; width: 100%; height: 100%; background: transparent" href="#modal-center"
-        uk-toggle></canvas>
+      <canvas width="600" height="400" class="sk-cursor-hover" style="display: block; width: 100%; height: 100%; background: transparent"
+        href="#modal-center" uk-toggle></canvas>
       <div class="uk-position-relative uk-light" style="z-index: 999;">
 
         <div class="uk-position-bottom-center uk-position-medium">
@@ -33,10 +33,15 @@
             <div class="uk-position-relative uk-light">
               <img [src]="currentCoverUrl" alt="">
               <div class="sk-dotnav-container">
-                <ul class="uk-dotnav uk-flex-nowrap">
+                <div style="display: flex; align-items: center;">
+                  <span class="d-inline-block uk-margin-small-right" uk-icon="icon: chevron-left" (click)="prevCover()"></span>
+                  <span class="d-inline-block">{{ currentCoverIndex + 1 }} / {{ product.gallery.length }}</span>
+                  <span class="d-inline-block uk-margin-small-left" uk-icon="icon: chevron-right" (click)="nextCover()"></span>
+                </div>
+                <!--<ul class="uk-dotnav uk-flex-nowrap">
                   <li class="uk-active" [ngClass]="{'uk-active': i === currentCoverIndex}" *ngFor="let cover of product.gallery; let i = index"
                     (click)="setCurrentCoverUrl($event, i)"><a href="">Item 1</a></li>
-                </ul>
+                </ul>-->
               </div>
             </div>
           </div>

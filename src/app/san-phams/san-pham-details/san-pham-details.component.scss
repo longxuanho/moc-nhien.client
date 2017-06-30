@@ -17,8 +17,10 @@
 }
 
 .sk-dotnav-container {
-    position: absolute;
-    margin-top: 1rem;
+    // position: absolute;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: grey;
     width: 100%;
     display: flex;
     justify-content: center;

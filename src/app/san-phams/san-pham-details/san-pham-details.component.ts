@@ -45,6 +45,32 @@ export class SanPhamDetailsComponent implements OnInit, OnDestroy {
     this.currentCoverIndex = index;
   }
 
+  nextCover() {
+    if (!this.product || !this.product.gallery || !this.product.gallery.length)
+      return;
+
+    if (this.currentCoverIndex >= this.product.gallery.length - 1) {
+      this.currentCoverIndex = 0;
+    } else {
+      this.currentCoverIndex++;
+    }
+
+    this.currentCoverUrl = this.product.gallery[this.currentCoverIndex].url || '';
+  };
+
+  prevCover() {
+    if (!this.product || !this.product.gallery || !this.product.gallery.length)
+      return;
+
+    if (this.currentCoverIndex <= 0) {
+      this.currentCoverIndex = this.product.gallery.length - 1;
+    } else {
+      this.currentCoverIndex--;
+    }
+
+    this.currentCoverUrl = this.product.gallery[this.currentCoverIndex].url || '';
+  };
+
   addToCart(product: SanPhamModel) {
 
     if (!this.product || !this.addToCartModalComponent) return;
