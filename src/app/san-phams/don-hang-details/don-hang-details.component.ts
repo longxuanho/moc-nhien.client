@@ -22,6 +22,8 @@ export class DonHangDetailsComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params
       .switchMap((params: Params) => this.donHangService.getDonHang(params["id"], { fields: '-created' }))
       .subscribe(donHang => {
+        window.scroll(0, 0);
+        
         this.donHang = donHang;
       }, error => this.handleError(error))
   }
