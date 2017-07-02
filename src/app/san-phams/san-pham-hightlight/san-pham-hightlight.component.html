@@ -1,6 +1,11 @@
 <div class="uk-container uk-container-expand" *ngIf="products && products.length > 0">
 
-  <h4 class="uk-heading-line">
+  <h4 class="uk-heading-line" *ngIf="(category === 'Sản phẩm bán chạy') || (category === 'Sản phẩm mới')">
+    <span class="sk-ribbon">{{ category }}</span>
+  </h4>
+
+  <h4 class="uk-heading-line sk-cursor-pointer" *ngIf="(category !== 'Sản phẩm bán chạy') && (category !== 'Sản phẩm mới')"
+    [routerLink]="['/san-pham']" [queryParams]="{s: category}">
     <span class="sk-ribbon">{{ category }}</span>
   </h4>
 

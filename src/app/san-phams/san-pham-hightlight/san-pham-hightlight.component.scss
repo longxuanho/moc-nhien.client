@@ -32,10 +32,15 @@
 
 
 .sk-button-effect {
+    border-color: #8dc15b;
     border-radius: 500px;
 
     &:hover {
         box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
 
+}
+
+.sk-cursor-pointer:hover {
+    cursor: pointer;
 }

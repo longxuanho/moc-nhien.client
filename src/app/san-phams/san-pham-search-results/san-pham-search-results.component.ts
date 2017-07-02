@@ -40,6 +40,7 @@ export class SanPhamSearchResultsComponent implements OnInit, OnDestroy {
       .finally(() => this.isLoading = false)
       .switchMap(params => this.sanPhamService.getSanPhams({ search: latinize(this.searchText.toLowerCase()), page: this.page, limit: this.itemsPerPage, fields: 'ten ma giaBan soLuong trichDan cover dvt dacTinh', sort: 'tenLatinized' }))
       .subscribe(res => {
+        window.scrollTo(0, 0);
         this.products = res.json();
 
         let paginator = JSON.parse(res.headers.get('X-Pagination'));
@@ -55,10 +56,8 @@ export class SanPhamSearchResultsComponent implements OnInit, OnDestroy {
   onPageChanged(page: number) {
     if (page > this.totalPages || page < 0) return;
 
-    window.scrollTo(0,0);
     this.page = page;
     this.router.navigate(['/san-pham'], { queryParams: { s: this.searchText, page: this.page } })
-
   }
 
   handleCardEvents(event: { message: string, data: any }) {
