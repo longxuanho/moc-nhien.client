@@ -32,6 +32,10 @@ export class DonHangDetailsComponent implements OnInit, OnDestroy {
     return this.donHang ? `${ this.donHang.diaChi }, ${ this.donHang.quanHuyen }, ${ this.donHang.tinhThanh }.` : '';
   }
 
+  public get chietKhau() : number {
+    return - Math.ceil((this.donHang.chietKhauPercent / 100 * this.donHang.tongCong) / 1000) * 1000;
+  }
+
   public get trangThai() : string {
     if (!this.donHang) return '';
 

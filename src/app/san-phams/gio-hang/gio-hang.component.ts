@@ -22,6 +22,10 @@ export class GioHangComponent implements OnInit, OnDestroy {
 
   constructor(private donHangService: DonHangService, private location: Location) { }
 
+  public get chietKhau() : number {
+    return - Math.ceil((this.donHang.chietKhauPercent / 100 * this.donHang.tongCong) / 1000) * 1000;
+  }
+
   removeItemFromCart(item: ItemCartModel) {
     this.donHang.sanPhams.splice(this.donHang.sanPhams.indexOf(item), 1);
     this.onResolveCart();    

@@ -43,6 +43,10 @@ export class ThanhToanComponent implements OnInit, AfterViewInit {
     return this.donHangService.getDonHangLocal().itemsCount >= minItemsCount;
   }
 
+  public get chietKhau() : number {
+    return - Math.ceil((this.donHang.chietKhauPercent / 100 * this.donHang.tongCong) / 1000) * 1000;
+  }
+
   constructor(private donHangService: DonHangService, private fb: FormBuilder, private loggerService: LoggerService, private router: Router) {
     this.buildForm();
   }

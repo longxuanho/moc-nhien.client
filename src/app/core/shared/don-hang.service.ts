@@ -90,8 +90,10 @@ export class DonHangService {
     else if (donHang.itemsCount >= 84) donHang.chietKhauPercent = 7;
     else if (donHang.itemsCount >= 42) donHang.chietKhauPercent = 3;
     else donHang.chietKhauPercent = 0;
+
+    let chietKhau = - Math.ceil((donHang.chietKhauPercent / 100 * donHang.tongCong) / 1000) * 1000; 
     
-    donHang.tongThanhToan = donHang.tongCong - donHang.chietKhauPercent / 100 * donHang.tongCong + donHang.phiVanChuyen;
+    donHang.tongThanhToan = donHang.tongCong + chietKhau + donHang.phiVanChuyen;
   }
 
   initDonHangLocal(): DonHangModel {

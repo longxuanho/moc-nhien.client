@@ -98,7 +98,7 @@
         <tr *ngIf="donHang.sanPhams.length">
           <td colspan="5" class="uk-text-right">
             <span>Tổng cộng: <span class="sk-numeral">{{ donHang.tongCong | number }} đ</span></span><br/>
-            <span>Chiết khấu ({{ donHang.chietKhauPercent }} %): <span class="sk-numeral">{{ - donHang.chietKhauPercent / 100 * donHang.tongCong | number }} đ</span></span><br/>
+            <span>Chiết khấu ({{ donHang.chietKhauPercent }} %): <span class="sk-numeral">{{ chietKhau | number }} đ</span></span><br/>
             <span>Phí vận chuyển: <span class="sk-numeral">{{ donHang.phiVanChuyen | number }} đ</span></span><br/>
             <strong>Tổng thanh toán: <span class="sk-numeral">{{ donHang.tongThanhToan | number }} đ</span></strong><br/>
           </td>
