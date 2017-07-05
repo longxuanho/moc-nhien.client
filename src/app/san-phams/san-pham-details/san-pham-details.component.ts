@@ -8,6 +8,8 @@ import { AddToCartModalComponent } from '../add-to-cart-modal/add-to-cart-modal.
 
 import { Subscription } from 'rxjs/Subscription';
 
+declare const $: any;
+declare const UIkit: any;
 
 @Component({
   selector: 'sk-san-pham-details',
@@ -36,6 +38,10 @@ export class SanPhamDetailsComponent implements OnInit, OnDestroy {
 
   public get isItemInCart(): boolean {
     return this.product && this.donHangService.isItemInCart(this.product._id);
+  }
+
+  showGalleryModal() {
+    UIkit.modal("#modal-center").show();
   }
 
   setCurrentCoverUrl(event: Event, index: number = 0) {

@@ -14,11 +14,12 @@
       <div class="uk-position-relative uk-light" style="z-index: 999;">
 
         <div class="uk-position-bottom-center uk-position-medium">
-          <div style="display: flex; align-items: center;">
+          <a class="uk-icon-button" uk-icon="icon: thumbnails" (click)="showGalleryModal()"></a>
+          <!--<div style="display: flex; align-items: center;">
             <span class="d-inline-block uk-margin-small-right" uk-icon="icon: chevron-left" (click)="prevCover()"></span>
             <span class="d-inline-block">{{ currentCoverIndex + 1 }} / {{ product.gallery.length }}</span>
             <span class="d-inline-block uk-margin-small-left" uk-icon="icon: chevron-right" (click)="nextCover()"></span>
-          </div>
+          </div>-->
           <!--<ul class="uk-dotnav uk-flex-nowrap">
             <li class="uk-active" [ngClass]="{'uk-active': i === currentCoverIndex}" *ngFor="let cover of product.gallery; let i = index"
               (click)="setCurrentCoverUrl($event, i)"><a href="">Item 1</a></li>
