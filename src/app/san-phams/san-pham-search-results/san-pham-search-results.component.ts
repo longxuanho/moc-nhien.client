@@ -38,7 +38,7 @@ export class SanPhamSearchResultsComponent implements OnInit, OnDestroy {
         this.isLoading = true;
       })
       .finally(() => this.isLoading = false)
-      .switchMap(params => this.sanPhamService.getSanPhams({ search: latinize(this.searchText.toLowerCase()), page: this.page, limit: this.itemsPerPage, fields: 'ten ma giaBan soLuong trichDan cover dvt dacTinh', sort: 'tenLatinized' }))
+      .switchMap(params => this.sanPhamService.getSanPhams({ search: latinize(this.searchText.toLowerCase()), page: this.page, limit: this.itemsPerPage, fields: 'ten ma giaBan soLuong trichDan cover dvt dacTinh chieuCao', sort: 'tenLatinized' }))
       .subscribe(res => {
         window.scrollTo(0, 0);
         this.products = res.json();

@@ -15,11 +15,12 @@ export class PortalComponent implements OnInit {
   flowers;
   ornamentalPlants;
   fruitTrees;
+  cayLons;
 
   constructor(private sanPhamService: SanPhamService) { }
   
   ngOnInit() {
-    this.sanPhamService.getSanPhams({ fields: 'nhom ten ma tags cover soLuong trichDan giaBan dvt dacTinh', limit: 50, tags: 'New Releases, Best Seller, Pinned'})
+    this.sanPhamService.getSanPhams({ fields: 'nhom ten ma tags cover soLuong trichDan giaBan dvt dacTinh chieuCao', limit: 50, tags: 'New Releases, Best Seller, Pinned'})
       .map(res => res.json()) 
       .subscribe(sanphams => {
         this.bestSellers = sanphams.filter(sanpham => sanpham.tags.includes('Best Seller'));
@@ -28,6 +29,7 @@ export class PortalComponent implements OnInit {
         this.flowers = sanphams.filter(sanpham => sanpham.nhom === 'Giống hoa' && sanpham.tags.includes('Pinned'));
         this.ornamentalPlants = sanphams.filter(sanpham => sanpham.nhom === 'Cây cảnh' && sanpham.tags.includes('Pinned'));
         this.fruitTrees = sanphams.filter(sanpham => sanpham.nhom === 'Cây ăn trái' && sanpham.tags.includes('Pinned'));
+        this.cayLons = sanphams.filter(sanpham => sanpham.nhom === 'Cây lớn' && sanpham.tags.includes('Pinned'));
       });
   }
 
