@@ -30,6 +30,9 @@
 
 .uk-button {
     font-size: .875rem;
+    white-space: nowrap;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 a {
@@ -46,12 +49,6 @@ a {
     right: .8rem;
 }
 
-.sk-prop {
-    position: absolute;
-    top: .8rem;
-    left: .8rem;
-}
-
 .ribbon {
     left: calc(100% + 0rem + 1.2em) !important;
     font-weight: 500 !important;
@@ -66,6 +63,12 @@ a {
 .uk-button-danger {
     color: #ec2147;
     border-color: #ec2147;
+}
+
+.sk-price {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sk-success {
