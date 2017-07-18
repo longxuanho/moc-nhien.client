@@ -65,7 +65,7 @@
           <input class="uk-input" type="text" formControlName="ghiChu">
         </div>
       </div>
-      <div class="uk-flex uk-flex-right">
+      <div class="uk-text-right">
         <button class="uk-button uk-button-default" (click)="resetForm()">Reset</button>
       </div>
     </form>
@@ -127,8 +127,10 @@
     <p>Vui lòng quay lại giỏ hàng để điều chỉnh số lượng cây hoặc chọn thêm giống mới trước khi bạn gửi đơn hàng này...</p>
   </div>
 
-  <div class="uk-flex uk-flex-between">
-    <a class="uk-button uk-button-default" [routerLink]="['/gio-hang']">Trở lại giỏ hàng</a>
+  <div class="uk-text-right uk-inline" style="width: 100%;">
+    <div class="uk-position-left">
+      <a class="uk-button uk-button-default" [routerLink]="['/gio-hang']">Trở lại giỏ hàng</a>
+    </div>
     <button class="uk-button uk-button-default uk-button-primary" [disabled]="!isItemsCountValid || donHangForm.invalid || !donHang || !donHang.sanPhams || !donHang.sanPhams.length"
       (click)="createNewDonHang()">Gửi đơn hàng</button>
   </div>

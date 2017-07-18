@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="uk-flex uk-flex-center" style="margin-top: 2rem;" *ngIf="(category !== 'Sản phẩm bán chạy') && (category !== 'Sản phẩm mới')">
+  <div style="margin-top: 2rem; text-align: center;" *ngIf="(category !== 'Sản phẩm bán chạy') && (category !== 'Sản phẩm mới')">
     <a href="" class="uk-button uk-button-default sk-button-effect" [routerLink]="['/san-pham']" [queryParams]="{s: category}">Xem tất cả</a>
   </div>
 </div>

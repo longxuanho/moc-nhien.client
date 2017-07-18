@@ -1,4 +1,4 @@
-<div class="uk-card uk-card-small uk-card-default uk-card-hover uk-visible-toggle" *ngIf="product">
+<div class="uk-card uk-card-small uk-card-default uk-card-hover uk-visible-toggle uk-inline" *ngIf="product">
   <div class="uk-card-media-top uk-inline" href="" [routerLink]="['/san-pham', product._id ]">
     <div class="ui label sk-counter uk-hidden-hover">
       <i class="cubes icon"></i> {{ product.soLuong | number }}
@@ -11,9 +11,12 @@
 
     <p *ngIf="product.trichDan" class="uk-text-small uk-text-justify">{{ product.trichDan }}</p>
   </div>
-  <div class="uk-card-footer">
-    <div class="subtitle uk-flex uk-flex-between ">
-      <div class="sk-price">{{ product.giaBan | number }} ₫/{{ product.dvt }} {{ product.chieuCao }}</div>
+  <div style="height: 68px;"></div>
+  <div class="uk-card-footer uk-position-bottom">
+    <div class="subtitle uk-inline">
+      <div class="sk-price uk-position-center-left">
+        {{ product.giaBan | number }} ₫/{{ product.dvt }} {{ product.chieuCao }}
+      </div>
       <div [ngSwitch]="isItemInCart">
         <div *ngSwitchCase="true"><button class="uk-button uk-button-default sk-button-effect sk-success" [routerLink]="['/gio-hang']">Trong giỏ</button></div>
         <div *ngSwitchDefault>

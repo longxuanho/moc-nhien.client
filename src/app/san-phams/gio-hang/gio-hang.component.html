@@ -64,11 +64,13 @@
 
   <!--<pre>{{ donHang.sanPhams | json }}</pre>-->
 
-  <div class="uk-flex uk-flex-between" *ngIf="!donHang.sanPhams.length">
-    <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn sản phẩm</a>
+  <div *ngIf="!donHang.sanPhams.length">
+    <a class="uk-button uk-button-default sk-button-effect uk-button-primary" [routerLink]="['/']">Chọn sản phẩm</a>
   </div>
-  <div class="uk-flex uk-flex-between" *ngIf="donHang.sanPhams.length">
-    <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn tiếp</a>
+  <div class="uk-text-right uk-inline" style="width: 100%;" *ngIf="donHang.sanPhams.length">
+    <div class="uk-position-left">
+      <a class="uk-button uk-button-default sk-button-effect" [routerLink]="['/']">Chọn tiếp</a>
+    </div>
     <button class="uk-button uk-button-default sk-button-effect uk-button-primary" [routerLink]="['/thanh-toan']" [disabled]="f.invalid">Thanh toán</button>
   </div>
 

@@ -1,6 +1,4 @@
 .uk-card {
-    display: flex;
-    flex-direction: column;
     .uk-card-title {
         margin-bottom: 1rem;
         font-size: 1.275rem;
@@ -9,22 +7,15 @@
         overflow: hidden;
     }
     .subtitle {
-        display: flex;
-        align-items: center;
-        // margin-top: 0;
-        // margin-bottom: 0.75rem;
-        // font-size: 1.15rem;
         color: #666;
-        .auto {
-            flex-grow: 1;
-        }
+        text-align: right;
+        width: 100%;
     }
     p {
         margin-top: 0;
     }
     .uk-card-body {
         cursor: pointer;
-        flex-grow: 1;
     }
 }
 
@@ -69,6 +60,7 @@ a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-right: auto;
 }
 
 .sk-success {

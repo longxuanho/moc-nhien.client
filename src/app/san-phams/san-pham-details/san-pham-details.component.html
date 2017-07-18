@@ -15,22 +15,16 @@
         href="#modal-center" uk-toggle></canvas>
       <div class="uk-position-relative uk-light" style="z-index: 999;">
 
-        <div class="uk-position-bottom-center uk-position-medium" style="width: 100%">
-          <div style="display: flex; justify-content: space-between; width: 100%;">
-            <div style="display: flex; align-items: center; padding-left: 1rem;">
-              <!--<span class="d-inline-block uk-margin-small-right" uk-icon="icon: chevron-left" (click)="prevCover()"></span>-->
-              <span class="d-inline-block" style="color: white;">{{ currentCoverIndex + 1 }} / {{ product.gallery.length }}</span>
-              <!--<span class="d-inline-block uk-margin-small-left" uk-icon="icon: chevron-right" (click)="nextCover()"></span>-->
+         <div class="uk-position-bottom-center uk-position-medium" style="width: 100%">
+          <div style="width: 100%; text-align: right;" class="uk-inline">
+            <div style="padding-left: 1rem;" class="uk-position-center-left">
+              <span style="color: white;">{{ currentCoverIndex + 1 }} / {{ product.gallery.length }}</span>
             </div>
-            <div style="padding-right: 1rem;">
+            <div style="padding-right: 1rem">
               <a class="uk-icon-button" uk-icon="icon: thumbnails" (click)="showGalleryModal()"></a>
             </div>
           </div>
-          <!--<ul class="uk-dotnav uk-flex-nowrap">
-            <li class="uk-active" [ngClass]="{'uk-active': i === currentCoverIndex}" *ngFor="let cover of product.gallery; let i = index"
-              (click)="setCurrentCoverUrl($event, i)"><a href="">Item 1</a></li>
-          </ul>-->
-        </div>
+        </div> 
       </div>
 
       <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
@@ -45,15 +39,11 @@
             <div class="uk-position-relative uk-light">
               <img [src]="currentCoverUrl" alt="">
               <div class="sk-dotnav-container">
-                <div style="display: flex; align-items: center;">
+                <div>
                   <span class="d-inline-block uk-margin-small-right" uk-icon="icon: chevron-left" (click)="prevCover()"></span>
                   <span class="d-inline-block">{{ currentCoverIndex + 1 }} / {{ product.gallery.length }}</span>
                   <span class="d-inline-block uk-margin-small-left" uk-icon="icon: chevron-right" (click)="nextCover()"></span>
                 </div>
-                <!--<ul class="uk-dotnav uk-flex-nowrap">
-                  <li class="uk-active" [ngClass]="{'uk-active': i === currentCoverIndex}" *ngFor="let cover of product.gallery; let i = index"
-                    (click)="setCurrentCoverUrl($event, i)"><a href="">Item 1</a></li>
-                </ul>-->
               </div>
             </div>
           </div>

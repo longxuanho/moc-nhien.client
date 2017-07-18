@@ -9,8 +9,8 @@
 
   <div class="sk-spinner sk-spinner-pulse" *ngIf="!products"></div>
 
-  <div class="uk-flex uk-flex-center" style="margin-top: 2rem;">
-    <pagination-controls (pageChange)="onPageChanged($event)" autoHide="true" directionLinks="false"></pagination-controls>
+  <div style="margin-top: 2rem;">
+    <pagination-controls style="text-align: center;" (pageChange)="onPageChanged($event)" autoHide="true" directionLinks="false"></pagination-controls>
   </div>
 
 </div>
