@@ -27,10 +27,14 @@
 }
 
 a {
-    
+    color: inherit;
     &:hover {
         color: inherit;
         text-decoration: none;
+    }
+    &.uk-card-body {
+        display: inline-block;
+        height: 100%;
     }
 }
 

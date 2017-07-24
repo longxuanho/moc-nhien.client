@@ -1,16 +1,16 @@
 <div class="uk-card uk-card-small uk-card-default uk-card-hover uk-visible-toggle uk-inline" *ngIf="product">
-  <div class="uk-card-media-top uk-inline" href="" [routerLink]="['/san-pham', product._id ]">
+  <a class="uk-card-media-top uk-inline" href="" [routerLink]="['/san-pham', product._id ]">
     <div class="ui label sk-counter uk-hidden-hover">
       <i class="cubes icon"></i> {{ product.soLuong | number }}
     </div>
     <img [src]="product.cover" alt="">
     <span class="ui right ribbon label uk-position-bottom" *ngIf="product.dacTinh"><span>{{ product.dacTinh }}</span></span>
-  </div>
-  <div class="uk-card-body" href="" [routerLink]="['/san-pham', product._id ]">
+  </a>
+  <a class="uk-card-body" href="" [routerLink]="['/san-pham', product._id ]">
     <h3 class="uk-card-title">{{ product.ten }}</h3>
 
     <p *ngIf="product.trichDan" class="uk-text-small uk-text-justify">{{ product.trichDan }}</p>
-  </div>
+  </a>
   <div style="height: 68px;"></div>
   <div class="uk-card-footer uk-position-bottom">
     <div class="subtitle uk-inline">

@@ -24,7 +24,7 @@
         <!--Hidden on small devices-->
         <ul class="uk-navbar-nav" *ngIf="menu && (clientWidth >= 960)">
           <li>
-            <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược' }">Thảo dược</a>
+            <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Thảo dược' }" class="sk-bold">Thảo dược</a>
             <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
               <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid *ngIf="menu.thaoDuoc">
                 <div>
@@ -49,7 +49,7 @@
             </div>
           </li>
           <li>
-            <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Giống hoa' }">Giống hoa</a>
+            <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Giống hoa' }" class="sk-bold">Giống hoa</a>
             <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
               <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2@s uk-column-1-3@m">
                 <li *ngFor="let menuItem of menu.giongHoa"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword }">{{ menuItem.text }}</a></li>
@@ -57,7 +57,7 @@
             </div>
           </li>
           <li>
-            <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây cảnh' }">Cây cảnh</a>
+            <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây cảnh' }" class="sk-bold">Cây cảnh</a>
             <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center; delay-hide: 1200">
               <ul class="uk-nav uk-dropdown-nav sk-product-sub-categories uk-column-1-2">
                 <li *ngFor="let menuItem of menu.cayCanh"><a href="" [ngClass]="{'highlight': menuItem.highlight}" [routerLink]="['/san-pham']" [queryParams]="{ s: menuItem.keyword }">{{ menuItem.text }}</a></li>
@@ -65,7 +65,7 @@
             </div>
           </li>
           <li>
-            <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái' }">Cây ăn trái</a>
+            <a href="" [routerLink]="['/san-pham']" [queryParams]="{ s: 'Cây ăn trái' }" class="sk-bold">Cây ăn trái</a>
             <div class="uk-navbar-dropdown uk-width-large" uk-drop="boundary: !nav; boundary-align: true; pos: bottom-center">
               <div class="uk-dropdown-grid uk-child-width-1-2@m" uk-grid *ngIf="menu.cayAnTrai">
                 <div>
